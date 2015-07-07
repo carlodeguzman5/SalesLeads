@@ -1,11 +1,24 @@
 package sales.domain.model;
-import static org.apache.commons.lang3.Validate.*;
+import static org.apache.commons.lang3.Validate.notEmpty;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CUSTOMER_T")
 public class Customer {
 
+	@Id
+	private long id;
+	@Column(name="NAME")
 	private String name;
+	@Column(name="EMAIL")
 	private String email;
+	@Column(name="CONTACT_NUMBER")
 	private String contactNumber;
+	@Column(name="CONTACT_PERSON")
 	private String contactPerson;
 	private CustomerClassification classification;
 
