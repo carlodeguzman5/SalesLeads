@@ -22,6 +22,8 @@ public class Customer {
 	private String contactPerson;
 	private CustomerClassification classification;
 
+	protected Customer(){/*AS NEEDED BY JPA*/}
+	
 	public Customer(String name, String contactPerson, CustomerClassification classification) {
 		notEmpty(name);
 		notEmpty(contactPerson);
