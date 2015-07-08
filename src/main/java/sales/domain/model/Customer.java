@@ -1,9 +1,13 @@
 package sales.domain.model;
 import static org.apache.commons.lang3.Validate.notEmpty;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +24,8 @@ public class Customer {
 	private String contactNumber;
 	@Column(name="CONTACT_PERSON")
 	private String contactPerson;
+	@OneToOne
+	@JoinColumn(name="CLASSIFICATION")
 	private CustomerClassification classification;
 
 	protected Customer(){/*AS NEEDED BY JPA*/}
