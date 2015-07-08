@@ -24,9 +24,8 @@ public class Customer {
 	private String contactNumber;
 	@Column(name="CONTACT_PERSON")
 	private String contactPerson;
-	@OneToOne
-	@JoinColumn(name="CLASSIFICATION")
-	private CustomerClassification classification;
+	@Column(name="CLASSIFICATION")
+	private String classification;
 
 	protected Customer(){/*AS NEEDED BY JPA*/}
 	
@@ -35,7 +34,7 @@ public class Customer {
 		notEmpty(contactPerson);
 		this.name = name;
 		this.contactPerson = contactPerson;
-		this.classification = classification;
+		this.classification = classification.getName();
 	}
 	
 	public Customer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification){
@@ -68,7 +67,7 @@ public class Customer {
 		return contactPerson;
 	}
 
-	public CustomerClassification getClassification() {
+	public String getClassification() {
 		return classification;
 	}
 	

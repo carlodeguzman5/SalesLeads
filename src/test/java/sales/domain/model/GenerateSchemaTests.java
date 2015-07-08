@@ -45,12 +45,12 @@ public class GenerateSchemaTests {
 				"Please provide a service implementation", service);
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		try {
-			setUpEmailInquiry();
-			entityManager.getTransaction().commit();
-		} finally {
-			entityManager.close();
-		}
+//		try {
+//			setUpEmailInquiry();
+//			entityManager.getTransaction().commit();
+//		} finally {
+//			entityManager.close();
+//		}
 	}
 
 	private void setUpEmailInquiry() {
@@ -71,10 +71,10 @@ public class GenerateSchemaTests {
 	@Test
 	public void testEmail() throws Exception {
 		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?");
-//		entityManager.persist(email);
-//		entityManager.flush();
-		Long productIdOfA = email.getId();
-		Email retrievedEmailinquiry = entityManager.find(Email.class, productIdOfA);
+		entityManager.persist(email);
+		entityManager.flush();
+		Long emailId = email.getId();
+		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
 	}
 
