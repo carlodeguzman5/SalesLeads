@@ -34,7 +34,7 @@
 
 	<tx:annotation-driven />
 
-<!--     Creates an in-memory "libraryapp" database -->
+<!--     Creates an in-memory "SalesLeads" database -->
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 	</jdbc:embedded-database>
 	

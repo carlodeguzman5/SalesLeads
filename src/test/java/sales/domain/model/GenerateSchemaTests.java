@@ -45,17 +45,6 @@ public class GenerateSchemaTests {
 				"Please provide a service implementation", service);
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-//		try {
-//			setUpEmailInquiry();
-//			entityManager.getTransaction().commit();
-//		} finally {
-//			entityManager.close();
-//		}
-	}
-
-	private void setUpEmailInquiry() {
-		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?");
-		entityManager.persist(email);
 	}
 
 	@After
@@ -77,23 +66,5 @@ public class GenerateSchemaTests {
 		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
 	}
-
-//	@Test
-//	public void testProductPrices() throws Exception {
-//		entityManager.persist(
-//				new Product("A", new Money(USD, new BigDecimal(9.95))));
-//		entityManager.persist(
-//				new Product("B", new Money(USD, new BigDecimal(19.50))));
-//		entityManager.persist(
-//				new Product("A", new Money(JPY, new BigDecimal(99500))));
-//		entityManager.flush();
-//		TypedQuery<Product> query = entityManager.createQuery(
-//				"SELECT p FROM Product p WHERE p.price.currency = 'USD'", Product.class);
-//		List<Product> productsWithUsDollarPrices = query.getResultList();
-//		assertThat(productsWithUsDollarPrices, hasSize(2));
-//		for (Product product : productsWithUsDollarPrices) {
-//			System.out.println(product);
-//		}
-//	}
 
 }

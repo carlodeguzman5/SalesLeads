@@ -1,44 +1,45 @@
 package sales.domain.model;
+
 import static org.apache.commons.lang3.Validate.*;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
+import org.omg.CosNaming.NamingContextPackage.NotEmpty;
 
 @Entity
-@Table(name="EMAIL_INQUIRY")
-public class Email extends Inquiry {
-	
+public class SMS extends Inquiry {
+
 	@Id
 	private long id;
-	@Column(name="EMAIL_ADDRESS")
-	private String emailAddress;
-	@Column(name="SUBJECT")
+	
+	private String phoneNumber;
 	private String subject;
-	@Column(name="CONTENT", length=10000)
+	@Column(length = 10000)
 	private String content;
 	
-	public Email(){/*AS NEEDED BY JPA*/}
-	
-	public Email(String emailAddress, String subject, String content) {
-		notEmpty(emailAddress);
-		notBlank(emailAddress);
+	public SMS() {}
+
+	public SMS(String phoneNumber, String subject, String content) {
+		notEmpty(phoneNumber);
+		notBlank(phoneNumber);
 		notEmpty(subject);
 		notBlank(subject);
 		notEmpty(content);
 		notBlank(content);
-		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
 		this.subject = subject;
 		this.content = content;
 	}
 
-	public long getId(){
+	public long getId() {
 		return id;
 	}
-	
-	public String getEmailAddress() {
-		return emailAddress;
+
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
 	public String getSubject() {
@@ -48,7 +49,10 @@ public class Email extends Inquiry {
 	public String getContent() {
 		return content;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "SMS [id=" + id + "]";
+	}
+
 }
