@@ -66,5 +66,16 @@ public class GenerateSchemaTests {
 		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
 	}
+	
+	@Test
+	public void testSMS() throws Exception{
+		SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?");
+		entityManager.persist(sms);
+		entityManager.flush();
+		
+		Long smsId = sms.getId();
+		SMS retrievedSMS = entityManager.find(SMS.class, smsId);
+		assertEquals(sms, retrievedSMS);
+	}
 
 }
