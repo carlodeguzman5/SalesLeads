@@ -35,18 +35,6 @@
 	
 	<dependencies>
 	
-		<!-- JPA Dependencies -->
-	    <dependency>
-		  <groupId>org.hibernate.javax.persistence</groupId>
-		  <artifactId>hibernate-jpa-2.0-api</artifactId>
-		  <version>1.0.1.Final</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.hibernate</groupId>
-	      <artifactId>hibernate-entitymanager</artifactId>
-	      <version>${hibernate.version}</version>
-	    </dependency>  
-	
 		<!-- Spring MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -119,7 +107,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
+			<version>3.4</version>
 		</dependency>
 	</dependencies>	
 </project>

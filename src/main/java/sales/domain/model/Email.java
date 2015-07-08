@@ -16,6 +16,8 @@ public class Email extends Inquiry {
 	private String subject;
 	private String content;
 	
+	public Email(){}
+	
 	public Email(String emailAddress, String subject, String content) {
 		notEmpty(emailAddress);
 		notBlank(emailAddress);
@@ -28,6 +30,10 @@ public class Email extends Inquiry {
 		this.content = content;
 	}
 
+	public long getId(){
+		return id;
+	}
+	
 	public String getEmailAddress() {
 		return emailAddress;
 	}
