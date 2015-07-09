@@ -267,11 +267,17 @@
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Charts<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="flot.html">Flot Charts</a></li>
-								<li><a href="morris.html">Morris.js Charts</a></li>
+								<li><a href="Charts.html">Pie Chart</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="tables.html"><i class="fa fa-table fa-fw"></i>
+						<li><a href="LeadPage.html"><i class="fa fa-table fa-fw"></i>
 								Tables</a></li>
+						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+								Manual Input<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="Manual-Input.html">Manual Inquiry input</a></li>
+								<li><a href="Manual-Input-Report.html">Manual Sales
+										Report</a></li>
+							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
 								Forms</a></li>
 						<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
@@ -860,7 +866,7 @@
 
 	</div>
 	<!-- /#wrapper -->
-
+	
 	<!-- jQuery -->
 	<script
 		src="<c:url value="/resources/bower_components/jquery/dist/jquery.min.js" />"></script>
@@ -886,5 +892,4 @@
 	<script src="<c:url value="/resources/dist/js/sb-admin-2.js"/>"></script>
 
 </body>
-
 </html>

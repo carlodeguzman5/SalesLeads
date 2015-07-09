@@ -22,6 +22,26 @@ public class SalesController {
 	public String showIndex() {
 		return "index";
 	}
+	@RequestMapping("/index.html")
+	public String showIndexAlternate() {
+		return "index";
+	}
+	@RequestMapping("/Charts.html")
+	public String showCharts(){
+		return "charts";
+	}
+	@RequestMapping("/LeadPage.html")
+	public String showLeadPage(){
+		return "leadPage";
+	}
+	@RequestMapping("/Manual-Input.html")
+	public String showInputPage(){
+		return "manualInput";
+	}
+	@RequestMapping("/Manual-Input-Report.html")
+	public String showInputReportPage(){
+		return "manualInputReport";
+	}
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public String entityNotFound() {
 		return "errors/notFound";
