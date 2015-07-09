@@ -32,6 +32,7 @@ public class SMS extends Inquiry {
 		this.phoneNumber = phoneNumber;
 		this.subject = subject;
 		this.content = content;
+//		this.
 	}
 
 	public long getId() {
