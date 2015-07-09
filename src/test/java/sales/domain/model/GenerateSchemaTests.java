@@ -56,26 +56,40 @@ public class GenerateSchemaTests {
 		entityManager.getMetamodel().entity(Email.class);
 		System.out.println("Please check the resulting schema");
 	}
+	
+	@Test
+	public void testCustomerClassification(){
+		Customer customer = new Customer("Smart", "Manny V. Pangilinan", new CustomerClassification("Telecommunications"));
+		entityManager.persist(customer);
+		Customer customer2 = new Customer("SM", "Henry Sy", new CustomerClassification("Land Development"));		
+		entityManager.persist(customer2);
+		entityManager.flush();
+		Customer c = entityManager.find(Customer.class, "Smart");
+		assertEquals("Telecommunications", c.getClassification());
+	}
 
 	@Test
 	public void testEmail() throws Exception {
-		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?");
+		InquiryType type = new InquiryType("JDBC");
+		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?", type);
 		entityManager.persist(email);
 		entityManager.flush();
 		Long emailId = email.getId();
 		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
-	}
-	
-	@Test
-	public void testSMS() throws Exception{
-		SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?");
-		entityManager.persist(sms);
-		entityManager.flush();
-		
-		Long smsId = sms.getId();
-		SMS retrievedSMS = entityManager.find(SMS.class, smsId);
-		assertEquals(sms, retrievedSMS);
+		assertEquals(type, retrievedEmailinquiry.getInquiryType());
 	}
 
+	@Test
+		public void testSMS() throws Exception{
+			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?");
+			entityManager.persist(sms);
+			entityManager.flush();
+			
+			Long smsId = sms.getId();
+			SMS retrievedSMS = entityManager.find(SMS.class, smsId);
+			assertEquals(sms, retrievedSMS);
+			assertEquals("09123456789", retrievedSMS.getPhoneNumber());
+		}
+	
 }

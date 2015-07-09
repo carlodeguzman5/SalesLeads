@@ -54,7 +54,8 @@ public class DatabaseIntegrationTests {
 	
 	@Test
 	public void test(){
-		
+		Customer c = entityManager.find(Customer.class, "Smart");
+		assertEquals("Telecommunications", c.getClassification());
 	}
 
 }

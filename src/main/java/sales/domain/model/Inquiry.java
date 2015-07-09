@@ -2,9 +2,9 @@ package sales.domain.model;
 
 public abstract class Inquiry {
 
-	private String inquiryType;
+	protected InquiryType inquiryType;
 
-	public String getInquiryType() {
+	public InquiryType getInquiryType() {
 		return inquiryType;
 	}
 	

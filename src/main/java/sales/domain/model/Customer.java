@@ -4,6 +4,8 @@ import static org.apache.commons.lang3.Validate.notEmpty;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,7 +17,6 @@ import javax.persistence.Table;
 public class Customer {
 
 	@Id
-	private long id;
 	@Column(name="NAME")
 	private String name;
 	@Column(name="EMAIL")

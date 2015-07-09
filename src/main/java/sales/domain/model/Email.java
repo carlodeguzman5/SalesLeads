@@ -21,7 +21,7 @@ public class Email extends Inquiry {
 	
 	public Email(){/*AS NEEDED BY JPA*/}
 	
-	public Email(String emailAddress, String subject, String content) {
+	public Email(String emailAddress, String subject, String content, InquiryType type) {
 		notEmpty(emailAddress);
 		notBlank(emailAddress);
 		notEmpty(subject);
@@ -31,6 +31,7 @@ public class Email extends Inquiry {
 		this.emailAddress = emailAddress;
 		this.subject = subject;
 		this.content = content;
+		this.inquiryType = type;
 	}
 
 	public long getId(){
