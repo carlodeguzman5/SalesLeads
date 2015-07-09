@@ -77,12 +77,12 @@ public class GenerateSchemaTests {
 		Long emailId = email.getId();
 		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
-		assertEquals(type, retrievedEmailinquiry.getInquiryType());
+		assertEquals(type.getName(), retrievedEmailinquiry.getInquiryType());
 	}
 
 	@Test
 		public void testSMS() throws Exception{
-			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?");
+			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?", new InquiryType("Training"));
 			entityManager.persist(sms);
 			entityManager.flush();
 			

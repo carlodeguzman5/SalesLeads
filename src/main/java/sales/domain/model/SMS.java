@@ -22,7 +22,7 @@ public class SMS extends Inquiry {
 	
 	public SMS() {}
 
-	public SMS(String phoneNumber, String subject, String content) {
+	public SMS(String phoneNumber, String subject, String content, InquiryType type) {
 		notEmpty(phoneNumber);
 		notBlank(phoneNumber);
 		notEmpty(subject);
@@ -32,7 +32,7 @@ public class SMS extends Inquiry {
 		this.phoneNumber = phoneNumber;
 		this.subject = subject;
 		this.content = content;
-//		this.
+		this.inquiryType = type;
 	}
 
 	public long getId() {

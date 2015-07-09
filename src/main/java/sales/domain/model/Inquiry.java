@@ -4,8 +4,8 @@ public abstract class Inquiry {
 
 	protected InquiryType inquiryType;
 
-	public InquiryType getInquiryType() {
-		return inquiryType;
+	public String getInquiryType() {
+		return inquiryType.getName();
 	}
 	
 }
