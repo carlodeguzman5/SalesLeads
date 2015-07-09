@@ -45,10 +45,16 @@ public class GenerateSchemaTests {
 				"Please provide a service implementation", service);
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
+		InquiryType type1 = new InquiryType("Training");
+		InquiryType type2 = new InquiryType("JDBC");
+		entityManager.persist(type1);
+		entityManager.persist(type2);
+		entityManager.flush();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		entityManager.getTransaction().rollback();
 	}
 
 	@Test
@@ -74,7 +80,7 @@ public class GenerateSchemaTests {
 		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?", type);
 		entityManager.persist(email);
 		entityManager.flush();
-		Long emailId = email.getId();
+		String emailId = email.getInquiryType();
 		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
 		assertEquals(type.getName(), retrievedEmailinquiry.getInquiryType());
@@ -86,7 +92,7 @@ public class GenerateSchemaTests {
 			entityManager.persist(sms);
 			entityManager.flush();
 			
-			Long smsId = sms.getId();
+			String smsId = sms.getInquiryType();
 			SMS retrievedSMS = entityManager.find(SMS.class, smsId);
 			assertEquals(sms, retrievedSMS);
 			assertEquals("09123456789", retrievedSMS.getPhoneNumber());
@@ -98,7 +104,7 @@ public class GenerateSchemaTests {
 		entityManager.persist(visit);
 		entityManager.flush();
 		
-		Long visitId = visit.getId();
+		String visitId = visit.getInquiryType();
 		
 		assertEquals(visit, entityManager.find(PersonalVisit.class, visitId));
 	}
@@ -109,7 +115,7 @@ public class GenerateSchemaTests {
 		entityManager.persist(fb);
 		entityManager.flush();
 		
-		Long fbId = fb.getId();
+		String fbId = fb.getInquiryType();
 		
 		assertEquals(fb, entityManager.find(Facebook.class, fbId));
 	}

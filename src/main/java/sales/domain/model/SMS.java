@@ -12,10 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="SMS_INQUIRY")
 public class SMS extends Inquiry {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
 	
 	private String phoneNumber;
 	private String subject;
@@ -36,11 +32,7 @@ public class SMS extends Inquiry {
 		this.content = content;
 		this.inquiryType = type;
 	}
-
-	public long getId() {
-		return id;
-	}
-
+	
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -51,11 +43,6 @@ public class SMS extends Inquiry {
 
 	public String getContent() {
 		return content;
-	}
-
-	@Override
-	public String toString() {
-		return "SMS [id=" + id + "]";
 	}
 
 }

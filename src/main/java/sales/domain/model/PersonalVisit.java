@@ -14,10 +14,6 @@ import javax.persistence.Table;
 @Table(name="PERSONALVISIT_INQUIRY")
 public class PersonalVisit extends Inquiry {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
 	private String visitorName;
 	private String subject;
 	@Column(length=10000)
@@ -37,11 +33,6 @@ public class PersonalVisit extends Inquiry {
 		this.content = content;
 		this.inquiryType = type;
 	}
-
-	public long getId() {
-		return id;
-	}
-
 	public String getVisitorName() {
 		return visitorName;
 	}
@@ -56,7 +47,7 @@ public class PersonalVisit extends Inquiry {
 
 	@Override
 	public String toString() {
-		return "PersonalVisit [id=" + id + ", visitorName=" + visitorName
+		return "PersonalVisit [visitorName=" + visitorName
 				+ ", subject=" + subject + ", content=" + content + "]";
 	}
 
@@ -65,7 +56,6 @@ public class PersonalVisit extends Inquiry {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result
 				+ ((visitorName == null) ? 0 : visitorName.hashCode());
@@ -85,8 +75,6 @@ public class PersonalVisit extends Inquiry {
 			if (other.content != null)
 				return false;
 		} else if (!content.equals(other.content))
-			return false;
-		if (id != other.id)
 			return false;
 		if (subject == null) {
 			if (other.subject != null)

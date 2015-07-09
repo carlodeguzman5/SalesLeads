@@ -1,6 +1,8 @@
 package sales.domain.model;
 import static org.apache.commons.lang3.Validate.notEmpty;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +31,13 @@ public class Customer {
 	private String contactPerson;
 	@Column(name="CLASSIFICATION")
 	private String classification;
+	@ManyToMany
+	@JoinTable(
+			name="CUSTOMER_INQUIRY",
+			joinColumns={@JoinColumn(name="customer_id", referencedColumnName="name")},
+			inverseJoinColumns={@JoinColumn(name="inquiry_type", referencedColumnName="name")}
+	)
+	private Set<Inquiry> inquries;
 
 	protected Customer(){/*AS NEEDED BY JPA*/}
 	

@@ -14,10 +14,6 @@ import javax.persistence.Table;
 @Table(name="CALL_INQUIRY")
 public class Call extends Inquiry {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
 	private String phoneNumber;
 	private String subject;
 	@Column(length = 10000)
@@ -38,10 +34,6 @@ public class Call extends Inquiry {
 		this.inquiryType = type;
 	}
 
-	public long getId() {
-		return id;
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -52,11 +44,6 @@ public class Call extends Inquiry {
 
 	public String getContent() {
 		return content;
-	}
-
-	@Override
-	public String toString() {
-		return "Call [id=" + id + "]";
 	}
 
 }

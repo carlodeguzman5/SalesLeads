@@ -13,10 +13,6 @@ import javax.persistence.Table;
 @Table(name="FACEBOOK_INQUIRY")
 public class Facebook extends Inquiry{
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
 	private String facebookId;
 	private String subject;
 	private String content;
@@ -35,11 +31,7 @@ public class Facebook extends Inquiry{
 		this.content = content;
 		this.inquiryType = type;
 	}
-
-	public long getId() {
-		return id;
-	}
-
+	
 	public String getFacebookId() {
 		return facebookId;
 	}
@@ -54,7 +46,7 @@ public class Facebook extends Inquiry{
 
 	@Override
 	public String toString() {
-		return "Facebook [id=" + id + ", facebookId=" + facebookId
+		return "Facebook [ facebookId=" + facebookId
 				+ ", subject=" + subject + ", content=" + content + "]";
 	}
 
@@ -65,7 +57,6 @@ public class Facebook extends Inquiry{
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result
 				+ ((facebookId == null) ? 0 : facebookId.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		return result;
 	}
@@ -88,8 +79,6 @@ public class Facebook extends Inquiry{
 			if (other.facebookId != null)
 				return false;
 		} else if (!facebookId.equals(other.facebookId))
-			return false;
-		if (id != other.id)
 			return false;
 		if (subject == null) {
 			if (other.subject != null)

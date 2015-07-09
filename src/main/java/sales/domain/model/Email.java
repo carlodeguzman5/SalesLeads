@@ -12,9 +12,6 @@ import javax.persistence.Table;
 @Table(name="EMAIL_INQUIRY")
 public class Email extends Inquiry {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
 	@Column(name="EMAIL_ADDRESS")
 	private String emailAddress;
 	@Column(name="SUBJECT")
@@ -35,10 +32,6 @@ public class Email extends Inquiry {
 		this.subject = subject;
 		this.content = content;
 		this.inquiryType = type;
-	}
-
-	public long getId(){
-		return id;
 	}
 	
 	public String getEmailAddress() {
