@@ -160,6 +160,5 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>4.3.5.Final</version>
         </dependency>
-		
 	</dependencies>	
 </project>
