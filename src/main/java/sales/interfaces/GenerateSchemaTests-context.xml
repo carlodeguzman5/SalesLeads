@@ -33,7 +33,6 @@
 	<tx:annotation-driven />
 
 <!--     Creates an in-memory "libraryapp" database -->
-	<jdbc:embedded-database id="dataSource" type="HSQL">
-	</jdbc:embedded-database>
+	
 	
 </beans>

@@ -11,19 +11,12 @@ import sales.domain.service.SalesService;
 @Controller
 public class SalesController {
 	
-//	private SalesApplicationService rewardService;
-//
-//	@Autowired
-//	public RewardController(RewardsApplicationService rewardService) {
-//		this.rewardService = rewardService;
-//	}
-
-//	private SalesService service;
-//	
-//	@Autowired
-//	public SalesController (SalesService service) {
-//		this.service = service;
-//	}
+	private SalesService service;
+	
+	@Autowired
+	public SalesController (SalesService service) {
+		this.service = service;
+	}
 	
 	@RequestMapping("/")
 	public String showIndex() {
