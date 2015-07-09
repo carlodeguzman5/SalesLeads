@@ -103,5 +103,15 @@ public class GenerateSchemaTests {
 		assertEquals(visit, entityManager.find(PersonalVisit.class, visitId));
 	}
 	
+	@Test
+	public void testFacebook() throws Exception{
+		Facebook fb = new Facebook("adrianadame", "Inquiry for Training", "Is there an available training for JDBC?", new InquiryType("JDBC") );
+		entityManager.persist(fb);
+		entityManager.flush();
+		
+		Long fbId = fb.getId();
+		
+		assertEquals(fb, entityManager.find(Facebook.class, fbId));
+	}
 	
 }
