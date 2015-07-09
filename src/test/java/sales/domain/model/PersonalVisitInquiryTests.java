@@ -13,12 +13,12 @@ public class PersonalVisitInquiryTests {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testSubjectBlank() {
-		PersonalVisit visit = new PersonalVisit("adrian@gmail.com", " " , "Is there an available training for JDBC?", new InquiryType("JDBC"));
+		PersonalVisit visit = new PersonalVisit("Adrian Adame", " " , "Is there an available training for JDBC?", new InquiryType("JDBC"));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testContentBlank() {
-		PersonalVisit visit = new PersonalVisit("adrian@gmail.com", "Inquiry for Training", "", new InquiryType("JDBC"));
+		PersonalVisit visit = new PersonalVisit("Adrian Adame", "Inquiry for Training", "", new InquiryType("JDBC"));
 	}
 
 }

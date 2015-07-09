@@ -92,4 +92,15 @@ public class GenerateSchemaTests {
 			assertEquals("09123456789", retrievedSMS.getPhoneNumber());
 		}
 	
+	@Test
+	public void testPersonalVisit() throws Exception{
+		PersonalVisit visit = new PersonalVisit("Adrian Adame", "Inquiry for Training", "Is there an available training for JDBC?", new InquiryType("JDBC") );
+		entityManager.persist(visit);
+		entityManager.flush();
+		
+		Long visitId = visit.getId();
+		
+		assertEquals(visit, entityManager.find(PersonalVisit.class, visitId));
+	}
+	
 }

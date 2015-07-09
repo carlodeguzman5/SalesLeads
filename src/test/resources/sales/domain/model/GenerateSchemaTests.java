@@ -22,6 +22,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import sales.domain.model.InquiryType;
+import sales.domain.model.PersonalVisit;
 import sales.domain.service.SalesService;
 
 @ContextConfiguration
@@ -81,15 +83,26 @@ public class GenerateSchemaTests {
 	}
 
 	@Test
-		public void testSMS() throws Exception{
-			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?", new InquiryType("Training"));
-			entityManager.persist(sms);
-			entityManager.flush();
-			
-			Long smsId = sms.getId();
-			SMS retrievedSMS = entityManager.find(SMS.class, smsId);
-			assertEquals(sms, retrievedSMS);
-			assertEquals("09123456789", retrievedSMS.getPhoneNumber());
-		}
+	public void testSMS() throws Exception{
+		SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?", new InquiryType("Training"));
+		entityManager.persist(sms);
+		entityManager.flush();
+		
+		Long smsId = sms.getId();
+		SMS retrievedSMS = entityManager.find(SMS.class, smsId);
+		assertEquals(sms, retrievedSMS);
+		assertEquals("09123456789", retrievedSMS.getPhoneNumber());
+	}
+	
+	@Test
+	public void testPersonalVisit() throws Exception{
+		PersonalVisit visit = new PersonalVisit("Adrian Adame", "Inquiry for Training", "Is there an available training for JDBC?", new InquiryType("JDBC") );
+		entityManager.persist(visit);
+		entityManager.flush();
+		
+		Long visitId = visit.getId();
+		
+		assertEquals(visit, entityManager.find(PersonalVisit.class, visitId));
+	}
 	
 }
