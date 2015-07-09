@@ -103,4 +103,5 @@ public class GenerateSchemaTests {
 		assertEquals(visit, entityManager.find(PersonalVisit.class, visitId));
 	}
 	
+	
 }

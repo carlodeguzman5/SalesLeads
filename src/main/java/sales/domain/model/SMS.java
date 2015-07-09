@@ -3,16 +3,18 @@ package sales.domain.model;
 import static org.apache.commons.lang3.Validate.*;
 
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.omg.CosNaming.NamingContextPackage.NotEmpty;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="SMS_INQUIRY")
 public class SMS extends Inquiry {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	private String phoneNumber;

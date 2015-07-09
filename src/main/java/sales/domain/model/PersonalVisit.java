@@ -1,15 +1,21 @@
 package sales.domain.model;
 
 import javax.persistence.Column;
+
 import static org.apache.commons.lang3.Validate.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="PERSONALVISIT_INQUIRY")
 public class PersonalVisit extends Inquiry {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	private String visitorName;
