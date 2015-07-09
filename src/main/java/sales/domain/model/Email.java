@@ -19,7 +19,7 @@ public class Email extends Inquiry {
 	@Column(name="CONTENT", length=10000)
 	private String content;
 	
-	public Email(){/*AS NEEDED BY JPA*/}
+	protected Email(){/*AS NEEDED BY JPA*/}
 	
 	public Email(String emailAddress, String subject, String content, InquiryType type) {
 		notEmpty(emailAddress);

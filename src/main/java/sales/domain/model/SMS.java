@@ -20,7 +20,7 @@ public class SMS extends Inquiry {
 	@Column(length = 10000)
 	private String content;
 	
-	public SMS() {}
+	protected SMS() {}
 
 	public SMS(String phoneNumber, String subject, String content, InquiryType type) {
 		notEmpty(phoneNumber);

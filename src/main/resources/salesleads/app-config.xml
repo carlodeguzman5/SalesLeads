@@ -5,7 +5,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- 	<context:component-scan base-package="libraryapp.application, libraryapp.domain.model, libraryapp.domain.service" /> -->
 		<context:component-scan base-package="sales.domain.model" />
 
 </beans>
