@@ -21,7 +21,7 @@ public class Email extends Inquiry {
 	
 	protected Email(){/*AS NEEDED BY JPA*/}
 	
-	public Email(String emailAddress, String subject, String content, InquiryType type) {
+	public Email(String emailAddress, String subject, String content, String type) {
 		notEmpty(emailAddress);
 		notBlank(emailAddress);
 		notEmpty(subject);

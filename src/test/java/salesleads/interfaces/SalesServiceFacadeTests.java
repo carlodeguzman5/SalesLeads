@@ -46,9 +46,9 @@ public class SalesServiceFacadeTests extends AbstractSalesServiceFacadeTests{
 	
 	@Override
 	protected void setUpInquiries() {
-		Call globeInquiry = new Call("09051234567", "Inquiry for Training", "Is there an available training for JDBC?", entityManager.find(InquiryType.class, "Training"));
-		Email wilconInquiry = new Email("adrian@gmail.com", "Inquiry for Software Development", "Are you willing to develop an inventory software?", entityManager.find(InquiryType.class, "Development"));
-		PersonalVisit accountantInquiry = new PersonalVisit("Henry Antonio", "Inquiry for Software Development", "Are you willing to develop software for recording purposes?", entityManager.find(InquiryType.class, "Development"));
+		Call globeInquiry = new Call("09051234567", "Inquiry for Training", "Is there an available training for JDBC?", "Training");
+		Email wilconInquiry = new Email("adrian@gmail.com", "Inquiry for Software Development", "Are you willing to develop an inventory software?", "Development");
+		PersonalVisit accountantInquiry = new PersonalVisit("Henry Antonio", "Inquiry for Software Development", "Are you willing to develop software for recording purposes?", "Development");
 		entityManager.persist(globeInquiry);
 		entityManager.persist(wilconInquiry);
 		entityManager.persist(accountantInquiry);

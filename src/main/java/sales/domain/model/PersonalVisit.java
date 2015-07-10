@@ -21,7 +21,7 @@ public class PersonalVisit extends Inquiry {
 	
 	protected PersonalVisit(){/*AS NEEDED BY JPA*/}
 
-	public PersonalVisit(String visitorName, String subject, String content, InquiryType type) {
+	public PersonalVisit(String visitorName, String subject, String content, String type) {
 		notEmpty(visitorName);
 		notBlank(visitorName);
 		notEmpty(subject);

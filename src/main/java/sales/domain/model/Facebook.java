@@ -19,7 +19,7 @@ public class Facebook extends Inquiry{
 	
 	protected Facebook(){/*AS NEEDED BY JPA*/}
 
-	public Facebook(String facebookId, String subject, String content, InquiryType type) {
+	public Facebook(String facebookId, String subject, String content, String type) {
 		notEmpty(facebookId);
 		notBlank(facebookId);
 		notEmpty(subject);

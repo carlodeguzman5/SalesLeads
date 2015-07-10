@@ -45,11 +45,6 @@ public class GenerateSchemaTests {
 				"Please provide a service implementation", service);
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		InquiryType type1 = new InquiryType("Training");
-		InquiryType type2 = new InquiryType("JDBC");
-		entityManager.persist(type1);
-		entityManager.persist(type2);
-		entityManager.flush();
 	}
 
 	@After
@@ -76,19 +71,20 @@ public class GenerateSchemaTests {
 
 	@Test
 	public void testEmail() throws Exception {
-		InquiryType type = new InquiryType("JDBC");
-		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?", type);
+		Customer customer = new Customer("Smart", "Manny V. Pangilinan", new CustomerClassification("Telecommunications"));
+		entityManager.persist(customer);
+		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?", "Training");
 		entityManager.persist(email);
 		entityManager.flush();
 		String emailId = email.getInquiryType();
 		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
 		assertEquals(email, retrievedEmailinquiry);
-		assertEquals(type.getName(), retrievedEmailinquiry.getInquiryType());
+		assertEquals("Training", retrievedEmailinquiry.getInquiryType());
 	}
 
 	@Test
 		public void testSMS() throws Exception{
-			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?", new InquiryType("Training"));
+			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?", "Training");
 			entityManager.persist(sms);
 			entityManager.flush();
 			
@@ -100,7 +96,7 @@ public class GenerateSchemaTests {
 	
 	@Test
 	public void testPersonalVisit() throws Exception{
-		PersonalVisit visit = new PersonalVisit("Adrian Adame", "Inquiry for Training", "Is there an available training for JDBC?", new InquiryType("JDBC") );
+		PersonalVisit visit = new PersonalVisit("Adrian Adame", "Inquiry for Training", "Is there an available training for JDBC?", "Training" );
 		entityManager.persist(visit);
 		entityManager.flush();
 		
@@ -111,7 +107,7 @@ public class GenerateSchemaTests {
 	
 	@Test
 	public void testFacebook() throws Exception{
-		Facebook fb = new Facebook("adrianadame", "Inquiry for Training", "Is there an available training for JDBC?", new InquiryType("JDBC") );
+		Facebook fb = new Facebook("adrianadame", "Inquiry for Training", "Is there an available training for JDBC?", "Training" );
 		entityManager.persist(fb);
 		entityManager.flush();
 		

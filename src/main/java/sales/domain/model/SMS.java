@@ -20,7 +20,7 @@ public class SMS extends Inquiry {
 	
 	protected SMS() {}
 
-	public SMS(String phoneNumber, String subject, String content, InquiryType type) {
+	public SMS(String phoneNumber, String subject, String content, String type) {
 		notEmpty(phoneNumber);
 		notBlank(phoneNumber);
 		notEmpty(subject);

@@ -3,6 +3,7 @@ package sales.domain.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,20 +20,14 @@ import javax.persistence.OneToOne;
 public abstract class Inquiry implements Serializable{
 
 	@Id
-	@OneToOne
-	@JoinColumn(name="name")
-	protected InquiryType inquiryType;
+	protected String inquiryType;
 	
-	@ManyToMany
-	@JoinTable(
-			name="CUSTOMER_INQUIRY",
-			joinColumns={@JoinColumn(name="inquiry_type", referencedColumnName="name")},
-			inverseJoinColumns={@JoinColumn(name="customer_id", referencedColumnName="name")}
-	)
-	private Set<Customer> customers;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="CUSTOMER_PER_INQUIRIES")
+	private Set<Customer_Inquiry> customers;
 
 	public String getInquiryType() {
-		return inquiryType.getName();
+		return inquiryType;
 	}
 	
 }

@@ -21,7 +21,7 @@ public class Call extends Inquiry {
 	
 	protected Call() {}
 
-	public Call(String phoneNumber, String subject, String content, InquiryType type) {
+	public Call(String phoneNumber, String subject, String content, String type) {
 		notEmpty(phoneNumber);
 		notBlank(phoneNumber);
 		notEmpty(subject);
