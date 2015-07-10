@@ -24,8 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sales.domain.service.SalesService;
 
-@ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
 @Transactional
 public class GenerateSchemaTests {
 

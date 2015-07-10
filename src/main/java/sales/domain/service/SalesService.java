@@ -14,7 +14,6 @@ import sales.domain.model.Inquiry;
 import sales.interfaces.SalesServiceFacade;
 
 @Service
-@Transactional
 public class SalesService implements SalesServiceFacade{
 	
 	@Autowired
