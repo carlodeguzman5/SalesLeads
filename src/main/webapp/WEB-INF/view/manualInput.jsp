@@ -344,41 +344,49 @@
 
 
 						<form role="form">
-							<div class="form-group formsize">
-								<label>Name</label> <input class="form-control" id="name">
-								<p class="help-block">Example block-level help text here.</p>
-							</div>
-							<div class="form-group formsize">
-								<label>Contact Number</label> <input class="form-control"
-									id="number">
-								<p class="help-block">Example block-level help text here.</p>
-							</div>
-							<div class="form-group formsize">
-								<label>Subject</label> <input class="form-control" id="subject">
-								<p class="help-block">Example block-level help text here.</p>
-							</div>
-							<div class="form-group formsize" id="test">
-								<label>Text area</label>
-								<textarea class="form-control" rows="3"></textarea>
-							</div>
-						</form>
-						<!-- <form>
+                            <div class="form-group formsize">
+                                <label>Name</label>
+                                <input class="form-control" id="name">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="form-group formsize">
+                                <label>Address</label>
+                                <input class="form-control" id="address">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="form-group formsize">
+                                <label>Contact Number</label>
+                                <input class="form-control" id="number">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="form-group formsize">
+                                <label>Subject</label>
+                                <input class="form-control" id="subject">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="form-group formsize">
+                                <label>Text area</label>
+                                <textarea class="form-control" rows="3" id="test"></textarea>
+                            </div>
+                        </form>
+                        <!-- <form>
                             <h4>Name: <input type="text" id="name"/></h4>
                             <h4>Number: <input type="text" id="number"/></h4>
                             <h4>Subject: <input type="text" id="subject"/></h4>
                             <h4>Summary: </h4><textarea rows="4" cols="50" id="test"></textarea>
                         </form>   -->
-
-						<button onclick="testing()">try me</button>
-
-						<br>
-
-						<h1 id="headText"></h1>
-						<p id="output5"></p>
-						<p id="output1"></p>
-						<p id="output2"></p>
-						<p id="output3"></p>
-						<p id="output4"></p>
+                        
+                        <button onclick="testing()">try me</button>
+                        
+                        <br>
+                        
+                        <h1 id="headText"></h1>
+                        <p id="output5"></p>
+                        <p id="output1"></p>
+                        <p id="output6"></p>
+                        <p id="output2"></p>
+                        <p id="output3"></p>
+                        <p id="output4"></p>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
