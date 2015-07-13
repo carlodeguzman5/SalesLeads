@@ -1,12 +1,15 @@
 package sales.domain.model;
 import static org.apache.commons.lang3.Validate.notEmpty;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +28,9 @@ public class Customer {
 	@Column(name="CUSTOMER_CLASSIFICATION")
 	private CustomerClassification classification;
 	
-	/*@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="INQUIRIES_PER_CUSTOMER")
-	private Set<CustomerInquiry> inquries;*/
+	private Set<CustomerInquiry> inquries;
 
 	protected Customer(){/*AS NEEDED BY JPA*/}
 	

@@ -23,12 +23,11 @@ public class Inquiry implements Serializable {
 
 	@Id
 	private String type;
-	//@OneToMany(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "CUSTOMER_PER_INQUIRIES")
-	//private Set<Customer_Inquiry> customers;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CUSTOMER_PER_INQUIRY")
+	private Set<CustomerInquiry> customers;
 	
-	protected Inquiry() {
-		/* AS NEEDED BY JPA */}
+	protected Inquiry() {/* AS NEEDED BY JPA */}
 
 	public Inquiry(String type) {
 		this.type = type;

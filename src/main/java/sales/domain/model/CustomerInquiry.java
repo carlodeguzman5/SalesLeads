@@ -23,14 +23,14 @@ public class CustomerInquiry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String customerName;
-	private String inquiryType;
-	//@OneToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "CUSTOMER_NAME")
-	//private Customer customer;
-	//@OneToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "INQUIRY_TYPE")
-	//private Inquiry inquiry;
+//	private String customerName;
+//	private String inquiryType;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CUSTOMER_NAME")
+	private Customer customer;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "INQUIRY_TYPE")
+	private Inquiry inquiry;
 	private Date date;
 	@Column(length = 10000)
 	private String response;
@@ -39,11 +39,11 @@ public class CustomerInquiry {
 
 	protected CustomerInquiry() { /* USED BY JPA */ }
 
-	public CustomerInquiry(String customerName, String inquiryType, Date date, String response, double budget, int rating) {
-		this.customerName = customerName;
-		this.inquiryType = inquiryType;
-		/*this.customer = customer;
-		this.inquiry = inquiry;*/
+	public CustomerInquiry(Customer customer, Inquiry inquiry, Date date, String response, double budget, int rating) {
+//		this.customerName = customerName;
+//		this.inquiryType = inquiryType;
+		this.customer = customer;
+		this.inquiry = inquiry;
 		this.date = date;
 		this.response = response;
 		this.budget = budget;
@@ -70,21 +70,21 @@ public class CustomerInquiry {
 		return id;
 	}
 
-	public String getCustomerName() {
-		return customerName;
-	}
+//	public String getCustomerName() {
+//		return customerName;
+//	}
+//
+//	public String getInquiryType() {
+//		return inquiryType;
+//	}
 
-	public String getInquiryType() {
-		return inquiryType;
-	}
-
-/*	public Customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
 	public Inquiry getInquiry() {
 		return inquiry;
-	}*/
+	}
 
 	public Date getDate() {
 		return date;
