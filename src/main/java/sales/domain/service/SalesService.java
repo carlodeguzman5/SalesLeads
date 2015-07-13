@@ -38,8 +38,8 @@ public class SalesService implements SalesServiceFacade{
 
 
 	public void inquireOldCustomer(String customerName, String inquiryName) {
-		Customer customer = customerRepository.findByCustomerName(customerName);
-		
+//		Customer customer = customerRepository.findByCustomerName(customerName);
+		Customer customer = entityManager.find(Customer.class, customerName);
 		Inquiry inquiry = new Inquiry(inquiryName);
 		entityManager.merge(inquiry);
 		

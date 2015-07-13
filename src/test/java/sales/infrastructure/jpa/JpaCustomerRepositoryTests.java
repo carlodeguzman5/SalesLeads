@@ -4,12 +4,15 @@ import static org.junit.Assert.*;
 
 import javax.transaction.Transactional;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import sales.domain.model.Customer;
+import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,12 +23,16 @@ public class JpaCustomerRepositoryTests {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
+	@Before
+	public void setUp(){
+	}
+	
 	@Test(expected = NoExistingCustomerException.class)
 	public void nonExistingCustomerTest(){
 		customerRepository.findByCustomerName("Bootstrap");
 	}
 	
-	@Test(expected = NoExistingCustomerException.class)
+	@Test
 	public void existingCustomerTest(){
 		Customer customer = customerRepository.findByCustomerName("Globe");
 		assertEquals("Globe", customer.getName());

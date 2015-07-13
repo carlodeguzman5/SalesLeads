@@ -27,8 +27,9 @@ public class JpaCustomerRepository implements CustomerRepository {
 			Query query = entityManager.createNativeQuery(SQL_FINDBY_NAME, Customer.class);
 			query.setParameter("name", name);
 			customer = (Customer) query.getSingleResult();
+	//		customer = entityManager.find(Customer.class, name);
 		} catch (RuntimeException e) {
-			throw new NoExistingCustomerException(e);
+			throw new NoExistingCustomerException("");
 		}
 		return customer;
 	}
@@ -36,7 +37,6 @@ public class JpaCustomerRepository implements CustomerRepository {
 	public void createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification) {
 		Customer customer = new Customer(name, contactPerson, contactNumber, email, classification);
 		entityManager.persist(customer);
-		
 	}
 
 }
