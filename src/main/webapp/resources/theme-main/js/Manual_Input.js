@@ -4,18 +4,19 @@ var isExisting = false;
 var checker = {
 	check:function(){
 		var inputName1 = document.getElementById('name').value;
-		console.log(isExisting);
 
-		console.log("this");
 		for(var p in dataName){
 			if(inputName1 == dataName[p]){
 				isExisting = true;
+				break;
+			}
+			else{
+				isExisting = false;
 			}
 		}
-
+	
 		if (isExisting) {
 			document.getElementById('testId').style.display="none";
-
 
 		}
 		if (!isExisting) {
@@ -24,6 +25,18 @@ var checker = {
 			document.getElementById('address').style.width="50%";
 		};
 	},
+	
+	checkInquiry:function(){
+		var inquiryType =  document.getElementById('types').value;
+		
+		if(inquiryType != ""){
+			document.getElementById('newInquiryType').readOnly = true;
+		}
+		
+		else{
+			document.getElementById('newInquiryType').readOnly = false;
+		}
+	}
 };
 
 

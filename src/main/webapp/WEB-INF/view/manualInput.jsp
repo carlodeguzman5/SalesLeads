@@ -317,11 +317,11 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1>MANUAL INPUT INQUIRY FOR CUSTOMER</h1>
+						<h1>INQUIRY - MANUAL INPUT</h1>
 
 						<div class="form-group formsize">
 							<label>Inquiry Type</label>
-							<select class="form-control" id="types">
+							<select class="form-control" id="types" onclick="checker.checkInquiry()">
 								<option ></option>
 								<c:forEach var="type" items="${inquiryTypes}">
 							  		<option> ${type} </option>
@@ -332,36 +332,38 @@
 						<label>Add New Inquiry Type</label> 
 						<div class="form-horizontal">
 							<div class="form-group">
-								<div class="col-sm-6"> <input type="text" id="internName" class="form-control" placeholder="E.g. Consultation"> </div>
+								<div class="col-sm-6"> <input type="text" id="newInquiryType" class="form-control" placeholder="E.g. Consultation"> </div>
 								<button class="btn btn-md" onclick="addFromList()">Add</button> 
 							</div>
 						</div>
 
-						<form role="form">
-                            <div class="form-group formsize">
-                                <label>Name</label>
-                                <input class="form-control" id="name">
-                                <p class="help-block">Example block-level help text here.</p>
+                        <label>Name</label>
+						<div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-6"> <input type="text" class="form-control" id="name"> </div>
+                                <button class="btn btn-md" onclick="checker.check()">Search</button>
                             </div>
-                            <div class="form-group formsize">
+                        </div>
+                            
+                        <form role="form">
+                            <div class="form-group formsize theHidden" id="testId">
                                 <label>Address</label>
                                 <input class="form-control" id="address">
-                                <p class="help-block">Example block-level help text here.</p>
-                            </div>
-                            <div class="form-group formsize">
+                            
                                 <label>Contact Number</label>
                                 <input class="form-control" id="number">
-                                <p class="help-block">Example block-level help text here.</p>
                             </div>
+
                             <div class="form-group formsize">
                                 <label>Subject</label>
                                 <input class="form-control" id="subject">
-                                <p class="help-block">Example block-level help text here.</p>
                             </div>
+
                             <div class="form-group formsize">
                                 <label>Text area</label>
                                 <textarea class="form-control" rows="3" id="test"></textarea>
                             </div>
+
                         </form>
                         <!-- <form>
                             <h4>Name: <input type="text" id="name"/></h4>
@@ -370,7 +372,7 @@
                             <h4>Summary: </h4><textarea rows="4" cols="50" id="test"></textarea>
                         </form>   -->
                         
-                        <button onclick="testing()">try me</button>
+                        <button onclick="testing()">Submit</button>
                         
                         <br>
                         
