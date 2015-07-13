@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import sales.domain.model.Customer;
+import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.CustomerRepository;
 import sales.domain.model.Inquiry;
@@ -36,14 +37,19 @@ public class SalesService implements SalesServiceFacade{
 	}
 
 
-	public void inquire(String customer, String inquiry) {
-		CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, today(), "", 0, 0);
+	public void inquireOldCustomer(String customerName, String inquiryName) {
+		Customer customer = customerRepository.findByCustomerName(customerName);
+		
+		Inquiry inquiry = new Inquiry(inquiryName);
+		entityManager.merge(inquiry);
+		
+		CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, today());
 		entityManager.persist(customerInquiry);
 	}
 
 
-	public void findAllByCustomer(Customer customer) {
-		customerRepository.findByCustomerName(customer.getName());
+	public void findAllByCustomer(String name) {
+		customerRepository.findByCustomerName(name);
 	}
 	
 	protected Calendar todayAsCalendar() {
@@ -58,6 +64,13 @@ public class SalesService implements SalesServiceFacade{
 	protected Date today() {
 		Calendar now = todayAsCalendar();
 		return now.getTime();
+	}
+
+
+	public void createCustomer(String name, String contactPerson, String email, String contactNumber,
+			CustomerClassification classification) {
+		// TODO Auto-generated method stub
+		
 	}	
 
 }

@@ -11,7 +11,7 @@ import sales.domain.model.CustomerRepository;
 @Repository
 public class JpaCustomerRepository implements CustomerRepository {
 
-	private static final String SQL_FINDBY_NAME = "SELECT a.ID AS ID, a.NAME AS NAME,"
+	private static final String SQL_FINDBY_NAME = "SELECT a.NAME AS NAME"
 			+ " FROM CUSTOMER_T a WHERE a.NAME = :name";
 
 	private EntityManager entityManager;

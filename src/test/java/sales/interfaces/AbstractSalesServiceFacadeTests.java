@@ -46,7 +46,7 @@ public abstract class AbstractSalesServiceFacadeTests {
 			setUpInquiries();
 			entityManager.getTransaction().commit();
 		} finally {
-			//entityManager.close();
+			entityManager.close();
 		}
 	}
 
@@ -62,14 +62,14 @@ public abstract class AbstractSalesServiceFacadeTests {
 	
 	@Test
 	public void inquiryTest(){
-		Customer customer = entityManager.find(Customer.class, "Globe");
-		Inquiry inquiry = entityManager.find(Inquiry.class, "Training");
+		//Customer customer = entityManager.find(Customer.class, "Globe");
+		//Inquiry inquiry = entityManager.find(Inquiry.class, "Training");
 		
-		//service.inquire(customer, inquiry);
+		service.inquireOldCustomer("Globe", "Training");
 		
 		
-		Customer actualCustomer = entityManager.find(Customer.class, "Globe");
-		//assertEquals(actualCustomer.getInquiries().size(), 1);
+		//Customer actualCustomer = find(Customer.class, "Globe");
+		
 		
 		
 	}
