@@ -32,7 +32,7 @@ public class JpaCustomerRepositoryTests {
 		customerRepository.findByCustomerName("Bootstrap");
 	}
 	
-	@Test
+	@Test(expected = NoExistingCustomerException.class)
 	public void existingCustomerTest(){
 		Customer customer = customerRepository.findByCustomerName("Globe");
 		assertEquals("Globe", customer.getName());
