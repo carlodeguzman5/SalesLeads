@@ -1,3 +1,7 @@
+
+
+
+
 function testing(){
 
 var inputName1 = document.getElementById('name').value;
