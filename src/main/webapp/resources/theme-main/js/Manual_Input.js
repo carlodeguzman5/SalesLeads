@@ -6,6 +6,7 @@ var checker = {
 		var inputName1 = document.getElementById('name').value;
 		console.log(isExisting);
 
+		console.log("this");
 		for(var p in dataName){
 			if(inputName1 == dataName[p]){
 				isExisting = true;

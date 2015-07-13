@@ -1,10 +1,14 @@
 package sales.domain.service;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -38,7 +42,6 @@ public class SalesService implements SalesServiceFacade{
 
 
 	public void inquireOldCustomer(String customerName, String inquiryName) {
-//		Customer customer = customerRepository.findByCustomerName(customerName);
 		Customer customer = entityManager.find(Customer.class, customerName);
 		Inquiry inquiry = new Inquiry(inquiryName);
 		entityManager.merge(inquiry);
@@ -71,6 +74,12 @@ public class SalesService implements SalesServiceFacade{
 			CustomerClassification classification) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+	
+	public List<String> getInquiryTypes(){
+		Query query = entityManager.createNativeQuery("SELECT type FROM INQUIRY");
+		List<String> inquiries = (List<String>) query.getResultList();
+		return inquiries;
+	}
 
 }

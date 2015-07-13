@@ -16,8 +16,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="INQUIRY")
 // @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Inquiry implements Serializable {
 

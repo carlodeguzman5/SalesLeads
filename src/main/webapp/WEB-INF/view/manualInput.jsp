@@ -15,9 +15,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Manual Input page</title>
-
-<script type="<c:url value="resources/js/Manual_Input.js"/>"></script>
+<title>Inquiry - Manual Input</title>
+<script src="<c:url value="resources/js/Manual_Input.js"/>"></script>
 
 <link
 	href="<c:url value="/resources/style.css" />"
@@ -271,7 +270,7 @@
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Manual Input<span class="fa fa-angle-right"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="Manual-Input.html">Manual Inquiry input</a></li>
+								<li><a href="Manual-Input.html">Manual Inquiry Input</a></li>
 								<li><a href="Manual-Input-Report.html">Manual Sales
 										Report</a></li>
 							</ul> <!-- /.nav-second-level --></li>
@@ -320,28 +319,23 @@
 					<div class="col-lg-12">
 						<h1>MANUAL INPUT INQUIRY FOR CUSTOMER</h1>
 
-
 						<div class="form-group formsize">
-							<label>Selects</label> <select class="form-control" id="types">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+							<label>Inquiry Type</label>
+							<select class="form-control" id="types">
+								<option ></option>
+								<c:forEach var="type" items="${inquiryTypes}">
+							  		<option> ${type} </option>
+								</c:forEach>
 							</select>
 						</div>
 
-
-
-						<div class="form-group formsize">
-							<label>Inquiry add</label> <input type="text" id="internName"
-								class="form-control"
-								placeholder="Enter new inquiry if inquiry does not exist">
-							<button onclick="addFromList()">Add</button>
+						<label>Add New Inquiry Type</label> 
+						<div class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-6"> <input type="text" id="internName" class="form-control" placeholder="E.g. Consultation"> </div>
+								<button class="btn btn-md" onclick="addFromList()">Add</button> 
+							</div>
 						</div>
-
-
-
 
 						<form role="form">
                             <div class="form-group formsize">

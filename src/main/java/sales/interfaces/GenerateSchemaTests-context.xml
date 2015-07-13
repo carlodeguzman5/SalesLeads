@@ -11,7 +11,7 @@
 	
 	
 
-	<context:component-scan base-package="sales.interfaces, sales.domain.model, sales.domain.service" />
+	<context:component-scan base-package="sales.interfaces, sales.domain.model, sales.domain.service, sales.web" />
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="jpaVendorAdapter">
@@ -31,8 +31,5 @@
 	</bean>
 
 	<tx:annotation-driven />
-
-<!--     Creates an in-memory "libraryapp" database -->
-	
 	
 </beans>

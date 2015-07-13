@@ -27,7 +27,6 @@ public class JpaCustomerRepository implements CustomerRepository {
 			Query query = entityManager.createNativeQuery(SQL_FINDBY_NAME, Customer.class);
 			query.setParameter("name", name);
 			customer = (Customer) query.getSingleResult();
-	//		customer = entityManager.find(Customer.class, name);
 		} catch (RuntimeException e) {
 			throw new NoExistingCustomerException("");
 		}
