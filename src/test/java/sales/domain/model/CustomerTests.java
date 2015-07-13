@@ -13,7 +13,7 @@ public class CustomerTests {
 		
 		Customer customer = new Customer("Globe", "Adrian Adame", telCom);
 		
-		assertEquals(telCom.getName(), customer.getCustomerClassification());
+		assertEquals(telCom.getName(), customer.getCustomerClassification().getName());
 	}
 	
 	@Test (expected = IllegalArgumentException.class)

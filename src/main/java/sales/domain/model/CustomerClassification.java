@@ -13,6 +13,8 @@ public class CustomerClassification implements Serializable{
 
 	@Id
 	private String name;
+	@OneToMany
+	@JoinColumn(name="classification_fk")
 	private Set<Customer> customers;
 	
 	public CustomerClassification() {/* AS NEEDED BY JPA */}
@@ -25,8 +27,7 @@ public class CustomerClassification implements Serializable{
 		return name;
 	}
 	
-	@OneToMany
-	@JoinColumn(name="classification_fk")
+	
 	public Set<Customer> getCustomers(){
 		return customers;
 	}

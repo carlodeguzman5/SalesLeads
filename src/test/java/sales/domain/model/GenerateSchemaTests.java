@@ -62,6 +62,6 @@ public class GenerateSchemaTests {
 		entityManager.persist(customer2);
 		entityManager.flush();
 		Customer c = entityManager.find(Customer.class, "Smart");
-		assertEquals("Telecommunications", c.getCustomerClassification());
+		assertEquals("Telecommunications", c.getCustomerClassification().getName());
 	}
 }
