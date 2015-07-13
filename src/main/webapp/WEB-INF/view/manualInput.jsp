@@ -321,53 +321,59 @@
 						<h1>MANUAL INPUT INQUIRY FOR CUSTOMER</h1>
 
 
-						<div class="form-group formsize">
-							<label>Selects</label> <select class="form-control" id="types">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
+                        <div class="form-group formsize">
+                            <label>Selects</label>
+                            <select class="form-control" id="types">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        
 
+ 
+                            <div class="form-group formsize">
+                                <label>Inquiry add</label>
+                                <input type="text" id="internName" class="form-control" placeholder="Enter new inquiry if inquiry does not exist">
+                                <button onclick="addFromList()">Add</button>
+                            </div>
 
-
-						<div class="form-group formsize">
-							<label>Inquiry add</label> <input type="text" id="internName"
-								class="form-control"
-								placeholder="Enter new inquiry if inquiry does not exist">
-							<button onclick="addFromList()">Add</button>
-						</div>
-
-
-
-
-						<form role="form">
+                        
+                        
+                        
+                        
                             <div class="form-group formsize">
                                 <label>Name</label>
-                                <input class="form-control" id="name">
+                                <input class="form-control" id="name">  <button onclick="checker.check()">try me</button>
                                 <p class="help-block">Example block-level help text here.</p>
                             </div>
-                            <div class="form-group formsize">
+                        <form role="form">
+
+                            <div class="form-group formsize theHidden" id="testId">
                                 <label>Address</label>
                                 <input class="form-control" id="address">
                                 <p class="help-block">Example block-level help text here.</p>
-                            </div>
-                            <div class="form-group formsize">
+                            
+
+                            
                                 <label>Contact Number</label>
                                 <input class="form-control" id="number">
                                 <p class="help-block">Example block-level help text here.</p>
                             </div>
+
                             <div class="form-group formsize">
                                 <label>Subject</label>
                                 <input class="form-control" id="subject">
                                 <p class="help-block">Example block-level help text here.</p>
                             </div>
+
                             <div class="form-group formsize">
                                 <label>Text area</label>
                                 <textarea class="form-control" rows="3" id="test"></textarea>
                             </div>
+
                         </form>
                         <!-- <form>
                             <h4>Name: <input type="text" id="name"/></h4>
