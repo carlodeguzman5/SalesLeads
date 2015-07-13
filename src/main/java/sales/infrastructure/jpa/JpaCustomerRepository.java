@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import sales.domain.model.Customer;
+import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerRepository;
 
 @Repository
@@ -30,6 +31,12 @@ public class JpaCustomerRepository implements CustomerRepository {
 			throw new NoExistingCustomerException(e);
 		}
 		return customer;
+	}
+
+	public void createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification) {
+		Customer customer = new Customer(name, contactPerson, contactNumber, email, classification);
+		entityManager.persist(customer);
+		
 	}
 
 }

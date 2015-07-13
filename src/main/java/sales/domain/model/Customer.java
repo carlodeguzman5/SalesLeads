@@ -1,15 +1,12 @@
 package sales.domain.model;
 import static org.apache.commons.lang3.Validate.notEmpty;
 
-import java.util.Collection;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,11 +22,12 @@ public class Customer {
 	private String contactNumber;
 	@Column(name="CONTACT_PERSON")
 	private String contactPerson;
-	@Column(name="CLASSIFICATION")
-	private String classification;
-	@OneToMany(cascade=CascadeType.ALL)
+	@Column(name="CUSTOMER_CLASSIFICATION")
+	private CustomerClassification classification;
+	
+	/*@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="INQUIRIES_PER_CUSTOMER")
-	private Set<Customer_Inquiry> inquries;
+	private Set<CustomerInquiry> inquries;*/
 
 	protected Customer(){/*AS NEEDED BY JPA*/}
 	
@@ -38,7 +36,7 @@ public class Customer {
 		notEmpty(contactPerson);
 		this.name = name;
 		this.contactPerson = contactPerson;
-		this.classification = classification.getName();
+		this.classification = classification;
 	}
 	
 	public Customer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification){
@@ -70,14 +68,16 @@ public class Customer {
 	public String getContactPerson() {
 		return contactPerson;
 	}
-
-	public String getClassification() {
+	
+	@ManyToOne
+	@JoinColumn(name="classification_fk", insertable=true, updatable=true)
+	public CustomerClassification getCustomerClassification() {
 		return classification;
 	}
-	
+	/*
 	public Collection getInquiries(){
 		return inquries;
-	}
+	}*/
 	
 	
 

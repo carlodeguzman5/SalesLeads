@@ -4,16 +4,13 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sales.domain.model.Call;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
-import sales.domain.model.Email;
-import sales.domain.model.InquiryType;
-import sales.domain.model.PersonalVisit;
+import sales.domain.model.Inquiry;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations={"classpath:sales/interfaces/SalesServiceTests-context.xml"})
 public class SalesServiceFacadeTests extends AbstractSalesServiceFacadeTests{
 	
 	@Override
@@ -38,20 +35,19 @@ public class SalesServiceFacadeTests extends AbstractSalesServiceFacadeTests{
 
 	@Override
 	protected void setUpInquiryTypes() {
-		InquiryType training = new InquiryType("Training");
-		InquiryType development = new InquiryType("Development");
+		Inquiry training = new Inquiry("Training");
+		Inquiry development = new Inquiry("Development");
 		entityManager.persist(training);
 		entityManager.persist(development);
 	}
 	
 	@Override
 	protected void setUpInquiries() {
-		Call globeInquiry = new Call("09051234567", "Inquiry for Training", "Is there an available training for JDBC?", "Training");
-		Email wilconInquiry = new Email("adrian@gmail.com", "Inquiry for Software Development", "Are you willing to develop an inventory software?", "Development");
-		PersonalVisit accountantInquiry = new PersonalVisit("Henry Antonio", "Inquiry for Software Development", "Are you willing to develop software for recording purposes?", "Development");
-		entityManager.persist(globeInquiry);
-		entityManager.persist(wilconInquiry);
-		entityManager.persist(accountantInquiry);
+		Inquiry training = new Inquiry("Training");//"carlo@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?", "Training");
+		Inquiry development = new Inquiry("Development");//adrian@gmail.com", "Inquiry for Software Development", "Are you willing to develop an inventory software?", "Development");
+		// Inquiry accountantInquiry = new Inquiry("kd@gmail.com", "Inquiry for Software Development", "Are you willing to develop software for recording purposes?", "Development");
+		entityManager.persist(training);
+		entityManager.persist(development);
 	}
 
 }

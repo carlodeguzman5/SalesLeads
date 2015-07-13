@@ -5,9 +5,9 @@ import sales.domain.model.Inquiry;
 
 public interface SalesServiceFacade {
 	
-	public void inquire(Customer customer, Inquiry inquiry);
+	public void inquire(String customer, String inquiry);
 	
-	public void findAllByCustomer(Customer customer, Inquiry inquiry);
+	public void findAllByCustomer(Customer customer);
 
 	
 

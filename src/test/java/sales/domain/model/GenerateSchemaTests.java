@@ -1,19 +1,15 @@
 package sales.domain.model;
 
-import static org.junit.Assert.*;
-
-import java.math.BigDecimal;
-import java.util.Currency;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
-import javax.persistence.TypedQuery;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +50,10 @@ public class GenerateSchemaTests {
 
 	@Test
 	public void testGenerateSchema() throws Exception {
-		entityManager.getMetamodel().entity(Email.class);
+		entityManager.getMetamodel().entity(Inquiry.class);
 		System.out.println("Please check the resulting schema");
 	}
-	
+
 	@Test
 	public void testCustomerClassification(){
 		Customer customer = new Customer("Smart", "Manny V. Pangilinan", new CustomerClassification("Telecommunications"));
@@ -66,54 +62,6 @@ public class GenerateSchemaTests {
 		entityManager.persist(customer2);
 		entityManager.flush();
 		Customer c = entityManager.find(Customer.class, "Smart");
-		assertEquals("Telecommunications", c.getClassification());
+		assertEquals("Telecommunications", c.getCustomerClassification());
 	}
-
-	@Test
-	public void testEmail() throws Exception {
-		Customer customer = new Customer("Smart", "Manny V. Pangilinan", new CustomerClassification("Telecommunications"));
-		entityManager.persist(customer);
-		Email email = new Email("Adrian@gmail.com", "Inquiry for Training", "Is there an available training for JDBC?", "Training");
-		entityManager.persist(email);
-		entityManager.flush();
-		String emailId = email.getInquiryType();
-		Email retrievedEmailinquiry = entityManager.find(Email.class, emailId);
-		assertEquals(email, retrievedEmailinquiry);
-		assertEquals("Training", retrievedEmailinquiry.getInquiryType());
-	}
-
-	@Test
-		public void testSMS() throws Exception{
-			SMS sms = new SMS("09123456789", "Inquiry for Training" , "Is there an available training for JDBC?", "Training");
-			entityManager.persist(sms);
-			entityManager.flush();
-			
-			String smsId = sms.getInquiryType();
-			SMS retrievedSMS = entityManager.find(SMS.class, smsId);
-			assertEquals(sms, retrievedSMS);
-			assertEquals("09123456789", retrievedSMS.getPhoneNumber());
-		}
-	
-	@Test
-	public void testPersonalVisit() throws Exception{
-		PersonalVisit visit = new PersonalVisit("Adrian Adame", "Inquiry for Training", "Is there an available training for JDBC?", "Training" );
-		entityManager.persist(visit);
-		entityManager.flush();
-		
-		String visitId = visit.getInquiryType();
-		
-		assertEquals(visit, entityManager.find(PersonalVisit.class, visitId));
-	}
-	
-	@Test
-	public void testFacebook() throws Exception{
-		Facebook fb = new Facebook("adrianadame", "Inquiry for Training", "Is there an available training for JDBC?", "Training" );
-		entityManager.persist(fb);
-		entityManager.flush();
-		
-		String fbId = fb.getInquiryType();
-		
-		assertEquals(fb, entityManager.find(Facebook.class, fbId));
-	}
-	
 }

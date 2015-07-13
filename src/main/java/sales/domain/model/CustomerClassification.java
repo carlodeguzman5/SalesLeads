@@ -1,15 +1,21 @@
 package sales.domain.model;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
-public class CustomerClassification {
+public class CustomerClassification implements Serializable{
 
 	@Id
 	private String name;
+	private Set<Customer> customers;
 	
-	public CustomerClassification() {}
+	public CustomerClassification() {/* AS NEEDED BY JPA */}
 		
 	public CustomerClassification(String name){
 		this.name = name;
@@ -17,5 +23,11 @@ public class CustomerClassification {
 	
 	public String getName(){
 		return name;
+	}
+	
+	@OneToMany
+	@JoinColumn(name="classification_fk")
+	public Set<Customer> getCustomers(){
+		return customers;
 	}
 }

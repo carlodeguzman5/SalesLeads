@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,18 +18,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Inquiry implements Serializable{
+// @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Inquiry implements Serializable {
 
 	@Id
-	protected String inquiryType;
+	private String type;
+	//@OneToMany(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "CUSTOMER_PER_INQUIRIES")
+	//private Set<Customer_Inquiry> customers;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="CUSTOMER_PER_INQUIRIES")
-	private Set<Customer_Inquiry> customers;
+	protected Inquiry() {
+		/* AS NEEDED BY JPA */}
 
-	public String getInquiryType() {
-		return inquiryType;
+	public Inquiry(String type) {
+		this.type = type;
 	}
-	
 }
