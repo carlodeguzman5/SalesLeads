@@ -319,26 +319,26 @@
 					<div class="col-lg-12">
 						<h1>INQUIRY - MANUAL INPUT</h1>
 
-						<div class="form-group formsize">
-							<label>Inquiry Type</label>
-							<select class="form-control" id="types" onclick="checker.checkInquiry()">
-								<option ></option>
-								<c:forEach var="type" items="${inquiryTypes}">
-							  		<option> ${type} </option>
-								</c:forEach>
-							</select>
-						</div>
+                        <div class="form-group formsize">
+                            <label>Inquiry Type</label>
+                            <select class="form-control" id="types" onclick="checker.checkInquiry()">
+                                <option ></option>
+                                <c:forEach var="type" items="${inquiryTypes}">
+                                    <option> ${type} </option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-						<label>Add New Inquiry Type</label> 
-						<div class="form-horizontal">
-							<div class="form-group">
-								<div class="col-sm-6"> <input type="text" id="newInquiryType" class="form-control" placeholder="E.g. Consultation"> </div>
-								<button class="btn btn-md" onclick="addFromList()">Add</button> 
-							</div>
-						</div>
+                        <label>Add New Inquiry Type</label> 
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-6"> <input type="text" id="newInquiryType" class="form-control" placeholder="E.g. Consultation"> </div>
+                                <button class="btn btn-md" onclick="addFromList()">Add</button> 
+                            </div>
+                        </div>
 
                         <label>Name</label>
-						<div class="form-horizontal">
+                        <div class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-sm-6"> <input type="text" class="form-control" id="name"> </div>
                                 <button class="btn btn-md" onclick="checker.check()">Search</button>

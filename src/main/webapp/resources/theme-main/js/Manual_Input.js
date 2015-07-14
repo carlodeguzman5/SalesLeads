@@ -84,7 +84,7 @@ document.getElementById('headText').innerHTML = ('SUMMARY');
 var selectionList = document.getElementById('types');
 
 function addFromList(){
-	var inquiryTypeToAdd = document.getElementById('internName').value;
+	var inquiryTypeToAdd = document.getElementById('newInquiryType').value;
 	var $inquiryToAdd = document.createElement("option");
 
 	$inquiryToAdd.appendChild(document.createTextNode(inquiryTypeToAdd));
