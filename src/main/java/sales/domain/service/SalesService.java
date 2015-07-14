@@ -66,12 +66,16 @@ public class SalesService implements SalesServiceFacade {
 	}
 	
 	public void createCustomer(String name, String contactPerson, String email, String contactNumber,
-			CustomerClassification classification) {		
-		entityManager.persist(new Customer(name, contactPerson, email, contactNumber, classification));		
+			CustomerClassification classification) {	
+		entityManager.persist(new Customer(name, contactPerson, email, contactNumber, classification));
+		entityManager.flush();
+
 	}
 	
 	public void createInquiry(String name) {
-		entityManager.persist(new Inquiry(name));
+		Inquiry inquiry = new Inquiry(name);
+		entityManager.persist(inquiry);
+		entityManager.flush();
 	}
 
 	protected Calendar todayAsCalendar() {
@@ -101,6 +105,7 @@ public class SalesService implements SalesServiceFacade {
 
 	public void createCustomerClassification(String name) {
 		entityManager.persist(new CustomerClassification(name));
+		entityManager.flush();
 	}
 	
 	public CustomerClassification findCustomerClassification(String name){
