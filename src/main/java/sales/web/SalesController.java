@@ -54,6 +54,7 @@ public class SalesController {
 		model.addAttribute("inquiryTypes", inquiryTypes);
 		return "manualInput";
 	}
+
 	@RequestMapping("/Manual-Input-Report.html")
 	public String showInputReportPage(){
 		return "manualInputReport";
