@@ -66,13 +66,13 @@ public class SalesService implements SalesServiceFacade {
 			CustomerClassification classification) {
 		
 		entityManager.persist(new Customer(name, contactPerson, email, contactNumber, classification));
-		
+		entityManager.flush();
 
 	}
 	
 	public void createInquiry(String name) {
 		entityManager.persist(new Inquiry(name));
-		
+		entityManager.flush();
 		
 	}
 
@@ -96,6 +96,7 @@ public class SalesService implements SalesServiceFacade {
 
 	public void createCustomerClassification(String name) {
 		entityManager.persist(new CustomerClassification(name));
+		entityManager.flush();
 	}
 	
 	public CustomerClassification findCustomerClassification(String name){
