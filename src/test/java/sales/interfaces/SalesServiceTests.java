@@ -92,23 +92,13 @@ public class SalesServiceTests {
 		service.createInquiry("Consulting");
 		service.createCustomerClassification("Telecommunication");
 		
-		//service.createCustomer("Globe", "John", "john@globe.com", "09123456789", service.findCustomerClassification("Telecommunication"));
 		service.inquireOldCustomer("Globe", "Training");
+		service.inquireOldCustomer("Wilcon", "Consulting");
 		
 		Customer globe = entityManager.find(Customer.class, "Globe");
 		assertEquals("Globe", globe.getName());
 		
-		
-		assertEquals(1, service.findAllByCustomer("Globe").size());
-		
-		/*
-		Customer customer = entityManager.find(Customer.class, "Globe");
-		assertEquals("Globe", customer.getName());
-		Inquiry inquiry = entityManager.find(Inquiry.class, "Training");
-		assertEquals("Training", inquiry.getType());*/
-		//CustomerInquiry customerInquiry = entityManager.find(CustomerInquiry.class, "Globe");
-		
-		
+		assertEquals(2, service.getAllInquiries().size());
 		
 	}
 	

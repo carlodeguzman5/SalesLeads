@@ -11,7 +11,7 @@ public interface SalesServiceFacade {
 	
 	public void inquireOldCustomer(String customer, String inquiry);
 	
-	public Collection<Inquiry> findAllByCustomer(String name);
+	public Collection<CustomerInquiry> getAllInquiries();
 	
 	public void createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification);
 

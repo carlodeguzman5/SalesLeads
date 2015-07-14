@@ -37,21 +37,25 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-
-	<bean
+	<!-- 
+	 <bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-			<value>WEB-INF/properties/database.properties</value>
+			<value>/WEB-INF/properties/database.properties</value>
 		</property>	
-	</bean>
+	</bean> -->
 
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
+	<!-- 	<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+		<property name="password" value="${jdbc.password}" /> -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/onb" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
 	</bean>
 
 	<bean

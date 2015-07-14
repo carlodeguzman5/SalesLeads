@@ -27,7 +27,7 @@ public class SalesService implements SalesServiceFacade {
 			+ " FROM CUSTOMER_INQUIRY a WHERE a.CUSTOMER_NAME = :customer";*/
 
 	private static final String SQL_FIND_INQUIRIES_BY_NAME = "SELECT *"
-			+ " FROM CUSTOMER_INQUIRY WHERE CUSTOMER_NAME LIKE ?";
+			+ " FROM CUSTOMER_INQUIRY";
 
 	@Autowired
 	protected ApplicationContext context;
@@ -55,10 +55,10 @@ public class SalesService implements SalesServiceFacade {
 		entityManager.flush();
 	}
 
-	public Collection</*Customer*/Inquiry> findAllByCustomer(String name) {
-		Customer customer = entityManager.find(Customer.class, name);
-		return entityManager.createNativeQuery(SQL_FIND_INQUIRIES_BY_NAME, Inquiry.class)
-				.setParameter(1, name).getResultList();
+	public Collection<CustomerInquiry> getAllInquiries() {
+		//Customer customer = entityManager.find(Customer.class, name);
+		return entityManager.createNativeQuery(SQL_FIND_INQUIRIES_BY_NAME, CustomerInquiry.class).getResultList();
+		
 		// customerRepository.findByCustomerName(name);
 	}
 	
@@ -95,7 +95,6 @@ public class SalesService implements SalesServiceFacade {
 	}
 
 	public void createCustomerClassification(String name) {
-	
 		entityManager.persist(new CustomerClassification(name));
 	}
 	
