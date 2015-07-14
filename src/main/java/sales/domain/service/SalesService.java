@@ -73,7 +73,6 @@ public class SalesService implements SalesServiceFacade {
 	
 	public void createInquiry(String name) {
 		entityManager.persist(new Inquiry(name));
-		entityManager.flush();
 	}
 
 	protected Calendar todayAsCalendar() {
@@ -95,8 +94,9 @@ public class SalesService implements SalesServiceFacade {
 	}
 	
 	public List<String> getInquiryTypes(){
-		Query query = entityManager.createNativeQuery("SELECT e.type FROM INQUIRY e");
+		Query query = entityManager.createNativeQuery("SELECT type FROM INQUIRY");
 		List<String> inquiries = (List<String>) query.getResultList();
+		System.out.println(inquiries);
 		return inquiries;
 	}
 	
