@@ -41,7 +41,7 @@
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-			<value>properties/database.properties</value>
+			<value>WEB-INF/properties/database.properties</value>
 		</property>	
 	</bean>
 

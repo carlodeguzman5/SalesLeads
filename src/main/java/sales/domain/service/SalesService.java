@@ -48,12 +48,11 @@ public class SalesService implements SalesServiceFacade {
 		// Customer customer =
 		// customerRepository.findByCustomerName(customerName);
 		Customer customer = entityManager.find(Customer.class, customerName);
-		Inquiry inquiry = new Inquiry(inquiryName);
-		entityManager.persist(inquiry);
+		Inquiry inquiry = entityManager.find(Inquiry.class, inquiryName);
 
 		CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, today());
 		entityManager.persist(customerInquiry);
-		
+		entityManager.flush();
 	}
 
 	public Collection</*Customer*/Inquiry> findAllByCustomer(String name) {
