@@ -3,12 +3,16 @@ package sales.infrastructure.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
+
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerRepository;
 
 @Repository
+@Transactional
 public class JpaCustomerRepository implements CustomerRepository {
 
 	private static final String SQL_FINDBY_NAME = "SELECT a.NAME AS NAME"
@@ -24,10 +28,10 @@ public class JpaCustomerRepository implements CustomerRepository {
 	public Customer findByCustomerName(String name) {
 		Customer customer;
 		try {
-			Query query = entityManager.createNativeQuery(SQL_FINDBY_NAME, Customer.class);
+			/*Query query = entityManager.createNativeQuery(SQL_FINDBY_NAME, Customer.class);
 			query.setParameter("name", name);
-			customer = (Customer) query.getSingleResult();
-	//		customer = entityManager.find(Customer.class, name);
+			customer = (Customer) query.getSingleResult();*/
+			customer = entityManager.find(Customer.class, name);
 		} catch (RuntimeException e) {
 			throw new NoExistingCustomerException("");
 		}
@@ -38,5 +42,4 @@ public class JpaCustomerRepository implements CustomerRepository {
 		Customer customer = new Customer(name, contactPerson, contactNumber, email, classification);
 		entityManager.persist(customer);
 	}
-
 }

@@ -32,4 +32,8 @@ public class Inquiry implements Serializable {
 	public Inquiry(String type) {
 		this.type = type;
 	}
+	
+	public String getType(){
+		return type;
+	}
 }

@@ -67,14 +67,6 @@ public class CustomerInquiry {
 		return id;
 	}
 
-//	public String getCustomerName() {
-//		return customerName;
-//	}
-//
-//	public String getInquiryType() {
-//		return inquiryType;
-//	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
