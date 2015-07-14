@@ -45,7 +45,7 @@ public class GenerateSchemaTests {
 
 	@After
 	public void tearDown() throws Exception {
-		entityManager.getTransaction().rollback();
+		entityManager.getTransaction().commit();
 	}
 
 	@Test
@@ -60,7 +60,6 @@ public class GenerateSchemaTests {
 		entityManager.persist(customer);
 		Customer customer2 = new Customer("SM", "Henry Sy", new CustomerClassification("Land Development"));		
 		entityManager.persist(customer2);
-		entityManager.flush();
 		Customer c = entityManager.find(Customer.class, "Smart");
 		assertEquals("Telecommunications", c.getCustomerClassification().getName());
 	}

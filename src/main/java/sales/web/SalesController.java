@@ -44,10 +44,12 @@ public class SalesController {
 	}
 	@RequestMapping("/Manual-Input.html")
 	public String showInputPage(Model model){
-		List<String> inquiryTypes = new ArrayList<String>(); //= service.getInquiryTypes();
+//		List<String> inquiryTypes = new ArrayList<String>(); //= service.getInquiryTypes();
+//		
+//		inquiryTypes.add("Training");
+//		inquiryTypes.add("Development");
 		
-		inquiryTypes.add("Training");
-		inquiryTypes.add("Development");
+		List<String> inquiryTypes = service.getInquiryTypes();
 		
 		model.addAttribute("inquiryTypes", inquiryTypes);
 		return "manualInput";
