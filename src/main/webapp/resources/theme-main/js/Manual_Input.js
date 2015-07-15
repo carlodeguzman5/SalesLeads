@@ -3,18 +3,21 @@ var isExisting = false;
 
 var checker = {
 	check:function(){
-		var inputName1 = document.getElementById('name').value;
-
-		for(var p in dataName){
-			if(inputName1 == dataName[p]){
-				isExisting = true;
-				break;
-			}
-			else{
-				isExisting = false;
-			}
-		}
+//		var inputName1 = document.getElementById('name').value;
+//
+//		for(var p in dataName){
+//			if(inputName1 == dataName[p]){
+//				isExisting = true;
+//				break;
+//			}
+//			else{
+//				isExisting = false;
+//			}
+//		}
 	
+		var isExisting = '<c:out value="${isExisting}"/>'
+		console.log(isExisting);
+		
 		if (isExisting) {
 			document.getElementById('testId').style.display="none";
 

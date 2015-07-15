@@ -33,4 +33,16 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
+	@RequestMapping(value="/findCustomer", method = RequestMethod.POST)
+	public String findCustomer(Model model, String name){
+		System.out.println(service.findCustomer(name));
+		if(service.findCustomer(name)!=null){
+			model.addAttribute("isExisting", true);
+		}
+		else {
+			model.addAttribute("isExisting", false);
+		}
+		return "redirect:/Manual-Input.html";
+	}
+	
 }

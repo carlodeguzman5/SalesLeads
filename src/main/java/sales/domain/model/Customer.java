@@ -81,6 +81,14 @@ public class Customer {
 	public Collection getInquiries(){
 		return inquries;
 	}*/
+
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", email=" + email
+				+ ", contactNumber=" + contactNumber + ", contactPerson="
+				+ contactPerson + ", classification=" + classification
+				+ ", inquries=" + inquries + "]";
+	}
 	
 	
 
