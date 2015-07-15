@@ -9,9 +9,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
@@ -27,6 +27,9 @@ public class JpaCustomerRepository implements CustomerRepository {
 	
 	private static final String SQL_FIND_ALL_INQUIRIES= "SELECT *"
 			+ " FROM CUSTOMER_INQUIRY";
+	
+	private static final String SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS= "SELECT *"
+			+ " FROM CUSTOMER_CLASSIFICATION";
 	
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -75,6 +78,10 @@ public class JpaCustomerRepository implements CustomerRepository {
 
 	public CustomerClassification getCustomerClassification(String name) {
 		return entityManager.find(CustomerClassification.class, name);
+	}
+
+	public Collection<CustomerClassification> getAllCustomerClassifications() {
+		return entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS, CustomerClassification.class).getResultList();
 	}
 	
 	

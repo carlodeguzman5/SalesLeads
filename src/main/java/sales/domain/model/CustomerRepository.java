@@ -14,4 +14,5 @@ public interface CustomerRepository {
 	void createCustomerClassification(String name);
 	Customer getCustomer(String name);
 	CustomerClassification getCustomerClassification(String name);
+	Collection<CustomerClassification> getAllCustomerClassifications();
 }

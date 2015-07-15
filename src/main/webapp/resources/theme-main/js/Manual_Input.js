@@ -2,7 +2,7 @@ var dataName = ['adrian', 'carlo'];
 var isExisting = false;
 
 var checker = {
-	check:function(){
+	checkCustomer:function(){
 //		var inputName1 = document.getElementById('name').value;
 //
 //		for(var p in dataName){
@@ -15,18 +15,30 @@ var checker = {
 //			}
 //		}
 	
-		var isExisting = '<c:out value="${isExisting}"/>'
-		console.log(isExisting);
+//		var isExisting = '<c:out value="${isExisting}"/>'
+//		console.log(isExisting);
+//		
+//		if (isExisting) {
+//			document.getElementById('testId').style.display="none";
+//
+//		}
+//		if (!isExisting) {
+//			document.getElementById('testId').style.display="initial";
+//			document.getElementById('number').style.width="50%";
+//			document.getElementById('address').style.width="50%";
+//		};
 		
-		if (isExisting) {
+		var customerName =  document.getElementById('customerName').value;
+		
+		if(inquiryType != "New Customer"){
 			document.getElementById('testId').style.display="none";
-
 		}
-		if (!isExisting) {
+		
+		else{
 			document.getElementById('testId').style.display="initial";
 			document.getElementById('number').style.width="50%";
 			document.getElementById('address').style.width="50%";
-		};
+		}
 	},
 	
 	checkInquiry:function(){

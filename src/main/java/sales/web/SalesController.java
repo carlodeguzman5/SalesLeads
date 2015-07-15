@@ -2,8 +2,6 @@ package sales.web;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -11,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import sales.domain.model.Customer;
-import sales.domain.model.CustomerInquiry;
+import sales.domain.model.CustomerClassification;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
 
@@ -60,10 +56,18 @@ public class SalesController {
 			customerStrings.add(c.getName());
 		}
 		
+		Collection<CustomerClassification> customerClassifications = service.getAllCustomerClassifications();
+		Collection<String> customerClassificationStrings = new ArrayList<String>();
+		
+		for(CustomerClassification c : customerClassifications){
+			customerClassificationStrings.add(c.getName());
+		}
 		
 		model.addAttribute("inquiryTypes", inquiryStrings);
 		
 		model.addAttribute("companyNames", customerStrings);
+		
+		model.addAttribute("customerClassifications", customerClassificationStrings);
 		
 		return "manualInput";
 	}

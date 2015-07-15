@@ -35,7 +35,6 @@ public class ManualInputController {
 	
 	@RequestMapping(value="/findCustomer", method = RequestMethod.POST)
 	public String findCustomer(Model model, String name){
-		//System.out.println(service.findCustomer(name).getName());
 		if(service.findCustomer(name)!=null){
 			model.addAttribute("isExisting", true);
 		}
@@ -45,9 +44,15 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
-	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
-	public String addNewManualInput(Model model){
-		
+//	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
+//	public String addNewManualInput(Model model, String oldInquiryType, String customerName){
+//		
+//	}
+	
+	@RequestMapping(value="/addCustomerClassification", method = RequestMethod.POST)
+	public String addCustomerClassification (Model model, String newCustomerClassification){
+		service.createCustomerClassification(newCustomerClassification);
+		return "redirect:/Manual-Input.html";
 	}
 	
 }
