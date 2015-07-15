@@ -40,6 +40,12 @@
 <link
 	href="<c:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css" />"
 	rel="stylesheet">
+	
+<link
+	href="<c:url value="/resources/chosen/chosen.css" />"
+	rel="stylesheet">
+
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -338,6 +344,8 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="<c:url value="/resources/dist/js/sb-admin-2.js"/>"></script>
+	
+	<script src="<c:url value="/resources/chosen/chosen.jquery.js"/>"></script>
 
 </body>
 
