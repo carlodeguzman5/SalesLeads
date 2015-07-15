@@ -8,6 +8,7 @@
 						<div class="form-group formsize">
 							<label>Inquiry Type</label>
 							<select data-placeholder="Choose an Inquiry..." class="form-control chosen-select" id="types" onclick="checker.checkInquiry()">
+								<option ></option>
 								<c:forEach var="type" items="${inquiryTypes}">
 							  		<option> ${type} </option>
 								</c:forEach>
@@ -29,6 +30,7 @@
                             <div class="form-group">
                                 <div class="col-sm-6"> 
                                 	<select data-placeholder="Choose a Customer..." class="form-control chosen-select" id="companyName">
+                             					<option ></option>
                                 		<c:forEach var="companyName" items="${companyNames}">
 							  				<option> ${companyName}</option>
 										</c:forEach>
