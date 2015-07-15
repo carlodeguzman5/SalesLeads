@@ -30,11 +30,13 @@ var checker = {
 		
 		var customerName =  document.getElementById('customerName').value;
 		
-		if(inquiryType != "New Customer"){
+		if(customerName != "New Customer"){
 			document.getElementById('testId').style.display="none";
+			document.getElementById("customerName").setAttribute("customerName", oldId);
 		}
 		
 		else{
+			document.getElementById('customerName').setAttribute(name, value)
 			document.getElementById('testId').style.display="initial";
 			document.getElementById('number').style.width="50%";
 			document.getElementById('address').style.width="50%";

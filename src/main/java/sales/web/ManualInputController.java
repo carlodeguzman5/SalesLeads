@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import sales.domain.model.CustomerClassification;
+import sales.domain.model.CustomerInquiry;
 import sales.domain.service.SalesService;
 import sales.interfaces.SalesServiceFacade;
 
@@ -44,10 +46,21 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
-//	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
-//	public String addNewManualInput(Model model, String oldInquiryType, String customerName){
-//		
-//	}
+	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
+	public String addNewManualInput(Model model, String oldInquiryType, String customerName, String customerNameInput, String contactNumber, String contactPerson, 
+			String email, String customerClassification, String subject, String text){
+		String name = customerName;
+		System.out.println("customerClassification" + customerClassification);
+		System.out.println("name" + name);
+		
+		if(!customerName.equals("old")){
+			CustomerClassification classification = service.findCustomerClassification(customerClassification);
+			service.createCustomer(customerNameInput, contactPerson, email, contactNumber, classification);
+			name=customerNameInput;
+		}
+		service.createCustomerInquiry(service.findCustomer(name), service.findInquiry(oldInquiryType), subject, text);
+		return "redirect:/Manual-Input.html";
+	}
 	
 	@RequestMapping(value="/addCustomerClassification", method = RequestMethod.POST)
 	public String addCustomerClassification (Model model, String newCustomerClassification){

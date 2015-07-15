@@ -63,36 +63,35 @@
 					
 					<div class="form-group formsize theHidden" id="testId">
 					
-						<label>Add New Customer Name</label> <input class="form-control"
-							id="companyNameInput"> 
+						<label>Add New Customer Name</label> <input class="form-control" name="customerNameInput" id="companyNameInput"> 
 							
 						<label>Contact Number</label> 
-							<input class="form-control" id="contactNumber">
+							<input class="form-control" name="contactNumber" id="contactNumber">
 							
 						<label>Contact Person</label> 
-							<input class="form-control" id="contactPerson"> 
+							<input class="form-control" name="contactPerson" id="contactPerson"> 
 						
 						<label>Email</label> 
-							<input class="form-control" id="email">
+							<input class="form-control" name="email" id="email">
 							
 						
 						<label>Customer Classification</label> 
-							<select class="form-control" id="customerClassification">
+							<select class="form-control" name="customerClassification" id="customerClassification">
 								<option value="New Classification">New Classification</option>
 								<c:forEach var="customerClassification" items="${customerClassifications}">
-									<option>${customerClassification}</option>
+									<option value='${customerClassification}'>${customerClassification}</option>
 								</c:forEach>
 							</select> 
 							
 					</div>
 
 					<div class="form-group formsize">
-						<label>Subject</label> <input class="form-control" id="subject">
+						<label>Subject</label> <input class="form-control" name="subject" id="subject">
 					</div>
 
 					<div class="form-group formsize">
 						<label>Text area</label>
-						<textarea class="form-control" rows="3" id="test"></textarea>
+						<textarea class="form-control" rows="3" name="text" id="test"></textarea>
 					</div>
 					<input type="submit" />
 				</form>

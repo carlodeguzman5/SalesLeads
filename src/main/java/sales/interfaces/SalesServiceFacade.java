@@ -32,6 +32,8 @@ public interface SalesServiceFacade {
 	public Collection<Customer> getAllCustomers();
 	
 	public Collection<Inquiry> getAllInquiries();
+	
+	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message);
 
 
 }

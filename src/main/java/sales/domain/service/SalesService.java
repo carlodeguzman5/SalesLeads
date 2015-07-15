@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
+import sales.domain.model.CustomerInquiryRepository;
 import sales.domain.model.CustomerRepository;
 import sales.domain.model.Inquiry;
 import sales.domain.model.InquiryRepository;
@@ -33,11 +34,13 @@ public class SalesService implements SalesServiceFacade {
 
 	private CustomerRepository customerRepository;
 	private InquiryRepository inquiryRepository;
+	private CustomerInquiryRepository customerInquiryRepository;
 
 	@Autowired
-	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository) {
+	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
+		this.customerInquiryRepository = customerInquiryRepository;
 	}
 
 	public void inquireOldCustomer(String customerName, String inquiryName) throws NoExistingInquiryException {
@@ -103,6 +106,10 @@ public class SalesService implements SalesServiceFacade {
 
 	public Collection<CustomerClassification> getAllCustomerClassifications() {
 		return customerRepository.getAllCustomerClassifications();
+	}
+	
+	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
+		customerInquiryRepository.createCustomerInquiry(customer, inquiry, subject, message);
 	}
 	
 }

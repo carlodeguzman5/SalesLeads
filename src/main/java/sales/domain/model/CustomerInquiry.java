@@ -30,8 +30,9 @@ public class CustomerInquiry {
 	@JoinColumn(name = "INQUIRY_TYPE")
 	private Inquiry inquiry;
 	private Date date;
+	private String subject;
 	@Column(length = 10000)
-	private String response;
+	private String message;
 	private double budget;
 	private int rating;
 
@@ -42,13 +43,19 @@ public class CustomerInquiry {
 		this.inquiry = inquiry;
 		this.date = date;
 	}
+	
+	public CustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
+		this();
+		this.subject = subject;
+		this.message = message;
+	}
 
 	public String getResponse() {
-		return response;
+		return message;
 	}
 
 	public void setResponse(String response) {
-		this.response = response;
+		this.message = response;
 	}
 
 	public int getRating() {
