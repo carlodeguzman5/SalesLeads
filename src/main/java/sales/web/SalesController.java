@@ -1,11 +1,19 @@
 package sales.web;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
 
 @Controller
@@ -35,7 +43,13 @@ public class SalesController {
 		return "leadPage";
 	}
 	@RequestMapping("/Manual-Input.html")
-	public String showInputPage(){
+	public String showInputPage(Model model){
+		List<String> inquiryTypes = new ArrayList<String>(); //= service.getInquiryTypes();
+		
+		inquiryTypes.add("Training");
+		inquiryTypes.add("Development");
+		
+		model.addAttribute("inquiryTypes", inquiryTypes);
 		return "manualInput";
 	}
 	@RequestMapping("/Manual-Input-Report.html")

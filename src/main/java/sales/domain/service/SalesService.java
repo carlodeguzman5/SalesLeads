@@ -3,11 +3,6 @@ package sales.domain.service;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -23,11 +18,6 @@ import sales.interfaces.SalesServiceFacade;
 
 @Service
 public class SalesService implements SalesServiceFacade {
-
-	/*private static final String SQL_FIND_INQUIRIES_BY_NAME = "SELECT OBJECT(a)"
-			+ " FROM CUSTOMER_INQUIRY a WHERE a.CUSTOMER_NAME = :customer";*/
-
-	
 
 	@Autowired
 	protected ApplicationContext context;
@@ -98,11 +88,5 @@ public class SalesService implements SalesServiceFacade {
 		now.clear(Calendar.MILLISECOND);
 		return now;
 	}
-
 	
-
-	
-
-	
-
 }
