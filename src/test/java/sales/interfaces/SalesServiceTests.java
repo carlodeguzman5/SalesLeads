@@ -9,6 +9,7 @@ import javax.persistence.PersistenceUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,7 @@ public class SalesServiceTests {
 	}
 	
 	@Test
+	@Rollback(true)
 	public void customerInquiryInsertTest() throws NoExistingInquiryException{
 		
 		service.createInquiry("Consulting");
@@ -103,7 +105,8 @@ public class SalesServiceTests {
 		service.createCustomerClassification("Food");
 		CustomerClassification cc = service.findCustomerClassification("Food");
 		service.createCustomer("McDonalds", "Ronald", "ron@mcdo.com", "86236", cc);
-		//assertEquals(4, service.getAllCustomers().size());
+		service.createCustomer("Jollibee", "Bee", "jolly@bee.com", "8700", cc);
+		assertEquals(2, service.getAllCustomers().size());
 	}
 	
 	

@@ -25,6 +25,7 @@ import sales.infrastructure.jpa.NoExistingInquiryException;
 import sales.interfaces.SalesServiceFacade;
 
 @Service
+@Transactional
 public class SalesService implements SalesServiceFacade {
 
 	@Autowired
