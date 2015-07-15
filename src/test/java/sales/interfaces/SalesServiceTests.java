@@ -86,7 +86,6 @@ public class SalesServiceTests {
 	}
 	
 	@Test
-	@Rollback(true)
 	public void customerInquiryInsertTest() throws NoExistingInquiryException{
 		
 		service.createInquiry("Consulting");
@@ -101,12 +100,19 @@ public class SalesServiceTests {
 	}
 	
 	@Test
-	public void findAllCustomerTests(){
+	public void findAllCustomerTest(){
 		service.createCustomerClassification("Food");
 		CustomerClassification cc = service.findCustomerClassification("Food");
 		service.createCustomer("McDonalds", "Ronald", "ron@mcdo.com", "86236", cc);
 		service.createCustomer("Jollibee", "Bee", "jolly@bee.com", "8700", cc);
 		assertEquals(2, service.getAllCustomers().size());
+	}
+	@Test
+	public void findAllInquiriesTest(){
+		service.createInquiry("Just");
+		service.createInquiry("Another");
+		service.createInquiry("Test");
+		assertEquals(3, service.getAllInquiries().size());
 	}
 	
 	

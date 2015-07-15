@@ -1,8 +1,6 @@
 package sales.infrastructure.jpa;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,16 +38,8 @@ public class JpaInquiryRepository implements InquiryRepository {
 	}
 	
 	
-	public List<String> getAllInquiries(){
-		Collection<Inquiry> inquiries = entityManager.createNativeQuery("SELECT * FROM INQUIRY", Inquiry.class).getResultList();
-		
-		List<String> inquiryTypes = new ArrayList();
-		
-		for(Inquiry inquiry : inquiries){
-			inquiryTypes.add(inquiry.getType());
-		}
-		
-		return inquiryTypes;
+	public Collection<Inquiry> getAllInquiries(){
+		return entityManager.createNativeQuery("SELECT * FROM INQUIRY", Inquiry.class).getResultList();
 	}
 
 }

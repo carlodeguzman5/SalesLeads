@@ -1,5 +1,4 @@
 <%@ include file="dashboard.jsp" %>
-
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
@@ -8,7 +7,7 @@
 
 						<div class="form-group formsize">
 							<label>Inquiry Type</label>
-							<select class="form-control" id="types" onclick="checker.checkInquiry()">
+							<select data-placeholder="Choose an Inquiry..." class="form-control chosen-select" id="types" onclick="checker.checkInquiry()">
 								<option ></option>
 								<c:forEach var="type" items="${inquiryTypes}">
 							  		<option> ${type} </option>
@@ -26,20 +25,24 @@
 							</div>
 						</div>
 
-                        <label>Name</label>
+                        <label>Company Name</label>
 						<div class="form-horizontal">
                             <div class="form-group">
-                            	<form method="post" action="findCustomer">
-	                                <div class="col-sm-6"> <input type="text" class="form-control" name="name" id="name"> </div>
-	                                <button class="btn btn-md" onclick="checker.check()" >Search</button>
-                                </form>
+                                <div class="col-sm-6"> 
+                                	<select data-placeholder="Choose a Customer..." class="form-control chosen-select" id="companyName">
+                                		<c:forEach var="companyName" items="${companyNames}">
+							  				<option> ${companyName}</option>
+										</c:forEach>
+                                	</select>
+                                </div>
+                                <button class="btn btn-md" onclick="checker.check()">Search</button>
                             </div>
                         </div>
                             
                         <form role="form">
                             <div class="form-group formsize theHidden" id="testId">
-                                <label>Address</label>
-                                <input class="form-control" id="address">
+                                <label>Contact Person</label>
+                                <input class="form-control" id="contactPerson">
                             
                                 <label>Contact Number</label>
                                 <input class="form-control" id="number">
@@ -81,4 +84,19 @@
 			</div>
 			<!-- /.container-fluid -->
 		</div>
-		<!-- /#page-wrapper -->
+
+	<script src="<c:url value="/resources/chosen/chosen.jquery.js"/>"></script>
+
+	<script type="text/javascript">
+	    var config = {
+	      '.chosen-select'           : {},
+	      '.chosen-select-deselect'  : {allow_single_deselect:true},
+	      '.chosen-select-no-single' : {disable_search_threshold:10},
+	      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+	      '.chosen-select-width'     : {width:"95%"}
+	    }
+	    for (var selector in config) {
+	      $(selector).chosen(config[selector]);
+	    }
+    </script>
+
