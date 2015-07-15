@@ -96,5 +96,9 @@ public class SalesService implements SalesServiceFacade {
 		now.clear(Calendar.MILLISECOND);
 		return now;
 	}
+
+	public List<String> getAllInquiries() {
+		return inquiryRepository.getAllInquiries();
+	}
 	
 }

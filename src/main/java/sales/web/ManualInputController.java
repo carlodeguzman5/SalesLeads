@@ -30,7 +30,6 @@ public class ManualInputController {
 	@RequestMapping(value="/addInquiry", method = RequestMethod.POST)
 	public String addInquiry(Model model, String newInquiryType) {
 		service.createInquiry(newInquiryType);
-		//System.out.println(newInquiryType);
 		return "redirect:/Manual-Input.html";
 	}
 	

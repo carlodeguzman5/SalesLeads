@@ -2,6 +2,7 @@ package sales.domain.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public interface CustomerRepository {
 

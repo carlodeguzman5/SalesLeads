@@ -1,8 +1,10 @@
 package sales.infrastructure.jpa;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -58,7 +60,7 @@ public class JpaCustomerRepository implements CustomerRepository {
 	}
 
 	public Collection<CustomerInquiry> getAllCustomerInquiries() {
-		return entityManager.createNativeQuery(SQL_FIND_ALL_INQUIRIES, CustomerInquiry.class).getResultList();
+		return (Collection<CustomerInquiry>) entityManager.createNativeQuery(SQL_FIND_ALL_INQUIRIES, CustomerInquiry.class).getResultList();
 	}
 
 	public void createCustomerClassification(String name) {
