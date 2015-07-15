@@ -100,5 +100,9 @@ public class SalesService implements SalesServiceFacade {
 	public Collection<Inquiry> getAllInquiries() {
 		return inquiryRepository.getAllInquiries();
 	}
+
+	public Collection<CustomerClassification> getAllCustomerClassifications() {
+		return customerRepository.getAllCustomerClassifications();
+	}
 	
 }

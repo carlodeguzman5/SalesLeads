@@ -28,6 +28,9 @@ public class JpaCustomerRepository implements CustomerRepository {
 	private static final String SQL_FIND_ALL_INQUIRIES= "SELECT *"
 			+ " FROM CUSTOMER_INQUIRY";
 	
+	private static final String SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS= "SELECT *"
+			+ " FROM CUSTOMER_CLASSIFICATION";
+	
 	@PersistenceContext
 	protected EntityManager entityManager;
 
@@ -75,6 +78,10 @@ public class JpaCustomerRepository implements CustomerRepository {
 
 	public CustomerClassification getCustomerClassification(String name) {
 		return entityManager.find(CustomerClassification.class, name);
+	}
+
+	public Collection<CustomerClassification> getAllCustomerClassifications() {
+		return entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS, CustomerClassification.class).getResultList();
 	}
 	
 	
