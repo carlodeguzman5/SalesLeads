@@ -33,4 +33,6 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
+	
+	
 }

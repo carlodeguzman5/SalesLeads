@@ -98,3 +98,5 @@ var editor = {
 		document.getElementById('messageContent').innerHTML = document.getElementById('Editor').value;
 	},
 };
+
+

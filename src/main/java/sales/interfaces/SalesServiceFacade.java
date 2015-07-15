@@ -1,6 +1,7 @@
 package sales.interfaces;
 
 import java.util.Collection;
+import java.util.List;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
@@ -29,6 +30,8 @@ public interface SalesServiceFacade {
 	public Customer findCustomer(String name);
 
 	public Collection<Customer> getAllCustomers();
+	
+	public Collection<Inquiry> getAllInquiries();
 
 
 }

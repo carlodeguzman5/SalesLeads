@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import sales.domain.model.Customer;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
@@ -46,9 +47,23 @@ public class SalesController {
 	}
 	@RequestMapping("/Manual-Input.html")
 	public String showInputPage(Model model){
-		List<String> inquiryTypes = service.getAllInquiries();
+		Collection<Inquiry> inquiryTypes = service.getAllInquiries();
+		Collection<String> inquiryStrings = new ArrayList<String>();
+		for(Inquiry i : inquiryTypes){
+			inquiryStrings.add(i.getType());
+		}
 		
-		model.addAttribute("inquiryTypes", inquiryTypes);
+		Collection<Customer> customers = service.getAllCustomers();
+		Collection<String> customerStrings = new ArrayList<String>();
+		
+		for(Customer c : customers){
+			customerStrings.add(c.getName());
+		}
+		
+		
+		model.addAttribute("inquiryTypes", inquiryStrings);
+		
+		model.addAttribute("companyNames", customerStrings);
 		
 		return "manualInput";
 	}
