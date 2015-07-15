@@ -22,9 +22,7 @@ public class CustomerInquiry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-//	private String customerName;
-//	private String inquiryType;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUSTOMER_NAME")
 	private Customer customer;
@@ -40,8 +38,6 @@ public class CustomerInquiry {
 	protected CustomerInquiry() { /* USED BY JPA */ }
 
 	public CustomerInquiry(Customer customer, Inquiry inquiry, Date date) {
-//		this.customerName = customerName;
-//		this.inquiryType = inquiryType;
 		this.customer = customer;
 		this.inquiry = inquiry;
 		this.date = date;
