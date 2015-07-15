@@ -1,6 +1,7 @@
 package sales.interfaces;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,17 +13,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
+import sales.infrastructure.jpa.NoExistingInquiryException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -78,28 +78,33 @@ public class SalesServiceTests {
 	}
 	
 	
+	
 	@After
 	public void tearDown() throws Exception {
-		entityManager.getTransaction().commit();
+		entityManager.getTransaction().rollback();
 	}
 	
 	@Test
-	public void inquiryTest(){
-		
-		Customer customer = entityManager.find(Customer.class, "Globe");
-		Inquiry inquiry = entityManager.find(Inquiry.class, "Training");
+	public void customerInquiryInsertTest() throws NoExistingInquiryException{
 		
 		service.createInquiry("Consulting");
-		service.createCustomerClassification("Telecommunication");
+		
 		
 		service.inquireOldCustomer("Globe", "Training");
 		service.inquireOldCustomer("Wilcon", "Consulting");
 		
 		Customer globe = entityManager.find(Customer.class, "Globe");
 		assertEquals("Globe", globe.getName());
-		
-		assertEquals(2, service.getAllInquiries().size());
-		
+		assertEquals(2, service.getAllCustomerInquiries().size());
 	}
+	
+	@Test
+	public void findAllCustomerTests(){
+		service.createCustomerClassification("Food");
+		CustomerClassification cc = service.findCustomerClassification("Food");
+		service.createCustomer("McDonalds", "Ronald", "ron@mcdo.com", "86236", cc);
+		//assertEquals(4, service.getAllCustomers().size());
+	}
+	
 	
 }

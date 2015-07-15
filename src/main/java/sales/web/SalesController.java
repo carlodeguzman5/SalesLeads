@@ -1,6 +1,7 @@
 package sales.web;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
 
@@ -49,7 +51,7 @@ public class SalesController {
 //		inquiryTypes.add("Training");
 //		inquiryTypes.add("Development");
 		
-		List<String> inquiryTypes = service.getInquiryTypes();
+		Collection<CustomerInquiry> inquiryTypes = service.getAllCustomerInquiries();
 		
 		model.addAttribute("inquiryTypes", inquiryTypes);
 		return "manualInput";

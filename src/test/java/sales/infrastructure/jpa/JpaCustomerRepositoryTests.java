@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import sales.domain.model.Customer;
+import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,20 +27,23 @@ public class JpaCustomerRepositoryTests {
 	@Before
 	public void setUp(){
 		
+		
+		CustomerClassification classification = new CustomerClassification("Telecommunications");
+		customerRepository.createCustomer("Globe", "John Smith", "09123456789", "john@globe.com", classification);
 	}
 	@After
 	public void tearDown(){
 
 	}
 	
-	/*@Test(expected = NoExistingCustomerException.class)
+	@Test(expected = NoExistingCustomerException.class)
 	public void nonExistingCustomerTest(){
-		//customerRepository.findByCustomerName("Bootstrap");
+		customerRepository.findByCustomerName("Bootstrap");
 	}
 	
 	@Test(expected = NoExistingCustomerException.class)
 	public void existingCustomerTest(){
 		Customer customer = customerRepository.findByCustomerName("Globe");
 		assertEquals("Globe", customer.getName());
-	}*/
+	}
 }

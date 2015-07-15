@@ -21,22 +21,14 @@ import sales.domain.model.CustomerInquiry;
 import sales.domain.model.CustomerRepository;
 import sales.domain.model.Inquiry;
 import sales.domain.model.InquiryRepository;
+import sales.infrastructure.jpa.NoExistingInquiryException;
 import sales.interfaces.SalesServiceFacade;
 
 @Service
 public class SalesService implements SalesServiceFacade {
 
-	/*private static final String SQL_FIND_INQUIRIES_BY_NAME = "SELECT OBJECT(a)"
-			+ " FROM CUSTOMER_INQUIRY a WHERE a.CUSTOMER_NAME = :customer";*/
-
-	private static final String SQL_FIND_INQUIRIES_BY_NAME = "SELECT *"
-			+ " FROM CUSTOMER_INQUIRY";
-
 	@Autowired
 	protected ApplicationContext context;
-
-	@PersistenceContext
-	protected EntityManager entityManager;
 
 	private CustomerRepository customerRepository;
 	private InquiryRepository inquiryRepository;
@@ -47,38 +39,55 @@ public class SalesService implements SalesServiceFacade {
 		this.inquiryRepository = inquiryRepository;
 	}
 
-	public void inquireOldCustomer(String customerName, String inquiryName) {
-		// Customer customer =
-		// customerRepository.findByCustomerName(customerName);
-		Customer customer = entityManager.find(Customer.class, customerName);
-		Inquiry inquiry = entityManager.find(Inquiry.class, inquiryName);
-
-		CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, today());
-		entityManager.persist(customerInquiry);
-		entityManager.flush();
+	public void inquireOldCustomer(String customerName, String inquiryName) throws NoExistingInquiryException {
+		Customer customer = customerRepository.findByCustomerName(customerName);
+		Inquiry inquiry = inquiryRepository.getInquiryByName(inquiryName);
+		customerRepository.inquire(customer, inquiry, today());
 	}
+	
+	public void inquireNewCustomer(){};
 
-	public Collection<CustomerInquiry> getAllInquiries() {
-		//Customer customer = entityManager.find(Customer.class, name);
-		return entityManager.createNativeQuery(SQL_FIND_INQUIRIES_BY_NAME, CustomerInquiry.class).getResultList();
-		
-		// customerRepository.findByCustomerName(name);
+	public Collection<CustomerInquiry> getAllCustomerInquiries() {
+		return customerRepository.getAllCustomerInquiries();
 	}
 	
 	public void createCustomer(String name, String contactPerson, String email, String contactNumber,
-			CustomerClassification classification) {	
-		entityManager.persist(new Customer(name, contactPerson, email, contactNumber, classification));
-		entityManager.flush();
-
+			CustomerClassification classification) {
+		customerRepository.createCustomer(name, contactPerson, contactNumber, email, classification);
 	}
 	
 	public void createInquiry(String name) {
-		Inquiry inquiry = new Inquiry(name);
-		entityManager.persist(inquiry);
-		entityManager.flush();
+		inquiryRepository.createInquiry(name);
 	}
 
-	protected Calendar todayAsCalendar() {
+	public Inquiry findInquiry(String type) {
+		//return entityManager.find(Inquiry.class, type);
+		return null;
+	}
+
+
+	public void createCustomerClassification(String name) {
+		customerRepository.createCustomerClassification(name);
+	}
+	
+	public CustomerClassification findCustomerClassification(String name){
+		return customerRepository.getCustomerClassification(name);
+	}
+	
+	public Customer findCustomer(String name) {
+		return customerRepository.getCustomer(name);
+	}
+	
+	public Collection<Customer> getAllCustomers(){
+		return customerRepository.getAllCustomers();
+	}
+
+	private Date today() {
+		Calendar now = todayAsCalendar();
+		return now.getTime();
+	}
+	
+	private Calendar todayAsCalendar() {
 		Calendar now = Calendar.getInstance();
 		now.set(Calendar.HOUR_OF_DAY, 0);
 		now.clear(Calendar.MINUTE);
@@ -86,30 +95,5 @@ public class SalesService implements SalesServiceFacade {
 		now.clear(Calendar.MILLISECOND);
 		return now;
 	}
-
-	protected Date today() {
-		Calendar now = todayAsCalendar();
-		return now.getTime();
-	}
-
-	public Inquiry findInquiry(String type) {
-		return entityManager.find(Inquiry.class, type);
-	}
 	
-	public List<String> getInquiryTypes(){
-		Query query = entityManager.createNativeQuery("SELECT type FROM INQUIRY");
-		List<String> inquiries = (List<String>) query.getResultList();
-		System.out.println(inquiries);
-		return inquiries;
-	}
-
-	public void createCustomerClassification(String name) {
-		entityManager.persist(new CustomerClassification(name));
-		entityManager.flush();
-	}
-	
-	public CustomerClassification findCustomerClassification(String name){
-		return entityManager.find(CustomerClassification.class, name);
-	}
-
 }

@@ -330,14 +330,14 @@
 						</div>
 
 						<label>Add New Inquiry Type</label> 
-							<div class="form-horizontal">
-								<div class="form-group">
-									<form action="addInquiry" method="post">
-										<div class="col-sm-6"> <input type="text" name="newInquiryType" id="newInquiryType" class="form-control" placeholder="E.g. Consultation"> </div>
-										<button class="btn btn-md">Add</button> 
-									</form>
-								</div>
+						<div class="form-horizontal">
+							<div class="form-group">
+								<form method="post" action="addInquiry">
+									<div class="col-sm-6"> <input type="text" id="newInquiryType" class="form-control" placeholder="E.g. Consultation"> </div>
+									<button class="btn btn-md">Add</button> 
+								</form>
 							</div>
+						</div>
 
                         <label>Name</label>
 						<div class="form-horizontal">

@@ -9,8 +9,7 @@
 
 	<import resource="classpath:spring/application-config.xml"/>	
 
-	<context:component-scan base-package="sales.interfaces, sales.domain.model, sales.domain.service" />
-
+	<context:component-scan base-package="sales.interfaces, sales.domain.model, sales.domain.service, sales.web" />
 	<tx:annotation-driven />
 	
 </beans>

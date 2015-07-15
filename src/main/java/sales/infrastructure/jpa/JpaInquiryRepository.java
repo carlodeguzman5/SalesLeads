@@ -30,6 +30,7 @@ public class JpaInquiryRepository implements InquiryRepository {
 
 	public void createInquiry(String inquiry) {
 		entityManager.persist(new Inquiry(inquiry));
+		entityManager.flush();
 	}
 
 }
