@@ -7,7 +7,8 @@
 
 						<div class="form-group formsize">
 							<label>Inquiry Type</label>
-							<select data-placeholder="Choose an Inquiry..." class="form-control chosen-select" id="types" onclick="checker.checkInquiry()">
+							<!-- data-placeholder="Choose an Inquiry..." -->
+							<select class="form-control chosen-select" id="types" onchange="checker.checkInquiry()">
 								<option ></option>
 								<c:forEach var="type" items="${inquiryTypes}">
 							  		<option> ${type} </option>

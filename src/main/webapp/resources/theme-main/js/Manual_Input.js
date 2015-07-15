@@ -32,6 +32,8 @@ var checker = {
 	checkInquiry:function(){
 		var inquiryType =  document.getElementById('types').value;
 		
+		console.log(inquiryType+ "jskadhkls");
+		
 		if(inquiryType != ""){
 			document.getElementById('newInquiryType').readOnly = true;
 		}

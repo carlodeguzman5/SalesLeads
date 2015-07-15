@@ -35,7 +35,7 @@ public class ManualInputController {
 	
 	@RequestMapping(value="/findCustomer", method = RequestMethod.POST)
 	public String findCustomer(Model model, String name){
-		System.out.println(service.findCustomer(name));
+		//System.out.println(service.findCustomer(name).getName());
 		if(service.findCustomer(name)!=null){
 			model.addAttribute("isExisting", true);
 		}
