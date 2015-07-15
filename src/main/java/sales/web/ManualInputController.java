@@ -45,4 +45,9 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
+	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
+	public String addNewManualInput(Model model){
+		
+	}
+	
 }
