@@ -8,8 +8,8 @@
 						<div class="form-group formsize">
 							<label>Inquiry Type</label>
 							<!-- data-placeholder="Choose an Inquiry..." -->
-							<select class="form-control chosen-select" id="types" onchange="checker.checkInquiry()">
-								<option ></option>
+							<select class="form-control chosen-select" name="oldInquiryType" id="types" onchange="checker.checkInquiry()">
+								<option value="New Inquiry">New Inquiry</option>
 								<c:forEach var="type" items="${inquiryTypes}">
 							  		<option> ${type} </option>
 								</c:forEach>
@@ -37,7 +37,6 @@
 										</c:forEach>
                                 	</select>
                                 </div>
-                                <button class="btn btn-md" onclick="checker.check()">Search</button>
                             </div>
                         </div>
                             
@@ -68,7 +67,7 @@
                             <h4>Summary: </h4><textarea rows="4" cols="50" id="test"></textarea>
                         </form>   -->
                         
-                        <button onclick="testing()">Submit</button>
+                        <button >Submit</button>
                         
                         <br>
                         
