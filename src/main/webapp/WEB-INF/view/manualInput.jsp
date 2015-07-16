@@ -115,7 +115,7 @@
 								<div class="col-sm-6">
 									<select data-placeholder="Choose a Customer..."
 										class="form-control chosen-select" name="customerName"
-										id="customerName" onchange="checker.checkCustomer()">
+										id="customerNameSelect" onchange="checker.checkCustomer()">
 										<option value="New Customer">New Customer</option>
 										<c:forEach var="companyName" items="${companyNames}">
 											<option>${companyName}</option>

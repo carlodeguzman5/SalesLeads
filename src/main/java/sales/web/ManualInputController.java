@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
+import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
+import sales.infrastructure.jpa.NoExistingInquiryException;
 import sales.interfaces.SalesServiceFacade;
 
 @Controller
@@ -39,38 +41,25 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
-	//@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
-	/*public String addNewManualInput(Model model, String oldInquiryType, String subject, String text){
-		String name = customerName;
-		System.out.println("customerClassification" + customerClassification);
-		System.out.println("name" + name);
+	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
+	public String addNewManualInput(Model model, String oldInquiryType, String customerName, String subject, String text) throws NoExistingInquiryException{
 		
-		CustomerClassification classification = service.findCustomerClassification(customerClassification);
-		service.createCustomer(customerNameInput, contactPerson, email, contactNumber, classification);*/
-		
-		
-		/*if(!customerName.equals("old")){
-			CustomerClassification classification = service.findCustomerClassification(customerClassification);
-			service.createCustomer(customerNameInput, contactPerson, email, contactNumber, classification);
-			name=customerNameInput;
-		}
-		service.createCustomerInquiry(service.findCustomer(name), service.findInquiry(oldInquiryType), subject, text);
+		Customer customer = service.findCustomer(customerName);
+		Inquiry inquiry = service.findInquiry(oldInquiryType);
+		System.out.println(customer.getName()+"============");
+		System.out.println(inquiry.getType()+"============");
+		service.createCustomerInquiry(customer, inquiry, subject, text);
 		return "redirect:/Manual-Input.html";
-	}*/
+	}
 	
 	@RequestMapping(value="/addCustomerClassification", method = RequestMethod.POST)
 	public String addCustomerClassification (Model model, String newCustomerClassification){
 		service.createCustomerClassification(newCustomerClassification);
 		return "redirect:/Manual-Input.html";
-	}	
+	}
 	
 	@RequestMapping(value="/addCustomer", method = RequestMethod.POST)
 	public String addCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification){
-		System.out.println(customerName+"=========================");
-		System.out.println(contactNumber+"=========================");
-		System.out.println(contactPerson+"=========================");
-		System.out.println(email+"=========================");
-		
 		CustomerClassification cc = service.findCustomerClassification(customerClassification);
 		service.createCustomer(customerName, contactPerson, email, contactNumber, cc );
 		return "redirect:/Manual-Input.html";
