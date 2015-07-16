@@ -19,7 +19,12 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 	protected EntityManager entityManager;
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message) {
-		entityManager.persist(new CustomerInquiry(customer, inquiry, subject, message));
+		System.out.println(customer.getName()+"===+===+===+===+===");
+		CustomerInquiry ci = new CustomerInquiry(customer, inquiry, subject, message);
+		System.out.println(ci.getId()+"===+===+===+===+===");
+		System.out.println(ci.getCustomer().getName()+"===+===+===+===+===");
+		System.out.println(ci.getInquiry().getType()+"===+===+===+===+===");
+		entityManager.persist(ci);
 		entityManager.flush();
 	}
 

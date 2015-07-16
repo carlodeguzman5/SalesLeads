@@ -46,6 +46,8 @@ public class ManualInputController {
 		
 		Customer customer = service.findCustomer(customerName);
 		Inquiry inquiry = service.findInquiry(oldInquiryType);
+		System.out.println(customer.getName()+"============");
+		System.out.println(inquiry.getType()+"============");
 		service.createCustomerInquiry(customer, inquiry, subject, text);
 		return "redirect:/Manual-Input.html";
 	}
@@ -58,15 +60,7 @@ public class ManualInputController {
 	
 	@RequestMapping(value="/addCustomer", method = RequestMethod.POST)
 	public String addCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification){
-		System.out.println(customerName+"=========================");
-		System.out.println(contactNumber+"=========================");
-		System.out.println(contactPerson+"=========================");
-		System.out.println(email+"=========================");
-		
-		//CustomerClassification cc = service.findCustomerClassification(customerClassification);
-		CustomerClassification cc = new CustomerClassification(customerClassification);
-		
-		System.out.println(cc.getName() +"=========================" );
+		CustomerClassification cc = service.findCustomerClassification(customerClassification);
 		service.createCustomer(customerName, contactPerson, email, contactNumber, cc );
 		return "redirect:/Manual-Input.html";
 	}
