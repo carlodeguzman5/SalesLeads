@@ -310,45 +310,49 @@
 			<div class="container-fluid">
 				<div class="row">
 
-					<h1>LEAD PAGE</h1>
+                <h1>LEAD PAGE</h1>
 
-					<hr>
+                <hr>
 
-					<table class="table table-striped">
-						<tr>
-							<th>NAME</th>
-							<th>COMPANY NAME</th>
-							<th>RATING</th>
-							<th>INQUIRY</th>
-							<th>SUBJECT</th>
-							<th>CONTENT</th>
-						</tr>
-						<tr>
-							<td>Sample name 1</td>
-							<td>Sample Company name 1</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>Sample inquiry 1</td>
-							<td>Sample subject 1</td>
-							<td>Sample view content 1</td>
-						</tr>
-						<tr>
-							<td>Sample name 2</td>
-							<td>Sample Company name 2</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>Sample inquiry 2</td>
-							<td>Sample subject 2</td>
-							<td>Sample view content 2</td>
-						</tr>
-						<tr>
-							<td>Sample name 3</td>
-							<td>Sample Company name 3</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>Sample inquiry 3</td>
-							<td>Sample subject 3</td>
-							<td>Sample view content 3</td>
-						</tr>
-					</table>
-				</div>
+                    <table class="table table-striped table-bordered table-hover" id="mainTable">
+                        <tbody id="tableBody">
+                            <tr>
+                                <th>COMPANY NAME</th>
+                                <th>CUSTOMER CLASSIFICATION</th>                               
+                                <th>INQUIRY TYPE</th>
+                                <th>EMAIL</th>
+                                <th>SUBJECT</th>
+                                <th>CONTENT</th>
+                            </tr>
+                            <tr>
+                                <td>Sample name 1</td>
+                                <td>Customer Classification</td>
+                                <td>Type</td>
+                                <td>Email</td>
+                                <td>Sample subject 1</td>
+                                <td>Sample view content 1</td>
+                            </tr>
+                            <tr>
+                                <td>Sample name 2</td>
+                                <td>Customer Classification</td>
+                                <td>Type</td>
+                                <td>Email</td>
+                                <td>Sample subject 2</td>
+                                <td>Sample view content 2</td>
+                            </tr>
+                            <tr>
+                                <td>Sample name 3</td>
+                                <td>Customer Classification</td>
+                                <td>Type</td>
+                                <td>Email</td>
+                                <td>Sample subject 3</td>
+                                <td>Sample view content 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button onclick="addNewThing()">create new row</button>
+                </div>
 				<!-- /.row -->
 			</div>
 			<!-- /.container-fluid -->
