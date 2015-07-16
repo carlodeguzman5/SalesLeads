@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
+import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
 
@@ -38,7 +39,28 @@ public class SalesController {
 		return "charts";
 	}
 	@RequestMapping("/LeadPage.html")
-	public String showLeadPage(){
+	public String showLeadPage(Model model){
+		Collection<CustomerInquiry> ci = service.getAllCustomerInquiries();
+		Collection<String> name = new ArrayList<String>();
+		Collection<String> companyName = new ArrayList<String>();
+		Collection<String> inquiry = new ArrayList<String>();
+		Collection<String> subject = new ArrayList<String>();
+		Collection<String> content = new ArrayList<String>();
+		
+		for(CustomerInquiry c : ci){
+			name.add(c.getCustomer().getContactPerson());
+			companyName.add(c.getCustomer().getName());
+			inquiry.add(c.getInquiry().getType());
+			subject.add(c.getSubject());
+			content.add(c.getMessage());
+		}
+		
+		model.addAttribute("name", name);
+		model.addAttribute("companyName", companyName);
+		model.addAttribute("inquiry", inquiry);
+		model.addAttribute("subject", subject);
+		model.addAttribute("content", content);
+		
 		return "leadPage";
 	}
 	@RequestMapping("/Manual-Input.html")

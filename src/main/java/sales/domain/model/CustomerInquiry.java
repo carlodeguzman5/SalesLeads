@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,13 +24,17 @@ public class CustomerInquiry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "CUSTOMER_NAME")
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "CUSTOMER_NAME")
+	@Lob
+	@Column(name="customer", length = 10000)
 	private Customer customer;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "INQUIRY_TYPE")
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "INQUIRY_TYPE")
+	@Lob
+	@Column(name="inquiry", length = 10000)
 	private Inquiry inquiry;
-	private Date date;
+	private static Date date;
 	private String subject;
 	@Column(length = 10000)
 	private String message;
@@ -45,7 +50,7 @@ public class CustomerInquiry {
 	}
 	
 	public CustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
-		this();
+		this(customer, inquiry, date);
 		this.subject = subject;
 		this.message = message;
 	}
@@ -84,6 +89,14 @@ public class CustomerInquiry {
 
 	public double getBudget() {
 		return budget;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getMessage() {
+		return message;
 	}
 
 }

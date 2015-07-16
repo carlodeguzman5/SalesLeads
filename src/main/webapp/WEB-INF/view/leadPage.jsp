@@ -315,38 +315,49 @@
 					<hr>
 
 					<table class="table table-striped">
-						<tr>
-							<th>NAME</th>
-							<th>COMPANY NAME</th>
-							<th>RATING</th>
-							<th>INQUIRY</th>
-							<th>SUBJECT</th>
-							<th>CONTENT</th>
-						</tr>
-						<tr>
-							<td>Sample name 1</td>
-							<td>Sample Company name 1</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>Sample inquiry 1</td>
-							<td>Sample subject 1</td>
-							<td>Sample view content 1</td>
-						</tr>
-						<tr>
-							<td>Sample name 2</td>
-							<td>Sample Company name 2</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>Sample inquiry 2</td>
-							<td>Sample subject 2</td>
-							<td>Sample view content 2</td>
-						</tr>
-						<tr>
-							<td>Sample name 3</td>
-							<td>Sample Company name 3</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>Sample inquiry 3</td>
-							<td>Sample subject 3</td>
-							<td>Sample view content 3</td>
-						</tr>
+						<c:forEach var="companyName" items="${companyNames}">
+						</c:forEach>
+<!-- 						<tr> -->
+<!-- 							<th>NAME</th> -->
+<!-- 							<th>COMPANY NAME</th> -->
+<!-- 							<th>RATING</th> -->
+<!-- 							<th>INQUIRY</th> -->
+<!-- 							<th>SUBJECT</th> -->
+<!-- 							<th>CONTENT</th> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>Sample name 1</td> -->
+<!-- 							<td>Sample Company name 1</td> -->
+<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
+<!-- 							<td>Sample inquiry 1</td> -->
+<!-- 							<td>Sample subject 1</td> -->
+<!-- 							<td>Sample view content 1</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>Sample name 2</td> -->
+<!-- 							<td>Sample Company name 2</td> -->
+<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
+<!-- 							<td>Sample inquiry 2</td> -->
+<!-- 							<td>Sample subject 2</td> -->
+<!-- 							<td>Sample view content 2</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>Sample name 3</td> -->
+<!-- 							<td>Sample Company name 3</td> -->
+<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
+<!-- 							<td>Sample inquiry 3</td> -->
+<!-- 							<td>Sample subject 3</td> -->
+<!-- 							<td>Sample view content 3</td> -->
+<!-- 						</tr> -->
+						
+<!-- 						<tr> -->
+<!-- 							<td>Sample name 3</td> -->
+<!-- 							<td>Sample Company name 3</td> -->
+<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
+<!-- 							<td>Sample inquiry 3</td> -->
+<!-- 							<td>Sample subject 3</td> -->
+<!-- 							<td>Sample view content 3</td> -->
+<!-- 						</tr> -->
 					</table>
 				</div>
 				<!-- /.row -->

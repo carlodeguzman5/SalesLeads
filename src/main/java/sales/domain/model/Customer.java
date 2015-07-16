@@ -1,6 +1,7 @@
 package sales.domain.model;
 import static org.apache.commons.lang3.Validate.notEmpty;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CUSTOMER_T")
-public class Customer {
+public class Customer implements Serializable{
 
 	@Id
 	@Column(name="NAME")
