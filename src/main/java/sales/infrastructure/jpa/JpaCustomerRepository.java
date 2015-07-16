@@ -25,8 +25,8 @@ public class JpaCustomerRepository implements CustomerRepository {
 
 	private static final String SQL_FIND_ALL_CUSTOMERS = "SELECT * FROM CUSTOMER_T";
 	
-	private static final String SQL_FIND_ALL_INQUIRIES= "SELECT *"
-			+ " FROM CUSTOMER_INQUIRY";
+	private static final String SQL_FIND_ALL_CUSTOMER_INQUIRIES= "SELECT *"
+			+ " FROM CUSTOMER_INQUIRY ORDER BY DATE DESC";
 	
 	private static final String SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS= "SELECT *"
 			+ " FROM CUSTOMER_CLASSIFICATION";
@@ -56,19 +56,12 @@ public class JpaCustomerRepository implements CustomerRepository {
 		
 	}
 
-	public void inquire(Customer customer, Inquiry inquiry, Date date) {
-		CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, date);
-		entityManager.persist(customerInquiry);
-		entityManager.flush();
-		
-	}
-
 	public Collection<Customer> getAllCustomers() {
 		return entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMERS, Customer.class).getResultList();
 	}
 
 	public Collection<CustomerInquiry> getAllCustomerInquiries() {
-		return (Collection<CustomerInquiry>) entityManager.createNativeQuery(SQL_FIND_ALL_INQUIRIES, CustomerInquiry.class).getResultList();
+		return (Collection<CustomerInquiry>) entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_INQUIRIES, CustomerInquiry.class).getResultList();
 	}
 
 	public void createCustomerClassification(String name) {

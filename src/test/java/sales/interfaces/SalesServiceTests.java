@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import sales.domain.model.Customer;
@@ -88,14 +89,18 @@ public class SalesServiceTests {
 	@Test
 	public void customerInquiryInsertTest() throws NoExistingInquiryException{
 		
-		service.createInquiry("Consulting");
+		entityManager.persist(new Inquiry("Consulting"));
+		Inquiry inquiry = entityManager.find(Inquiry.class, "Consulting");
 		
+		entityManager.persist(new CustomerClassification("Bank"));
+		CustomerClassification customerClassification = entityManager.find(CustomerClassification.class, "Bank");
 		
-		service.inquireOldCustomer("Globe", "Training");
-		service.inquireOldCustomer("Wilcon", "Consulting");
+		service.createCustomer("Smart", "MVP", "manny@smart.com", "09197896543", customerClassification);
+		Customer customer = service.findCustomer("Smart");
 		
-		Customer globe = entityManager.find(Customer.class, "Globe");
-		assertEquals("Globe", globe.getName());
+		service.createCustomerInquiry(customer, inquiry, "Test 1", "Test Message 1");
+		service.createCustomerInquiry(customer, inquiry, "Test 2", "Test Message 2");
+		
 		assertEquals(2, service.getAllCustomerInquiries().size());
 	}
 	

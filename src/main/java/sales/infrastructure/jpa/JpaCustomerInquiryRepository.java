@@ -1,5 +1,7 @@
 package sales.infrastructure.jpa;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -18,12 +20,9 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
-	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message) {
-		System.out.println(customer.getName()+"===+===+===+===+===");
-		CustomerInquiry ci = new CustomerInquiry(customer, inquiry, subject, message);
-		System.out.println(ci.getId()+"===+===+===+===+===");
-		System.out.println(ci.getCustomer().getName()+"===+===+===+===+===");
-		System.out.println(ci.getInquiry().getType()+"===+===+===+===+===");
+	
+	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message, Date date) {
+		CustomerInquiry ci = new CustomerInquiry(customer, inquiry, subject, message, date);
 		entityManager.persist(ci);
 		entityManager.flush();
 	}

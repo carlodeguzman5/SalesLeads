@@ -1,7 +1,7 @@
 package sales.interfaces;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
@@ -10,8 +10,6 @@ import sales.domain.model.Inquiry;
 import sales.infrastructure.jpa.NoExistingInquiryException;
 
 public interface SalesServiceFacade {
-	
-	public void inquireOldCustomer(String customer, String inquiry) throws NoExistingInquiryException;
 	
 	public Collection<CustomerInquiry> getAllCustomerInquiries();
 	
@@ -24,8 +22,6 @@ public interface SalesServiceFacade {
 	public void createCustomerClassification(String string);
 
 	public CustomerClassification findCustomerClassification(String name);
-	
-	public void inquireNewCustomer();
 	
 	public Customer findCustomer(String name);
 
