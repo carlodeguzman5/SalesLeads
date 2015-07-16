@@ -35,6 +35,7 @@ public class SalesService implements SalesServiceFacade {
 	private CustomerRepository customerRepository;
 	private InquiryRepository inquiryRepository;
 	private CustomerInquiryRepository customerInquiryRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository) {
@@ -109,6 +110,10 @@ public class SalesService implements SalesServiceFacade {
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, subject, message);
+	}
+
+	public String validateUser(String username, String password) {
+		return userRepository.validateUser(username, password);
 	}
 	
 }
