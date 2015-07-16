@@ -47,19 +47,15 @@
 
 
 
-					<label>Customer Name</label>
-					<div class="form-horizontal">
-						<div class="form-group">
-							<div class="col-sm-6">
+						<div class="form-group formsize">
+						<label>Customer Name</label>
 								<select data-placeholder="Choose a Customer..." class="form-control chosen-select" name="customerName" id="customerName" onchange="checker.checkCustomer()">
 									<option value="New Customer">New Customer</option>
 									<c:forEach var="companyName" items="${companyNames}">
 										<option>${companyName}</option>
 									</c:forEach>
 								</select>
-							</div>
 						</div>
-					</div>
 					
 					<div class="form-group formsize theHidden" id="testId">
 					
