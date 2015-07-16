@@ -55,11 +55,12 @@ public class SalesController {
 			content.add(c.getMessage());
 		}
 		
-		model.addAttribute("name", name);
-		model.addAttribute("companyName", companyName);
-		model.addAttribute("inquiry", inquiry);
-		model.addAttribute("subject", subject);
-		model.addAttribute("content", content);
+		model.addAttribute("size", name.size());
+		model.addAttribute("names", name);
+		model.addAttribute("companyNames", companyName);
+		model.addAttribute("inquiries", inquiry);
+		model.addAttribute("subjects", subject);
+		model.addAttribute("contents", content);
 		
 		return "leadPage";
 	}

@@ -315,24 +315,26 @@
                 <hr>
 
 					<table class="table table-striped">
-						<c:forEach var="companyName" items="${companyNames}">
+					 	<tr> 
+							<th>NAME</th> 
+							<th>COMPANY NAME</th> 
+							<th>RATING</th> 
+ 							<th>INQUIRY</th> 
+							<th>SUBJECT</th> 
+							<th>CONTENT</th> 
+ 						</tr> 
+ 						<tr>
+						<c:forEach var="i" begin="0" end="${size}">
+							<td>${names[i]}</td>
+							<td>${companyNames[i]}</td>
+							<td><a href="Charts.html">View Rating</a></td>
+							<td>${inquiries[i]}</td>
+							<td>${subjects[i]}</td>
+							<td>${contents[i]}</td>
 						</c:forEach>
-<!-- 						<tr> -->
-<!-- 							<th>NAME</th> -->
-<!-- 							<th>COMPANY NAME</th> -->
-<!-- 							<th>RATING</th> -->
-<!-- 							<th>INQUIRY</th> -->
-<!-- 							<th>SUBJECT</th> -->
-<!-- 							<th>CONTENT</th> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td>Sample name 1</td> -->
-<!-- 							<td>Sample Company name 1</td> -->
-<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
-<!-- 							<td>Sample inquiry 1</td> -->
-<!-- 							<td>Sample subject 1</td> -->
-<!-- 							<td>Sample view content 1</td> -->
-<!-- 						</tr> -->
+						</tr>
+
+
 <!-- 						<tr> -->
 <!-- 							<td>Sample name 2</td> -->
 <!-- 							<td>Sample Company name 2</td> -->
