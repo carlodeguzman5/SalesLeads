@@ -1,5 +1,7 @@
 package sales.web;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -40,12 +42,15 @@ public class SalesController {
 	}
 	@RequestMapping("/LeadPage.html")
 	public String showLeadPage(Model model){
+		;
+		
 		Collection<CustomerInquiry> ci = service.getAllCustomerInquiries();
 		Collection<String> name = new ArrayList<String>();
 		Collection<String> companyName = new ArrayList<String>();
 		Collection<String> inquiry = new ArrayList<String>();
 		Collection<String> subject = new ArrayList<String>();
 		Collection<String> content = new ArrayList<String>();
+		Collection<String> date = new ArrayList<String>();
 		
 		for(CustomerInquiry c : ci){
 			name.add(c.getCustomer().getContactPerson());
@@ -53,16 +58,19 @@ public class SalesController {
 			inquiry.add(c.getInquiry().getType());
 			subject.add(c.getSubject());
 			content.add(c.getMessage());
+			date.add(new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(c.getDate()));
 		}
 		
-		model.addAttribute("size", name.size());
+		model.addAttribute("size", name.size()-1);
 		model.addAttribute("names", name);
 		model.addAttribute("companyNames", companyName);
 		model.addAttribute("inquiries", inquiry);
 		model.addAttribute("subjects", subject);
 		model.addAttribute("contents", content);
+		model.addAttribute("dates", date);
 		
 		return "leadPage";
+		
 	}
 	@RequestMapping("/Manual-Input.html")
 	public String showInputPage(Model model){

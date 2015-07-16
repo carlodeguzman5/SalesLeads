@@ -1,5 +1,6 @@
 package sales.domain.service;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -42,14 +43,6 @@ public class SalesService implements SalesServiceFacade {
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
 	}
-
-	public void inquireOldCustomer(String customerName, String inquiryName) throws NoExistingInquiryException {
-		Customer customer = customerRepository.findByCustomerName(customerName);
-		Inquiry inquiry = inquiryRepository.getInquiryByName(inquiryName);
-		customerRepository.inquire(customer, inquiry, today());
-	}
-	
-	public void inquireNewCustomer(){};
 
 	public Collection<CustomerInquiry> getAllCustomerInquiries() {
 		return customerRepository.getAllCustomerInquiries();
@@ -98,6 +91,14 @@ public class SalesService implements SalesServiceFacade {
 		now.clear(Calendar.MILLISECOND);
 		return now;
 	}
+	
+	
+	private Date now(){
+		Calendar calendar = Calendar.getInstance();
+		Date now = calendar.getTime();
+		Date currentTimestamp = new java.sql.Timestamp(now.getTime());
+		return currentTimestamp;
+	}
 
 	public Collection<Inquiry> getAllInquiries() {
 		return inquiryRepository.getAllInquiries();
@@ -108,7 +109,7 @@ public class SalesService implements SalesServiceFacade {
 	}
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
-		customerInquiryRepository.createCustomerInquiry(customer, inquiry, subject, message);
+		customerInquiryRepository.createCustomerInquiry(customer, inquiry, subject, message, now());
 	}
 	
 }

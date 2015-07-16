@@ -34,7 +34,7 @@ public class CustomerInquiry {
 	@Lob
 	@Column(name="inquiry", length = 10000)
 	private Inquiry inquiry;
-	private static Date date;
+	private Date date;
 	private String subject;
 	@Column(length = 10000)
 	private String message;
@@ -42,17 +42,13 @@ public class CustomerInquiry {
 	private int rating;
 
 	protected CustomerInquiry() { /* USED BY JPA */ }
-
-	public CustomerInquiry(Customer customer, Inquiry inquiry, Date date) {
+	
+	public CustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message, Date date){
+		this.subject = subject;
+		this.message = message;
 		this.customer = customer;
 		this.inquiry = inquiry;
 		this.date = date;
-	}
-	
-	public CustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
-		this(customer, inquiry, date);
-		this.subject = subject;
-		this.message = message;
 	}
 
 	public String getResponse() {

@@ -46,8 +46,6 @@ public class ManualInputController {
 		
 		Customer customer = service.findCustomer(customerName);
 		Inquiry inquiry = service.findInquiry(oldInquiryType);
-		System.out.println(customer.getName()+"============");
-		System.out.println(inquiry.getType()+"============");
 		service.createCustomerInquiry(customer, inquiry, subject, text);
 		return "redirect:/Manual-Input.html";
 	}

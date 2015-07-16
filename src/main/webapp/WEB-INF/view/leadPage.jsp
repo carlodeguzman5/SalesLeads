@@ -314,8 +314,9 @@
 
                 <hr>
 
-					<table class="table table-striped">
+					<table class="table table-striped table-bordered table-hover">
 					 	<tr> 
+					 		<th>DATE</th> 
 							<th>NAME</th> 
 							<th>COMPANY NAME</th> 
 							<th>RATING</th> 
@@ -323,43 +324,22 @@
 							<th>SUBJECT</th> 
 							<th>CONTENT</th> 
  						</tr> 
- 						<tr>
-						<c:forEach var="i" begin="0" end="${size}">
-							<td>${names[i]}</td>
-							<td>${companyNames[i]}</td>
-							<td><a href="Charts.html">View Rating</a></td>
-							<td>${inquiries[i]}</td>
-							<td>${subjects[i]}</td>
-							<td>${contents[i]}</td>
-						</c:forEach>
-						</tr>
 
-
-<!-- 						<tr> -->
-<!-- 							<td>Sample name 2</td> -->
-<!-- 							<td>Sample Company name 2</td> -->
-<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
-<!-- 							<td>Sample inquiry 2</td> -->
-<!-- 							<td>Sample subject 2</td> -->
-<!-- 							<td>Sample view content 2</td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td>Sample name 3</td> -->
-<!-- 							<td>Sample Company name 3</td> -->
-<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
-<!-- 							<td>Sample inquiry 3</td> -->
-<!-- 							<td>Sample subject 3</td> -->
-<!-- 							<td>Sample view content 3</td> -->
-<!-- 						</tr> -->
-						
-<!-- 						<tr> -->
-<!-- 							<td>Sample name 3</td> -->
-<!-- 							<td>Sample Company name 3</td> -->
-<!-- 							<td><a href="Charts.html">View Rating</a></td> -->
-<!-- 							<td>Sample inquiry 3</td> -->
-<!-- 							<td>Sample subject 3</td> -->
-<!-- 							<td>Sample view content 3</td> -->
-<!-- 						</tr> -->
+ 						<c:if test="${size >= 0}" >
+	 						<c:forEach var="i" begin="0" end="${size}">
+							<tr>		
+								<td>${dates[i]}</td>
+								<td>${names[i]}</td>
+								<td>${companyNames[i]}</td>
+								<td><a href="Charts.html">View Rating</a></td>
+								<td>${inquiries[i]}</td>
+								<td>${subjects[i]}</td>
+								<td>${contents[i]}</td>
+							</tr>	
+							</c:forEach>
+ 						 </c:if> 
+ 						
+					
 					</table>
 				</div>
 				<!-- /.row -->

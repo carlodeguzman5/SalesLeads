@@ -8,7 +8,6 @@ public interface CustomerRepository {
 
 	Customer findByCustomerName(String name);
 	void createCustomer(String name, String contactPerson, String contactNumber, String email, CustomerClassification classification);
-	void inquire(Customer customer, Inquiry inquiry, Date date);
 	Collection<Customer> getAllCustomers();
 	Collection<CustomerInquiry> getAllCustomerInquiries();
 	void createCustomerClassification(String name);
