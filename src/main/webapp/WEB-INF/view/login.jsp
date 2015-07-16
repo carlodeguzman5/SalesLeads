@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="402064518382-saojo0fotfnofc719oolpk418mgoonjt.apps.googleusercontent.com">
 
     <title>SalesLeads</title>
 
@@ -46,11 +49,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+	    <script src="<c:url value="https://apis.google.com/js/platform.js async defer"/>"></script>
 </head>
 
 <body>
 
     <div class="container">
+    	
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -76,16 +82,21 @@
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-<!--                                 <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a> -->
 								<button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
+
+    					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+							<button type="submit"></button>
+						</div>
+    					
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+				   
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -101,4 +112,16 @@
 
 </body>
 
+<script type="text/javascript">
+	function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail());
+	}
+</script>
+
 </html>
+
+<!-- 402064518382-saojo0fotfnofc719oolpk418mgoonjt.apps.googleusercontent.com -->
