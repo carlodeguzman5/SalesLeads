@@ -45,7 +45,11 @@ public class JpaCustomerRepository implements CustomerRepository {
 	}
 
 	public void createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification) {
-		System.out.println(classification.getName());
+		System.out.println(name);
+		System.out.println(contactPerson);
+
+		System.out.println(email);
+		System.out.println(classification);
 		Customer customer = new Customer(name, contactPerson, contactNumber, email, classification);
 		entityManager.persist(customer);
 		entityManager.flush();
