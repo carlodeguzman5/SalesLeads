@@ -28,7 +28,7 @@ var checker = {
 //			document.getElementById('address').style.width="50%";
 //		};
 		
-		var customerName =  document.getElementById('customerName').value;
+		var customerName =  document.getElementById('customerNameSelect').value;
 		
 		if(customerName != "New Customer"){
 			document.getElementById('testId').style.display="none";
@@ -36,10 +36,12 @@ var checker = {
 		}
 		
 		else{
-			document.getElementById('customerName').setAttribute(name, value)
+			//document.getElementById('customerName').setAttribute(name, value);
 			document.getElementById('testId').style.display="initial";
-			document.getElementById('number').style.width="50%";
-			document.getElementById('address').style.width="50%";
+			document.getElementById('customerName').style.width="50%";
+			document.getElementById('contactNumber').style.width="50%";
+			document.getElementById('contactPerson').style.width="50%";
+			document.getElementById('email').style.width="50%";
 		}
 	},
 	

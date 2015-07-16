@@ -19,7 +19,7 @@ public interface SalesServiceFacade {
 
 	public void createInquiry(String type);
 
-	public Inquiry findInquiry(String string);
+	public Inquiry findInquiry(String string) throws NoExistingInquiryException;
 
 	public void createCustomerClassification(String string);
 

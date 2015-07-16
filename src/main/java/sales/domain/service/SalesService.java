@@ -64,9 +64,8 @@ public class SalesService implements SalesServiceFacade {
 		inquiryRepository.createInquiry(name);
 	}
 
-	public Inquiry findInquiry(String type) {
-		//return entityManager.find(Inquiry.class, type);
-		return null;
+	public Inquiry findInquiry(String type) throws NoExistingInquiryException {
+		return inquiryRepository.getInquiryByName(type);
 	}
 
 

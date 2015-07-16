@@ -1,22 +1,17 @@
 package sales.web;
 
-import static org.junit.Assert.assertNotNull;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
-import sales.domain.model.CustomerInquiry;
+import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
+import sales.infrastructure.jpa.NoExistingInquiryException;
 import sales.interfaces.SalesServiceFacade;
 
 @Controller
@@ -47,18 +42,11 @@ public class ManualInputController {
 	}
 	
 	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
-	public String addNewManualInput(Model model, String oldInquiryType, String customerName, String customerNameInput, String contactNumber, String contactPerson, 
-			String email, String customerClassification, String subject, String text){
-		String name = customerName;
-		System.out.println("customerClassification" + customerClassification);
-		System.out.println("name" + name);
+	public String addNewManualInput(Model model, String oldInquiryType, String customerName, String subject, String text) throws NoExistingInquiryException{
 		
-		if(!customerName.equals("old")){
-			CustomerClassification classification = service.findCustomerClassification(customerClassification);
-			service.createCustomer(customerNameInput, contactPerson, email, contactNumber, classification);
-			name=customerNameInput;
-		}
-		service.createCustomerInquiry(service.findCustomer(name), service.findInquiry(oldInquiryType), subject, text);
+		Customer customer = service.findCustomer(customerName);
+		Inquiry inquiry = service.findInquiry(oldInquiryType);
+		service.createCustomerInquiry(customer, inquiry, subject, text);
 		return "redirect:/Manual-Input.html";
 	}
 	
@@ -68,4 +56,18 @@ public class ManualInputController {
 		return "redirect:/Manual-Input.html";
 	}
 	
+	@RequestMapping(value="/addCustomer", method = RequestMethod.POST)
+	public String addCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification){
+		System.out.println(customerName+"=========================");
+		System.out.println(contactNumber+"=========================");
+		System.out.println(contactPerson+"=========================");
+		System.out.println(email+"=========================");
+		
+		//CustomerClassification cc = service.findCustomerClassification(customerClassification);
+		CustomerClassification cc = new CustomerClassification(customerClassification);
+		
+		System.out.println(cc.getName() +"=========================" );
+		service.createCustomer(customerName, contactPerson, email, contactNumber, cc );
+		return "redirect:/Manual-Input.html";
+	}
 }
