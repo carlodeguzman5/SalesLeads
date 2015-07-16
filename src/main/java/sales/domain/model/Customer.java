@@ -26,7 +26,7 @@ public class Customer {
 	private String contactNumber;
 	@Column(name="CONTACT_PERSON")
 	private String contactPerson;
-	@Column(name="CUSTOMER_CLASSIFICATION")
+	@Column(name="CUSTOMER_CLASSIFICATION",length=1000)
 	private CustomerClassification classification;
 	
 	@OneToMany(cascade=CascadeType.ALL)
