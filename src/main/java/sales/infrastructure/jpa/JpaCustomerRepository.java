@@ -70,7 +70,6 @@ public class JpaCustomerRepository implements CustomerRepository {
 	public void createCustomerClassification(String name) {
 		entityManager.persist(new CustomerClassification(name));
 		entityManager.flush();
-		
 	}
 
 	public Customer getCustomer(String name) {
