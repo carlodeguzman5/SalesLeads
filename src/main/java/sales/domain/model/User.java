@@ -1,11 +1,14 @@
-package sales.user;
+package sales.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Entity
+@Table(name="USER_T")
 public class User {
 
+	@Id
 	private String username;
 	private String password;
 	

@@ -37,6 +37,7 @@ public class SalesController {
 		
 		model.addAttribute("result", validate);
 		
+		System.out.println("result" + validate);
 		if(validate.equals("valid")){
 			return "index";
 		}

@@ -58,9 +58,11 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                    	<div class="alert alert-danger">
-                            ${result}
-                        </div>
+                    	<c:if test="${result}!='valid'">
+	                    	<div class="alert alert-danger">
+	                            ${result}
+	                        </div>
+	                    </c:if>
                         <form role="form" action="login" method="post">
                             <fieldset>
                                 <div class="form-group">
@@ -75,7 +77,8 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+<!--                                 <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a> -->
+								<button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>

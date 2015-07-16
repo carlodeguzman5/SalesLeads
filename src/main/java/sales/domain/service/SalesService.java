@@ -38,10 +38,11 @@ public class SalesService implements SalesServiceFacade {
 	private UserRepository userRepository;
 
 	@Autowired
-	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository) {
+	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
+		this.userRepository = userRepository;
 	}
 
 	public void inquireOldCustomer(String customerName, String inquiryName) throws NoExistingInquiryException {
