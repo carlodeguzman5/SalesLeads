@@ -72,8 +72,6 @@ public class ManualInputController {
 		System.out.println(email+"=========================");
 		
 		CustomerClassification cc = service.findCustomerClassification(customerClassification);
-	
-		System.out.println(cc.getName() +"=========================" );
 		service.createCustomer(customerName, contactPerson, email, contactNumber, cc );
 		return "redirect:/Manual-Input.html";
 	}
