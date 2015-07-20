@@ -1,7 +1,12 @@
+<!DOCTYPE html>
+<html>
 <%@ include file="dashboard.jsp"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<head>
+	<title></title>
+</head>
+<body>
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -186,3 +191,8 @@
 			$(selector).chosen(config[selector]);
 		}
 	</script>
+</body>
+</html>
+
+
+

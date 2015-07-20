@@ -1,17 +1,19 @@
 package sales.interfaces;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
+import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
 import sales.infrastructure.jpa.NoExistingInquiryException;
 
 public interface SalesServiceFacade {
 	
-	public Collection<CustomerInquiry> getAllCustomerInquiries();
+	public ArrayList<CustomerInquiry> getAllCustomerInquiries();
 	
 	public void createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification);
 
@@ -30,6 +32,12 @@ public interface SalesServiceFacade {
 	public Collection<Inquiry> getAllInquiries();
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message);
+
+	public Event createEvent(String title, String content);
+	
+	public void appendEvent(CustomerInquiry customerInquiry, Event event);
+	
+	public Event getLastEventOf(CustomerInquiry customerInquiry);
 
 
 }
