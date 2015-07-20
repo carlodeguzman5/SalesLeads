@@ -342,6 +342,11 @@
 	<script
 		src="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.js"/>"></script>
 
+	<!-- Morris Charts JavaScript -->
+	<script src="<c:url value="/resources/bower_components/raphael/raphael-min.js"/>"></script>
+    <script src="<c:url value="/resources/bower_components/morrisjs/morris.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/morris-data.js"/>"></script>
+
 	<!-- Custom Theme JavaScript -->
 	<script src="<c:url value="/resources/dist/js/sb-admin-2.js"/>"></script>
 	
