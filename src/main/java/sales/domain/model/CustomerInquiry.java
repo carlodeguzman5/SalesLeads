@@ -38,6 +38,9 @@ public class CustomerInquiry {
 	private String subject;
 	@Column(length = 10000)
 	private String message;
+	@JoinColumn(name="TIMELINE", referencedColumnName = "EVENT_ID", nullable = true)
+	@OneToOne(optional=true)
+	private Event timeline;
 	private double budget;
 	private int rating;
 
@@ -95,4 +98,12 @@ public class CustomerInquiry {
 		return message;
 	}
 
+	public Event getTimeline() {
+		return timeline;
+	}
+	
+	public void setTimeline(Event timeline) {
+		this.timeline = timeline;
+	}
+	
 }

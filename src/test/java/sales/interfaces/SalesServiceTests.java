@@ -3,6 +3,10 @@ package sales.interfaces;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -22,6 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
+import sales.domain.model.CustomerInquiry;
+import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
 import sales.infrastructure.jpa.NoExistingInquiryException;
@@ -49,6 +55,7 @@ public class SalesServiceTests {
 		setUpCustomerClassifications();
 		setUpCustomers();
 		setUpInquiryTypes();
+		setUpCustomerInquiries();
 	}
 	
 	protected void setUpCustomerClassifications() {
@@ -79,6 +86,16 @@ public class SalesServiceTests {
 		entityManager.flush();
 	}
 	
+	protected void setUpCustomerInquiries(){
+		Customer customer = entityManager.find(Customer.class, "Wilcon");
+		Inquiry inquiry = entityManager.find(Inquiry.class, "Development");
+		
+		//CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, "Dev Inquiry", "Inventory system cost", new Date());
+		//entityManager.persist(customerInquiry);	
+		service.createCustomerInquiry(customer, inquiry, "Dev Inquiry", "Inventory system cost");
+		//entityManager.flush();
+	}
+	
 	
 	
 	@After
@@ -101,7 +118,7 @@ public class SalesServiceTests {
 		service.createCustomerInquiry(customer, inquiry, "Test 1", "Test Message 1");
 		service.createCustomerInquiry(customer, inquiry, "Test 2", "Test Message 2");
 		
-		assertEquals(2, service.getAllCustomerInquiries().size());
+		assertEquals(3, service.getAllCustomerInquiries().size());
 	}
 	
 	@Test
@@ -118,6 +135,26 @@ public class SalesServiceTests {
 		service.createInquiry("Another");
 		service.createInquiry("Test");
 		assertEquals(3, service.getAllInquiries().size());
+	}
+	
+	@Test
+	public void createEventTest(){
+		Event event1 = service.createEvent("Meeting", "Discussed Project");
+		Event event2 = service.createEvent("Email", "Inquired about costing");
+		Event event3 = service.createEvent("Phone Call", "Setting a meeting");
+		
+		
+		ArrayList<CustomerInquiry> customerInquiries = service.getAllCustomerInquiries();
+		CustomerInquiry customerInquiry = customerInquiries.get(0);
+		
+		service.appendEvent(customerInquiry, event1);
+		service.appendEvent(customerInquiry, event2);
+		service.appendEvent(customerInquiry, event3);
+		
+		Event expectedLastEvent = service.getLastEventOf(customerInquiry);
+		
+		assertEquals("Phone Call", expectedLastEvent.getTitle());
+		
 	}
 	
 	

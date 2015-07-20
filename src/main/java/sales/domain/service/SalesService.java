@@ -1,15 +1,10 @@
 package sales.domain.service;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +16,8 @@ import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.CustomerInquiryRepository;
 import sales.domain.model.CustomerRepository;
+import sales.domain.model.Event;
+import sales.domain.model.EventRepository;
 import sales.domain.model.Inquiry;
 import sales.domain.model.InquiryRepository;
 import sales.infrastructure.jpa.NoExistingInquiryException;
@@ -36,15 +33,17 @@ public class SalesService implements SalesServiceFacade {
 	private CustomerRepository customerRepository;
 	private InquiryRepository inquiryRepository;
 	private CustomerInquiryRepository customerInquiryRepository;
+	private EventRepository eventRepository;
 
 	@Autowired
-	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository) {
+	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, EventRepository eventRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
+		this.eventRepository = eventRepository;
 	}
 
-	public Collection<CustomerInquiry> getAllCustomerInquiries() {
+	public ArrayList<CustomerInquiry> getAllCustomerInquiries() {
 		return customerRepository.getAllCustomerInquiries();
 	}
 	
@@ -110,6 +109,18 @@ public class SalesService implements SalesServiceFacade {
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message){
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, subject, message, now());
+	}
+
+	public Event createEvent(String title, String content) {
+		return eventRepository.createEvent(title, content);
+	}
+
+	public void appendEvent(CustomerInquiry customerInquiry, Event event) {
+		eventRepository.appendEvent(customerInquiry, event);
+	}
+
+	public Event getLastEventOf(CustomerInquiry customerInquiry) {
+		return eventRepository.getLastEventOf(customerInquiry);
 	}
 	
 }

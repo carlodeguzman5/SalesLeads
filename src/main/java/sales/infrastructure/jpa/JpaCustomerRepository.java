@@ -36,11 +36,11 @@ public class JpaCustomerRepository implements CustomerRepository {
 
 	public Customer findByCustomerName(String name) {
 		Customer customer;
-		try {
-			customer = entityManager.find(Customer.class, name);
-		} catch (RuntimeException e) {
-			throw new NoExistingCustomerException("");
+		customer = entityManager.find(Customer.class, name);
+		if(customer == null){
+			throw new NoExistingCustomerException();
 		}
+		
 		return customer;
 	}
 
@@ -60,8 +60,8 @@ public class JpaCustomerRepository implements CustomerRepository {
 		return entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMERS, Customer.class).getResultList();
 	}
 
-	public Collection<CustomerInquiry> getAllCustomerInquiries() {
-		return (Collection<CustomerInquiry>) entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_INQUIRIES, CustomerInquiry.class).getResultList();
+	public ArrayList<CustomerInquiry> getAllCustomerInquiries() {
+		return (ArrayList<CustomerInquiry>) entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_INQUIRIES, CustomerInquiry.class).getResultList();
 	}
 
 	public void createCustomerClassification(String name) {
