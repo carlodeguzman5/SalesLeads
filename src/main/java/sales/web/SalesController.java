@@ -148,6 +148,7 @@ public class SalesController {
 		model.addAttribute("inquiryTypes", inquiryStrings);
 		
 		model.addAttribute("companyNames", customerStrings);
+		model.addAttribute("company", customers);
 		
 		model.addAttribute("customerClassifications", customerClassificationStrings);
 		
@@ -158,6 +159,13 @@ public class SalesController {
 	public String showInputReportPage(){
 		return "manualInputReport";
 	}
+	
+	@RequestMapping("/updateCustomer")
+	public String updateCustomer(Model model, String customerName, String contactNumber, String contactPerson, String email, String customerClassification){
+		service.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
+		return "manualInput";
+	}
+	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public String entityNotFound() {
 		return "errors/notFound";

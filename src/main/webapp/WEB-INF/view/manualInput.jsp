@@ -1,166 +1,162 @@
-<!DOCTYPE html>
-<html>
+
 <%@ include file="dashboard.jsp"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<head>
-	<title></title>
-</head>
-<body>
+
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1>INQUIRY - MANUAL INPUT</h1>
 
-
-
-				<label>Add New Inquiry Type</label>
-				<div class="form-horizontal">
-					<div class="form-group">
-						<form method="post" action="addInquiry">
-							<div class="col-sm-6">
-								<input type="text" name="newInquiryType" id="newInquiryType"
-									class="form-control" placeholder="E.g. Consultation">
-							</div>
-							<button class="btn btn-md">Add</button>
-						</form>
-					</div>
-				</div>
-
-				<label>Add New Customer Classification</label>
-				<div class="form-horizontal">
-					<div class="form-group">
-						<form method="post" action="addCustomerClassification">
-							<div class="col-sm-6">
-								<input type="text" name="newCustomerClassification"
-									id="newCustomerClassification" class="form-control"
-									placeholder="E.g. Telecommunications">
-							</div>
-							<button class="btn btn-md">Add</button>
-						</form>
-					</div>
-				</div>
-				
-				
-
-				<div class="form-group formsize theHidden" id="testId">
-				
-				<%-- 	<form:form method="post" modelAttribute="customer" action="addCustomer">
-						<label for="nameInput">Name: </label>
-						<form:input path="name" id="nameInput" />
-						
-						<label for="customerClassificationInput">Customer Classification: </label>
-						<form:input path="customerClassification" id="customerClassification" />
-						
-						<label for="contactNumberInput">Contact Number: </label>
-						<form:input path="contactNumber" id="contactNumber" />
-						
-						<label for="contactPersonInput">Contact Person: </label>
-						<form:input path="contactPerson" id="contactPerson" />
-						
-						<label for="emailInput">Contact Person: </label>
-						<form:input path="email" id="email" />
-						
-						
-						
-						</form:form> --%>
-					
-				
-					<form:form action="addCustomer" method="post">
-
-						<div class="form-group">
-						
-						<label>Add New Customer</label>
-							<input class="form-control" name="customerName" id="customerName">
-						
-						<label>Contact Number</label> 
-							<input class="form-control" name="contactNumber" id="contactNumber"> 	
-							
-						<label>Contact Person</label> 
-							<input class="form-control" name="contactPerson" id="contactPerson"> 
-						
-						<label>Email</label> 
-							<input class="form-control" name="email" id="email">
-							
-						
-						
-							<label>Customer Classification</label> 
-								<select class="form-control" name="customerClassification" id="customerClassification">
-									<option value="New Classification">New Classification</option>
-									<c:forEach var="customerClassification" items="${customerClassifications}">
-										<option value='${customerClassification}'>${customerClassification}</option>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#addNewType">Inquiry</a></li>
+					<li class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Customer<b class="caret"></b></a>
+			            <ul class="dropdown-menu">
+			                <li><a data-toggle="tab" href="#addNewCustomer">Add Customer</a></li>
+			                <li><a data-toggle="tab" href="#editCustomer">Edit Customer Information</a></li>
+			            </ul>
+					</li>
+					<li><a data-toggle="tab" href="#inquiry">New Types</a></li>
+				</ul>
+				<div class="tab-content">
+				<div id="addNewType"  class="tab-pane fade in active">
+						<form role="form" action="addNewManualInput" method="post">
+	
+						<div class="form-group formsize">
+							<label>Inquiry Type</label>
+							<!-- data-placeholder="
+								Choose anInquiry..." -->
+								<select class="form-control chosen-select" name="oldInquiryType" id="types" onchange="checker.checkInquiry()">
+									<option value="New Inquiry">New Inquiry</option>
+									<c:forEach var="type" items="${inquiryTypes}">
+										<option>${type}</option>
 									</c:forEach>
 								</select>
-						</div> 
-						<button class="btn btn-md">Add</button>
-					</form:form>
+							</div>
+	
+							<div class="form-group formsize">
+								<label>Customer Name</label>
+								<select data-placeholder="Choose a Customer..." class="form-control chosen-select" name="customerName" id="customerNameSelect" onchange="checker.checkCustomer()">
+									<option value="New Customer">New Customer</option>
+									<c:forEach var="companyName" items="${companyNames}">
+										<option>${companyName}</option>
+									</c:forEach>
+								</select>
+							</div>
+	
+							<div class="form-group formsize">
+								<label>Subject</label> <input class="form-control" name="subject"
+									id="subject">
+							</div>
+	
+							<div class="form-group formsize">
+								<label>Text area</label>
+								<textarea class="form-control" rows="3" name="text" id="test"></textarea>
+							</div>
+							<input type="submit" />
+						</form>
+					
 				</div>
 				
-				<form role="form" action="addNewManualInput" method="post">
-
-					<div class="form-group formsize">
-						<label>Inquiry Type</label>
-						<!-- data-placeholder="
-							Choose anInquiry..." -->
-							<select class="form-control chosen-select" name="oldInquiryType"
-								id="types" onchange="checker.checkInquiry()">
-								<option value="New Inquiry">New Inquiry</option>
-								<c:forEach var="type" items="${inquiryTypes}">
-									<option>${type}</option>
-								</c:forEach>
-							</select>
-						</div>
-
-
-
-						<label>Customer Name</label>
-						<div class="form-horizontal">
+				
+				<div id="addNewCustomer" class="tab-pane fade">
+					<div class="form-group formsize theHidden" id="testId">
+			
+						<form:form action="addCustomer" method="post">
+	
 							<div class="form-group">
-								<div class="col-sm-6">
-									<select data-placeholder="Choose a Customer..."
-										class="form-control chosen-select" name="customerName"
-										id="customerNameSelect" onchange="checker.checkCustomer()">
-										<option value="New Customer">New Customer</option>
-										<c:forEach var="companyName" items="${companyNames}">
-											<option>${companyName}</option>
+							
+							<label>Customer Name</label>
+								<input class="form-control" name="customerName" id="customerName" required>
+							
+							<label>Contact Number</label> 
+								<input class="form-control" name="contactNumber" id="contactNumber" required> 	
+								
+							<label>Contact Person</label> 
+								<input class="form-control" name="contactPerson" id="contactPerson" required> 
+							
+							<label>Email</label> 
+								<input type="email" class="form-control" name="email" id="email" required>
+								
+							<label>Customer Classification</label> 
+									<select class="form-control" name="customerClassification" id="customerClassification" required>
+										<option value="">New Classification</option>
+										<c:forEach var="customerClassification" items="${customerClassifications}">
+											<option value='${customerClassification}'>${customerClassification}</option>
 										</c:forEach>
 									</select>
+							</div> 
+							<button class="btn btn-md">Add</button>
+						</form:form>
+					</div>
+				</div>
+				
+				<div id="editCustomer" class="tab-pane fade">
+						<form:form action="updateCustomer" method="post" class="form-group formsize" >
+	
+								<select class="form-control" name="customerName" id="editCustomerNameSelect" onchange="checker.getCustomerInfo()" required="required" >
+									<option value="">Choose a customer</option>
+									<c:forEach var="companyName" items="${company}">
+										<option>${companyName.name}</option>
+									</c:forEach>
+								</select>
+							
+							
+							<div id="editInfoHidden" style="display:none;">
+								
+								<label>New Contact Number</label> 
+									<input class="form-control" name="contactNumber" id="editContactNumber" required> 	
+									
+								<label>New Contact Person</label> 
+									<input class="form-control" name="contactPerson" id="editContactPerson" required> 
+								
+								<label>New Email</label> 
+									<input type="email" class="form-control" name="email" id="editEmail" required>
+								
+								<label>New Customer Classification</label> 
+									<select class="form-control" name="customerClassification" id="editCustomerClassification" required>
+										<option value="">New Classification</option>
+										<c:forEach var="customerClassification" items="${customerClassifications}">
+											<option value='${customerClassification}'>${customerClassification}</option>
+										</c:forEach>
+									</select>
+							<button class="btn btn-md">Edit</button>
+							</div> 
+						</form:form>
+				</div>
+				
+				<div id="inquiry" class="tab-pane fade">
+					
+					<label>Add New Inquiry Type</label>
+					<div class="form-horizontal">
+						<div class="form-group">
+							<form method="post" action="addInquiry">
+								<div class="col-sm-6">
+									<input type="text" name="newInquiryType" id="newInquiryType"
+										class="form-control" placeholder="E.g. Consultation">
 								</div>
-							</div>
+								<button class="btn btn-md">Add</button>
+							</form>
 						</div>
-
-
-
-						<div class="form-group formsize">
-							<label>Subject</label> <input class="form-control" name="subject"
-								id="subject">
+					</div>
+	
+					<label>Add New Customer Classification</label>
+					<div class="form-horizontal">
+						<div class="form-group">
+							<form method="post" action="addCustomerClassification">
+								<div class="col-sm-6">
+									<input type="text" name="newCustomerClassification"
+										id="newCustomerClassification" class="form-control"
+										placeholder="E.g. Telecommunications">
+								</div>
+								<button class="btn btn-md">Add</button>
+							</form>
 						</div>
-
-						<div class="form-group formsize">
-							<label>Text area</label>
-							<textarea class="form-control" rows="3" name="text" id="test"></textarea>
-						</div>
-						<input type="submit" />
-					</form>
-					<!-- <form>
-                            <h4>Name: <input type="text" id="name"/></h4>
-                            <h4>Number: <input type="text" id="number"/></h4>
-                            <h4>Subject: <input type="text" id="subject"/></h4>
-                            <h4>Summary: </h4><textarea rows="4" cols="50" id="test"></textarea>
-                        </form>   -->
-
-
-
-					<br>
-
-					<h1 id="headText"></h1>
-					<p id="output5"></p>
-					<p id="output1"></p>
-					<p id="output6"></p>
-					<p id="output2"></p>
-					<p id="output3"></p>
-					<p id="output4"></p>
+					</div>
+				</div>
+				</div>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -191,8 +187,3 @@
 			$(selector).chosen(config[selector]);
 		}
 	</script>
-</body>
-</html>
-
-
-

@@ -133,5 +133,11 @@ public class SalesService implements SalesServiceFacade {
 		userRepository.createUser(username, password);
 		
 	}
+
+	public void updateCustomer(String customerName, String contactNumber,
+			String contactPerson, String email, String customerClassification) {
+		customerRepository.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
+		
+	}
 	
 }

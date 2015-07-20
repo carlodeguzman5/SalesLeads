@@ -327,7 +327,6 @@
 			<!-- /.navbar-static-side -->
 		</nav>
 
-		@yield('content')
 
 	</div>
 	<!-- /#wrapper -->

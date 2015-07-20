@@ -54,6 +54,18 @@ public class Customer implements Serializable{
 		this.email = email;
 	}
 
+	public CustomerClassification getClassification() {
+		return classification;
+	}
+
+	public void setClassification(CustomerClassification classification) {
+		this.classification = classification;
+	}
+
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
@@ -79,10 +91,6 @@ public class Customer implements Serializable{
 	public CustomerClassification getCustomerClassification() {
 		return classification;
 	}
-	/*
-	public Collection getInquiries(){
-		return inquries;
-	}*/
 
 	@Override
 	public String toString() {

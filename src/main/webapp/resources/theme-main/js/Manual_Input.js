@@ -55,10 +55,25 @@ var checker = {
 		else{
 			document.getElementById('newInquiryType').readOnly = false;
 		}
-	}
+	},
+	
+	getCustomerInfo:function(){
+		var customerName = document.getElementById('editCustomerNameSelect').value;
+		
+		if(customerName != ""){
+			document.getElementById('editInfoHidden').style.display="initial";
+			//document.getElementById('editCustomerName').setAttribute("value", document.getElementById("editCustomerNameSelect").value);
+			document.getElementById('editContactNumber').setAttribute("value", "");
+//			document.getElementById('editContactPerson').style.width="50%";
+//			document.getElementById('editEmail').style.width="50%";
+//			document.getElementById('editCustomerClassification').style.width="50%";
+		}
+		
+		else{
+			document.getElementById('editInfoHidden').style.display="none";
+		}
+	},
 };
-
-
 
 function testing(){
 

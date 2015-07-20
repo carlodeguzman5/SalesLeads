@@ -38,6 +38,7 @@ public interface SalesServiceFacade {
 	public void appendEvent(CustomerInquiry customerInquiry, Event event);
 	
 	public Event getLastEventOf(CustomerInquiry customerInquiry);
-
+	
+	public void updateCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification);
 
 }
