@@ -14,9 +14,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="402064518382-saojo0fotfnofc719oolpk418mgoonjt.apps.googleusercontent.com">
-
     <title>SalesLeads</title>
 
     <!-- Bootstrap Core CSS -->
@@ -63,10 +60,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                    	<div id="signUp">
-	                    	<h3 class="panel-title">Please Sign In</h3>
-	                        <a href="signup.html">Sign Up</a>
-                        </div>
+	                    <h3 class="panel-title">Sign Up</h3>
                     </div>
                     <div class="panel-body">
                     	<c:if test="${result!='valid'}">
@@ -74,7 +68,7 @@
 	                            ${result}
 	                        </div>
 	                    </c:if>
-                        <form role="form" action="login" method="post">
+                        <form role="form" action="processSignUp" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
@@ -82,19 +76,18 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Confirm Password" name="confirm_password" type="password" value="">
+                                </div>
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
-								<button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+								<button type="submit" class="btn btn-lg btn-success btn-block">Sign Up</button>
                             </fieldset>
                         </form>
 
-<!--     					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"> -->
-<!-- 							<button type="submit"></button> -->
-<!-- 						</div> -->
-    					
                     </div>
                 </div>
             </div>
@@ -117,16 +110,5 @@
 
 </body>
 
-<script type="text/javascript">
-	function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail());
-	}
-</script>
-
 </html>
 
-<!-- 402064518382-saojo0fotfnofc719oolpk418mgoonjt.apps.googleusercontent.com -->
