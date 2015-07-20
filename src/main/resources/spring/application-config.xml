@@ -15,7 +15,7 @@
 
 	<context:annotation-config />
 	<context:component-scan
-		base-package="sales.infrastructure.jpa, sales.domain.service, sales.interfaces, sales.domain.model" />
+		base-package="sales.infrastructure.jpa, sales.domain.service, sales.interfaces, sales.domain.model, sales.user" />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

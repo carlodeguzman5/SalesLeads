@@ -30,8 +30,23 @@ public class SalesController {
 	
 	@RequestMapping("/")
 	public String showIndex() {
-		return "index";
+		return "login";
 	}
+	
+	@RequestMapping("/login")
+	public String login(Model model, String username, String password){
+		String validate = service.validateUser(username, password);
+		
+		model.addAttribute("result", validate);
+		
+		System.out.println("result" + validate);
+		if(validate.equals("valid")){
+			return "index";
+		}
+		
+		return "login";
+	}
+	
 	@RequestMapping("/index.html")
 	public String showIndexAlternate() {
 		return "index";

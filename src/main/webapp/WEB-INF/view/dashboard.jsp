@@ -15,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Inquiry - Manual Input</title>
+<title>SalesLeads</title>
 <script src="<c:url value="resources/js/Manual_Input.js"/>"></script>
 
 <link

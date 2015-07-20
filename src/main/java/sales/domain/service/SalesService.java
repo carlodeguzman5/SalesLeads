@@ -34,13 +34,15 @@ public class SalesService implements SalesServiceFacade {
 	private InquiryRepository inquiryRepository;
 	private CustomerInquiryRepository customerInquiryRepository;
 	private EventRepository eventRepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, EventRepository eventRepository) {
+	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
 		this.eventRepository = eventRepository;
+		this.userRepository = userRepository;
 	}
 
 	public ArrayList<CustomerInquiry> getAllCustomerInquiries() {
@@ -121,6 +123,10 @@ public class SalesService implements SalesServiceFacade {
 
 	public Event getLastEventOf(CustomerInquiry customerInquiry) {
 		return eventRepository.getLastEventOf(customerInquiry);
+	}
+
+	public String validateUser(String username, String password) {
+		return userRepository.validateUser(username, password);
 	}
 	
 }
