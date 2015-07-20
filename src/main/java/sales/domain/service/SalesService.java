@@ -128,5 +128,10 @@ public class SalesService implements SalesServiceFacade {
 	public String validateUser(String username, String password) {
 		return userRepository.validateUser(username, password);
 	}
+
+	public void createUser(String username, String password) {
+		userRepository.createUser(username, password);
+		
+	}
 	
 }

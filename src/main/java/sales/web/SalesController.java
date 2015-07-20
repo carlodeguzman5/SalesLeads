@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -29,21 +31,55 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/")
-	public String showIndex() {
+	public String showIndex(Model model) {
+		model.addAttribute("result", "valid");
 		return "login";
 	}
 	
 	@RequestMapping("/login")
-	public String login(Model model, String username, String password){
+	public String login(HttpServletRequest request, Model model, String username, String password){
 		String validate = service.validateUser(username, password);
 		
 		model.addAttribute("result", validate);
 		
-		System.out.println("result" + validate);
 		if(validate.equals("valid")){
+			request.getSession().setAttribute("userid", username);
 			return "index";
 		}
 		
+		return "login";
+	}
+	
+	@RequestMapping("/signup.html")
+	public String signUp(Model model){
+		model.addAttribute("result", "valid");
+		return "signup";
+	}
+	
+	@RequestMapping("/processSignUp")
+	public String processSignUp(HttpServletRequest request, Model model, String username, String password, String confirm_password){
+		String result;
+		if(!password.equals(confirm_password)){
+			result = "Password does not match. Try again.";
+		}
+		else{
+			if(service.validateUser(username, password).equals("Username does not exist!")){
+				service.createUser(username, password);
+				request.getSession().setAttribute("userid", username);
+				return "index";
+			}
+			else{
+				result = "Username already exists";
+			}
+		}
+		model.addAttribute("result", result);
+		return "signup";	
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(Model model, HttpServletRequest request){
+		model.addAttribute("result", "valid");
+		request.getSession().removeAttribute("userid");
 		return "login";
 	}
 	

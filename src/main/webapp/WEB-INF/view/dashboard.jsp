@@ -1,3 +1,9 @@
+<%
+    if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+    	response.sendRedirect("");
+    }
+%>
+
 <!DOCTYPE html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -244,7 +250,7 @@
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
 								Logout</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
