@@ -1,6 +1,5 @@
 package sales.web;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
+import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
 import sales.domain.service.SalesService;
 
@@ -164,6 +164,53 @@ public class SalesController {
 	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPerson, String editEmail, String editCustomerClassification){
 		service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
 		return "redirect:/Manual-Input.html";
+	}
+		
+	@RequestMapping("/projectTimeline")
+	public String getTimeline(Model model, String companyName, String inquiry, String subject, String content){
+		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, content);
+		
+		Collection<Event> events = service.getAllEventsOf(customerInquiry);
+		
+		ArrayList<String> contentList = new ArrayList<String>();
+		ArrayList<String> titleList = new ArrayList<String>();
+		for(Event e : events){
+			contentList.add(e.getContent());
+			titleList.add(e.getTitle());
+		}
+		model.addAttribute("companyName", companyName);
+		model.addAttribute("inquiry", inquiry);
+		model.addAttribute("subject", subject);
+		model.addAttribute("titles", titleList);
+		model.addAttribute("contents", contentList);
+		model.addAttribute("size", events.size());
+		
+		return "projectTimeline";
+	}
+	
+	@RequestMapping("/createEvent")
+	public String createEvent(Model model, String companyName, String inquiry, String subject, String title, String update){
+		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, "");
+		Event event = service.createEvent(title, update);
+		service.appendEvent(customerInquiry, event);
+		
+		Collection<Event> events = service.getAllEventsOf(customerInquiry);
+		
+		ArrayList<String> contentList = new ArrayList<String>();
+		ArrayList<String> titleList = new ArrayList<String>();
+		for(Event e : events){
+			contentList.add(e.getContent());
+			titleList.add(e.getTitle());
+		}
+		
+		model.addAttribute("companyName", companyName);
+		model.addAttribute("inquiry", inquiry);
+		model.addAttribute("subject", subject);
+		model.addAttribute("titles", titleList);
+		model.addAttribute("contents", contentList);
+		model.addAttribute("size", events.size());
+		
+		return "projectTimeline"; 
 	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)

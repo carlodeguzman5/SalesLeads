@@ -89,13 +89,8 @@ public class SalesServiceTests {
 	protected void setUpCustomerInquiries(){
 		Customer customer = entityManager.find(Customer.class, "Wilcon");
 		Inquiry inquiry = entityManager.find(Inquiry.class, "Development");
-		
-		//CustomerInquiry customerInquiry = new CustomerInquiry(customer, inquiry, "Dev Inquiry", "Inventory system cost", new Date());
-		//entityManager.persist(customerInquiry);	
 		service.createCustomerInquiry(customer, inquiry, "Dev Inquiry", "Inventory system cost");
-		//entityManager.flush();
 	}
-	
 	
 	
 	@After

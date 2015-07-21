@@ -41,4 +41,9 @@ public interface SalesServiceFacade {
 	
 	public void updateCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification);
 
+	public Collection<Event> getAllEventsOf(CustomerInquiry customerInquiry);
+	
+	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject,
+			String content);
+
 }

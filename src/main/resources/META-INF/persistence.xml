@@ -10,8 +10,9 @@
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 			<property name="javax.persistence.schema-generation.create-source" value="metadata"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			 <!-- <property name="javax.persistence.sql-load-script-source" value="src/main/resources/db/insert.sql"/>  -->
 		</properties>
 	</persistence-unit>
 
-</persistence>
+</persistence>	
