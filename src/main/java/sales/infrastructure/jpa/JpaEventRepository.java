@@ -2,6 +2,7 @@ package sales.infrastructure.jpa;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,8 +30,8 @@ public class JpaEventRepository implements EventRepository {
 		.getSingleResult();
 	}
 	
-	public Event createEvent(String title, String content){
-		Event event = new Event(title, content);
+	public Event createEvent(String title, String content, Date date){
+		Event event = new Event(title, content, date);
 		entityManager.persist(event);
 		entityManager.flush();
 		return event;

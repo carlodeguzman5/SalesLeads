@@ -114,7 +114,7 @@ public class SalesService implements SalesServiceFacade {
 	}
 
 	public Event createEvent(String title, String content) {
-		return eventRepository.createEvent(title, content);
+		return eventRepository.createEvent(title, content, today());
 	}
 
 	public void appendEvent(CustomerInquiry customerInquiry, Event event) {
