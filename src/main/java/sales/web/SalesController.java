@@ -1,6 +1,5 @@
 package sales.web;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
@@ -150,6 +148,7 @@ public class SalesController {
 		model.addAttribute("inquiryTypes", inquiryStrings);
 		
 		model.addAttribute("companyNames", customerStrings);
+		model.addAttribute("company", customers);
 		
 		model.addAttribute("customerClassifications", customerClassificationStrings);
 		
@@ -161,6 +160,12 @@ public class SalesController {
 		return "manualInputReport";
 	}
 	
+	@RequestMapping("/updateCustomer")
+	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPerson, String editEmail, String editCustomerClassification){
+		service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
+		return "redirect:/Manual-Input.html";
+	}
+		
 	@RequestMapping("/projectTimeline")
 	public String getTimeline(Model model, String date, String companyName, String inquiry, String subject, String content){
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, content);

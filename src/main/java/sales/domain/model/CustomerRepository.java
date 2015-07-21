@@ -13,4 +13,6 @@ public interface CustomerRepository {
 	Customer getCustomer(String name);
 	CustomerClassification getCustomerClassification(String name);
 	Collection<CustomerClassification> getAllCustomerClassifications();
+	void updateCustomer(String customerName, String contactNumber,
+			String contactPerson, String email, String customerClassification);
 }

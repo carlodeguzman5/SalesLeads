@@ -140,5 +140,11 @@ public class SalesService implements SalesServiceFacade {
 	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject, String content) {
 		return customerInquiryRepository.getCustomerInquiry(companyName,  inquiryName,  subject,  content);
 	}
+
+	public void updateCustomer(String customerName, String contactNumber,
+			String contactPerson, String email, String customerClassification) {
+		customerRepository.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
+		
+	}
 	
 }

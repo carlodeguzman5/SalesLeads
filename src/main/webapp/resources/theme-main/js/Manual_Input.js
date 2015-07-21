@@ -55,10 +55,49 @@ var checker = {
 		else{
 			document.getElementById('newInquiryType').readOnly = false;
 		}
-	}
+	},
+	
+//	getCustomerInfo:function(customer){
+//		var customerName = document.getElementById('editCustomerNameSelect').value;
+////		/var customer = document.getElementById('editCustomerNameSelect').value;
+//		
+//		console.log(customer);
+//		
+//		if(customerName != ""){
+//			document.getElementById('editInfoHidden').style.display="initial";
+//	//		document.getElementById('editCustomerName').setAttribute("value", customer.name);
+//			document.getElementById('editContactNumber').setAttribute("value", customer.contactNumber);
+//			document.getElementById('editContactPerson').setAttribute("value", "sas");
+////			document.getElementById('editEmail').style.width="50%";
+////			document.getElementById('editCustomerClassification').style.width="50%";
+//		}
+//		
+//		else{
+//			document.getElementById('editInfoHidden').style.display="none";
+//		}
+//	},
 };
 
-
+function getCustomerInfo(){
+	var customerName = document.getElementById('editCustomerNameSelect').value;
+	var customer = document.getElementById('editCustomerNameSelect').value;
+	
+	//console.log(document.getElementById('editCustomerNameSelect').value);
+	var customerInfo = customer.split(" ");
+	
+	if(customerName != ""){
+		document.getElementById('editInfoHidden').style.display="initial";
+		document.getElementById('editCustomerName').setAttribute("value", customerInfo[0]);
+		document.getElementById('editContactNumber').setAttribute("value", customerInfo[1]);
+		document.getElementById('editContactPerson').setAttribute("value", customerInfo[2]);
+		document.getElementById('editEmail').setAttribute("value", customerInfo[3]);
+		document.getElementById('editCustomerClassification').setAttribute("value", customerInfo[4]);
+	}
+	
+	else{
+		document.getElementById('editInfoHidden').style.display="none";
+	}
+};
 
 function testing(){
 

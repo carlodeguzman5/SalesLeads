@@ -80,8 +80,15 @@ public class JpaCustomerRepository implements CustomerRepository {
 	public Collection<CustomerClassification> getAllCustomerClassifications() {
 		return entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS, CustomerClassification.class).getResultList();
 	}
-	
-	
-	
+
+	public void updateCustomer(String customerName, String contactNumber,
+			String contactPerson, String email, String customerClassification) {
+		 Customer customer = entityManager.find(Customer.class, customerName);
+		 customer.setContactNumber(contactNumber);
+		 customer.setContactPerson(contactPerson);
+		 customer.setEmail(email);
+		 customer.setClassification(new CustomerClassification(customerClassification));
+		 entityManager.persist(customer);
+	}
 	
 }
