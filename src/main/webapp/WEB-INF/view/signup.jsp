@@ -61,6 +61,7 @@
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
 	                    <h3 class="panel-title">Sign Up</h3>
+	                    <a href="index.html">Log In</a>
                     </div>
                     <div class="panel-body">
                     	<c:if test="${result!='valid'}">

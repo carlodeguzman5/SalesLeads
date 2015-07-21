@@ -59,7 +59,13 @@ public class ManualInputController {
 	@RequestMapping(value="/addCustomer", method = RequestMethod.POST)
 	public String addCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification){
 		CustomerClassification cc = service.findCustomerClassification(customerClassification);
-		service.createCustomer(customerName, contactPerson, email, contactNumber, cc );
+		try{
+			service.createCustomer(customerName, contactPerson, email, contactNumber, cc );
+		}
+		catch(NullPointerException e){
+			return "errors/notFound";
+		}
+		
 		return "redirect:/Manual-Input.html";
 	}
 }

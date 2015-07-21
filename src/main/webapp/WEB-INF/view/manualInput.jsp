@@ -1,7 +1,5 @@
 
 <%@ include file="dashboard.jsp"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div id="page-wrapper">
 	<div class="container-fluid">
