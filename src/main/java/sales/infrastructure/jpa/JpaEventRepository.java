@@ -1,5 +1,6 @@
 package sales.infrastructure.jpa;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
@@ -39,30 +40,32 @@ public class JpaEventRepository implements EventRepository {
 		Event lastEvent = getLastEventOf(customerInquiry);
 		if(lastEvent == null){
 			customerInquiry.setTimeline(eventAfter);
-			entityManager.persist(customerInquiry);
+			entityManager.merge(customerInquiry);
 		}
 		else{
 			lastEvent.setAfter(eventAfter);
-			entityManager.persist(lastEvent);
+			entityManager.merge(lastEvent);
 		}
 		entityManager.flush();
 	}
 
-	public Collection<Event> getAllEventsAfter(Event event) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Event> getAllEventsOf(CustomerInquiry customerInquiry) {
+		ArrayList<Event> allEvents = new ArrayList<Event>();
+		Event currentEvent = customerInquiry.getTimeline();
+		if(currentEvent == null){
+			ArrayList<Event> temporaryList = new ArrayList<Event>();
+			temporaryList.addAll(allEvents);
+			return temporaryList;
+		}
+		while(currentEvent != null){
+			allEvents.add(currentEvent);
+			currentEvent = currentEvent.getAfter();
+		}
+		return allEvents;
 	}
 
 	public Event getLastEventOf(CustomerInquiry customerInquiry) {
-		
-		/*try{
-			startEvent = (Event) entityManager.createNativeQuery(SQL_EVENT_BY_CUSTOMER_INQUIRY)
-			.setParameter(1, customerInquiry.getTimeline())
-			.getSingleResult();
-		}catch(RuntimeException e){
-			return null;
-		}*/
-		
+			
 		Event startEvent = customerInquiry.getTimeline();
 		if(startEvent == null){
 			return null;

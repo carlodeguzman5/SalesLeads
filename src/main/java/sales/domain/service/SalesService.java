@@ -131,7 +131,14 @@ public class SalesService implements SalesServiceFacade {
 
 	public void createUser(String username, String password) {
 		userRepository.createUser(username, password);
-		
+	}
+
+	public ArrayList<Event> getAllEventsOf(CustomerInquiry customerInquiry) {
+		return eventRepository.getAllEventsOf(customerInquiry);
+	}
+
+	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject, String content) {
+		return customerInquiryRepository.getCustomerInquiry(companyName,  inquiryName,  subject,  content);
 	}
 	
 }

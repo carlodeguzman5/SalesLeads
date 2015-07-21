@@ -38,6 +38,11 @@ public interface SalesServiceFacade {
 	public void appendEvent(CustomerInquiry customerInquiry, Event event);
 	
 	public Event getLastEventOf(CustomerInquiry customerInquiry);
+	
+	public Collection<Event> getAllEventsOf(CustomerInquiry customerInquiry);
+	
+	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject,
+			String content);
 
 
 }
