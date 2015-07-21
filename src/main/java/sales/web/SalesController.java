@@ -167,29 +167,33 @@ public class SalesController {
 	}
 		
 	@RequestMapping("/projectTimeline")
-	public String getTimeline(Model model, String companyName, String inquiry, String subject, String content){
+	public String getTimeline(Model model, String date, String companyName, String inquiry, String subject, String content){
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, content);
 		
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);
 		
 		ArrayList<String> contentList = new ArrayList<String>();
 		ArrayList<String> titleList = new ArrayList<String>();
+		ArrayList<String> dateList = new ArrayList<String>();
 		for(Event e : events){
 			contentList.add(e.getContent());
 			titleList.add(e.getTitle());
+			dateList.add(new SimpleDateFormat("dd/MM/yyyy").format(e.getDate()));
 		}
+		model.addAttribute("startDate", new SimpleDateFormat("dd/MM/yyyy").format(customerInquiry.getDate()));
 		model.addAttribute("companyName", companyName);
 		model.addAttribute("inquiry", inquiry);
 		model.addAttribute("subject", subject);
 		model.addAttribute("titles", titleList);
 		model.addAttribute("contents", contentList);
-		model.addAttribute("size", events.size());
+		model.addAttribute("dates", dateList);
+		model.addAttribute("size", events.size()-1);
 		
 		return "projectTimeline";
 	}
 	
 	@RequestMapping("/createEvent")
-	public String createEvent(Model model, String companyName, String inquiry, String subject, String title, String update){
+	public String createEvent(Model model, String date, String companyName, String inquiry, String subject, String title, String update){
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, "");
 		Event event = service.createEvent(title, update);
 		service.appendEvent(customerInquiry, event);
@@ -198,17 +202,21 @@ public class SalesController {
 		
 		ArrayList<String> contentList = new ArrayList<String>();
 		ArrayList<String> titleList = new ArrayList<String>();
+		ArrayList<String> dateList = new ArrayList<String>();
 		for(Event e : events){
 			contentList.add(e.getContent());
 			titleList.add(e.getTitle());
+			dateList.add(new SimpleDateFormat("dd/MM/yyyy").format(e.getDate()));
 		}
 		
+		model.addAttribute("startDate", new SimpleDateFormat("dd/MM/yyyy").format(customerInquiry.getDate()));
 		model.addAttribute("companyName", companyName);
 		model.addAttribute("inquiry", inquiry);
 		model.addAttribute("subject", subject);
 		model.addAttribute("titles", titleList);
 		model.addAttribute("contents", contentList);
-		model.addAttribute("size", events.size());
+		model.addAttribute("dates", dateList);
+		model.addAttribute("size", events.size()-1);
 		
 		return "projectTimeline"; 
 	}

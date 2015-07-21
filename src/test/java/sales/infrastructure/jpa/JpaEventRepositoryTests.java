@@ -52,7 +52,7 @@ public class JpaEventRepositoryTests {
 		Inquiry inquiry = new Inquiry("Development");
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, "Subject", "Message", new Date());
 		CustomerInquiry customerInquiry = customerRepository.getAllCustomerInquiries().get(0);
-		Event timeline = eventRepository.createEvent("Meeting","Talked about food");
+		Event timeline = eventRepository.createEvent("Meeting","Talked about food", new Date());
 		customerInquiry.setTimeline(timeline);
 		Event event = eventRepository.getEvent(customerInquiry);
 		
@@ -67,14 +67,14 @@ public class JpaEventRepositoryTests {
 		Inquiry inquiry = new Inquiry("Development");
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, "Subject", "Message", new Date());
 		CustomerInquiry customerInquiry = customerRepository.getAllCustomerInquiries().get(0);
-		Event timeline = eventRepository.createEvent("Meeting","Talked about food");
+		Event timeline = eventRepository.createEvent("Meeting","Talked about food", new Date());
 		
 		eventRepository.appendEvent(customerInquiry, timeline);
 		
-		Event appendedEvent = eventRepository.createEvent("Email", "Inquiries about price");
+		Event appendedEvent = eventRepository.createEvent("Email", "Inquiries about price", new Date());
 		eventRepository.appendEvent(customerInquiry, appendedEvent);
 		
-		Event appendedEvent2 = eventRepository.createEvent("Project End", "Project has been dropped");
+		Event appendedEvent2 = eventRepository.createEvent("Project End", "Project has been dropped", new Date());
 		eventRepository.appendEvent(customerInquiry, appendedEvent2);
 		
 		Event lastEvent = eventRepository.getLastEventOf(customerInquiry);

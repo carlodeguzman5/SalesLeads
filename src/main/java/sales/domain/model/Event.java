@@ -1,5 +1,7 @@
 package sales.domain.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +25,14 @@ public class Event {
 	@JoinColumn(name="EVENT_AFTER", referencedColumnName = "EVENT_ID", nullable = true)
 	@OneToOne(optional = true)
 	private Event after;
+	private Date date;
 
 	protected Event(){/*AS NEEDED BY JPA */}
 	
-	public Event(String title, String content) {
+	public Event(String title, String content, Date date) {
 		this.title = title;
 		this.content = content;
+		this.date = date;
 	}
 
 	public long getId() {
@@ -45,6 +49,10 @@ public class Event {
 	
 	public Event getAfter() {
 		return after;
+	}
+	
+	public Date getDate() {
+		return date;
 	}
 	
 	public void setAfter(Event after) {

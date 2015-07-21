@@ -16,6 +16,18 @@
 
 <title>Lead Page</title>
 
+<style>
+.linkButton { 
+     background: none;
+     border: none;
+     color: #0066ff;
+     cursor: pointer; 
+}
+.linkButton:hover{
+	text-decoration: underline;
+}
+</style>
+
 <!-- Bootstrap Core CSS -->
 <link
 	href="<c:url value="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" />"
@@ -65,6 +77,7 @@
  							<th>INQUIRY</th> 
 							<th>SUBJECT</th> 
 							<th>CONTENT</th> 
+							<th>TIMELINE</th> 
  						</tr> 
 
  						<c:if test="${size >= 0}" >
@@ -75,8 +88,7 @@
 		 							<input type="text" name="inquiry" value="${inquiries[i]}" hidden="true">
 		 							<input type="text" name="subject" value="${subjects[i]}" hidden="true">
 		 							<input type="text" name="content" value="${contents[i]}" hidden="true">
-		 							<input type="submit" name="Test">
-								</form>
+		 							<input type="text" name="content" value="${dates[i]}" hidden="true">
 									<tr>		
 										<td>${dates[i]}</td>
 										<td>${names[i]}</td>
@@ -85,7 +97,9 @@
 										<td>${inquiries[i]}</td>
 										<td>${subjects[i]}</td>
 										<td>${contents[i]}</td>
+										<td><input class="linkButton" type="submit" value="Timeline"></td>
 									</tr>	
+								</form>
 							</c:forEach>
  						 </c:if> 
  						

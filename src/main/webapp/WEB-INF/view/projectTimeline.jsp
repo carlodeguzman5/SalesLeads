@@ -16,7 +16,71 @@
 
 <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
-<script src="<c:url value="/resources/js/timeline.js"/>"></script>
+<%-- <script src="<c:url value="/resources/js/timeline.js"/>"></script> --%>
+
+<script>
+
+function testOutput(){
+
+	var x = document.getElementsByClassName("example");
+	var y = document.getElementsByClassName("titleHeader");
+	var z = document.getElementsByClassName("date");
+	
+	for(var i = 0; i<x.length ; i++){
+		console.log(x[i].value);
+		
+		console.log(y[i].value);
+		
+		console.log(z[i].value);
+	}
+
+
+	for(var i = 0; i<x.length ; i++){
+		var timelinePanelHolder = document.createElement('li');
+		timelinePanelHolder.className = 'timeline-inverted';
+
+		var timelineBadge = document.createElement('div');
+		timelineBadge.className = 'timeline-badge';
+		var timelineIcon = document.createElement('i');
+		timelineIcon.className = 'fa fa-check';
+		timelineBadge.appendChild(timelineIcon);
+		
+		
+		var timelineFooter = document.createElement('div')
+		timelineFooter.classname = "panel-footer";
+		var timelineFooterContent = document.createTextNode(z[i].value);
+		timelineFooter.appendChild(timelineFooterContent);
+
+
+		var timelinePanel = document.createElement('div');
+		timelinePanel.className = 'timeline-panel';
+
+		var timelineHeading = document.createElement('div');
+		timelineHeading.className = 'timeline-heading';
+		var timelineHeadingTag = document.createElement('h4');
+		timelineHeadingTag.className = 'timeline-title';
+		var timelineHeadingTagContent = document.createTextNode(y[i].value);
+		timelineHeadingTag.appendChild(timelineHeadingTagContent);
+		timelineHeading.appendChild(timelineHeadingTag);
+
+		var timelineBody = document.createElement('div');
+		timelineBody.className = 'timeline-body';
+		var timelineBodyContent = x[i].value;
+		var timelineBodyContentHolder = document.createTextNode(timelineBodyContent);
+		timelineBody.appendChild(timelineBodyContentHolder);
+
+		timelinePanel.appendChild(timelineHeading);
+		timelinePanel.appendChild(timelineBody);
+		timelinePanel.appendChild(timelineFooter);
+		
+		timelinePanelHolder.appendChild(timelineBadge);
+		timelinePanelHolder.appendChild(timelinePanel);
+		
+
+		document.getElementById('timelineId').insertBefore(timelinePanelHolder, document.getElementById('timelineId').childNodes[0]);
+	}
+}
+</script>
 
 <!-- Timeline CSS -->
 <link href="<c:url value="/resources/dist/css/timeline.css" />"
@@ -24,7 +88,7 @@
 
 <!-- Morris Charts CSS -->
 <link
-	href="<c:url value="/resources//bower_components/morrisjs/morris.css" />"
+	href="<c:url value="/resources/bower_components/morrisjs/morris.css" />"
 	rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,43 +107,60 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Timeline</h1>
+					<h1 class="page-header">${companyName}: ${subject}</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<i class="fa fa-clock-o fa-fw"></i>Timeline
-				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<c:forEach var="i" begin="0" end="${size}">
+					<div class="form-group">
+						<form id="eventForm" action="createEvent" method="post">
+							<input type="text" name="companyName" value="${companyName}" hidden="true">
+							<input type="text" name="inquiry" value="${inquiry}" hidden="true">
+							<input type="text" name="subject" value="${subject}" hidden="true">
+							<input type="text" name="content" value="something" hidden="true">
+							<div class='container-fluid'>
+								<label>Event</label><input class="form-control" type="text" name="title">
+								<label>Summary</label><textarea class="form-control" name="update" form="eventForm"></textarea>
+								<label>Date</label><input class="form-control" type="date" name="date"></textarea>
+								<input class="btn btn-md" type="submit">
+							</div>
+						</form>
+					</div>
+						
 						<select class="titleHeader" hidden="true">
-							<option>${titles[i]}</option>
+								<option>Initial Inquiry</option>
 						</select>
 						<select class="example" hidden="true">
-							<option>${contents[i]}</option>
+							<option></option>
 						</select>
-					</c:forEach>
+						<select class="date" hidden="true">
+								<option>${startDate}</option>
+						</select>
+				
+					<c:if test="${size >= 0}">
+					
+						<c:forEach var="i" begin="0" end="${size}">
+							<select class="titleHeader" hidden="true">
+								<option>${titles[i]}</option>
+							</select>
+							<select class="example" hidden="true">
+								<option>${contents[i]}</option>
+							</select>
+							<select class="date" hidden="true">
+								<option>${dates[i]}</option>
+							</select>
+						</c:forEach>
+					
+					</c:if>
 					
 					<ul class="timeline" id="timelineId">
 
 					</ul>
 
-					<!-- <textarea id="timelineContentBox"></textarea> -->
-					<form action="createEvent" method="post">
-						<input type="text" name="companyName" value="${companyName}" hidden="true">
-						<input type="text" name="inquiry" value="${inquiry}" hidden="true">
-						<input type="text" name="subject" value="${subject}" hidden="true">
-						<input type="text" name="content" value="something" hidden="true">
-						<input type="text" name="title">
-						<input type="text" name="update">
-						<input type="submit">
-					</form>
+				
 					
-					<!-- <button onclick="timeLineCreateLeft()">timeline left</button>
-					<button onclick="timeLineCreateRight()">timeline right</button> -->
-					<!-- <button onclick="testOutput()">testing</button> -->
 				</div>
 				<!-- /.panel-body -->
 			</div>
