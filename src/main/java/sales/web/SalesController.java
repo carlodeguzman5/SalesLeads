@@ -233,5 +233,4 @@ public class SalesController {
 	public String entityNotFound() {
 		return "errors/notFound";
 	}
-	
 }
