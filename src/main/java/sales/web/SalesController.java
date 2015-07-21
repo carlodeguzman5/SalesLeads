@@ -1,8 +1,12 @@
 package sales.web;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -193,9 +197,13 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/createEvent")
-	public String createEvent(Model model, String date, String companyName, String inquiry, String subject, String title, String update){
+	public String createEvent(Model model, String date, String companyName, String inquiry, String subject, String title, String update) throws ParseException{
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, "");
-		Event event = service.createEvent(title, update);
+		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		Date parsedDate = format.parse(date); 
+		
+		Event event = service.createEvent(title, update, parsedDate);
 		service.appendEvent(customerInquiry, event);
 		
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);

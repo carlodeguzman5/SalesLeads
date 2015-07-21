@@ -33,7 +33,7 @@ public interface SalesServiceFacade {
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message);
 
-	public Event createEvent(String title, String content);
+	public Event createEvent(String title, String content, Date date);
 	
 	public void appendEvent(CustomerInquiry customerInquiry, Event event);
 	

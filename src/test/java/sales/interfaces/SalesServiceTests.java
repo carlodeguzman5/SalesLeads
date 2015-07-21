@@ -134,9 +134,9 @@ public class SalesServiceTests {
 	
 	@Test
 	public void createEventTest(){
-		Event event1 = service.createEvent("Meeting", "Discussed Project");
-		Event event2 = service.createEvent("Email", "Inquired about costing");
-		Event event3 = service.createEvent("Phone Call", "Setting a meeting");
+		Event event1 = service.createEvent("Meeting", "Discussed Project", new Date());
+		Event event2 = service.createEvent("Email", "Inquired about costing", new Date());
+		Event event3 = service.createEvent("Phone Call", "Setting a meeting", new Date());
 		
 		
 		ArrayList<CustomerInquiry> customerInquiries = service.getAllCustomerInquiries();
