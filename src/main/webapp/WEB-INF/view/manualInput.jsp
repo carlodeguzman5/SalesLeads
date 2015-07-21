@@ -26,10 +26,8 @@
 	
 						<div class="form-group formsize">
 							<label>Inquiry Type</label>
-							<!-- data-placeholder="
-								Choose anInquiry..." -->
-								<select class="form-control chosen-select" name="oldInquiryType" id="types" onchange="checker.checkInquiry()">
-									<option value="New Inquiry">New Inquiry</option>
+								<select class="form-control chosen-select" name="oldInquiryType" id="types" required>
+									<option value="">New Inquiry</option>
 									<c:forEach var="type" items="${inquiryTypes}">
 										<option>${type}</option>
 									</c:forEach>
@@ -38,8 +36,8 @@
 	
 							<div class="form-group formsize">
 								<label>Customer Name</label>
-								<select data-placeholder="Choose a Customer..." class="form-control chosen-select" name="customerName" id="customerNameSelect" onchange="checker.checkCustomer()">
-									<option value="New Customer">New Customer</option>
+								<select data-placeholder="Choose a Customer..." class="form-control chosen-select" name="customerName" id="customerNameSelect" required>
+									<option value="">New Customer</option>
 									<c:forEach var="companyName" items="${companyNames}">
 										<option>${companyName}</option>
 									</c:forEach>
@@ -47,13 +45,12 @@
 							</div>
 	
 							<div class="form-group formsize">
-								<label>Subject</label> <input class="form-control" name="subject"
-									id="subject">
+								<label>Subject</label> <input class="form-control" name="subject" id="subject" required>
 							</div>
 	
 							<div class="form-group formsize">
 								<label>Text area</label>
-								<textarea class="form-control" rows="3" name="text" id="test"></textarea>
+								<textarea class="form-control" rows="3" name="text" id="test" required></textarea>
 							</div>
 							<input type="submit" />
 						</form>
@@ -102,11 +99,6 @@
 										<option value="${companyName.name} ${companyName.contactNumber} ${companyName.contactPerson} ${companyName.email}">${companyName.name}</option>
 									</c:forEach>
 								</select>
-
-<%-- 							<form:select path="name" onchange="checker.getCustomerInfo()"> --%>
-<%--     							<form:options items="${company}" itemLabel="editCustomerNameSelect" itemValue="company"/> --%>
-<%-- 							</form:select> --%>
-							
 							
 							<div id="editInfoHidden" style="display:none;">
 							

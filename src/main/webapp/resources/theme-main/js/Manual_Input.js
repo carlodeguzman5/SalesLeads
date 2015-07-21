@@ -36,7 +36,6 @@ var checker = {
 		}
 		
 		else{
-			//document.getElementById('customerName').setAttribute(name, value);
 			document.getElementById('testId').style.display="initial";
 			document.getElementById('customerName').style.width="50%";
 			document.getElementById('contactNumber').style.width="50%";
@@ -56,33 +55,12 @@ var checker = {
 			document.getElementById('newInquiryType').readOnly = false;
 		}
 	},
-	
-//	getCustomerInfo:function(customer){
-//		var customerName = document.getElementById('editCustomerNameSelect').value;
-////		/var customer = document.getElementById('editCustomerNameSelect').value;
-//		
-//		console.log(customer);
-//		
-//		if(customerName != ""){
-//			document.getElementById('editInfoHidden').style.display="initial";
-//	//		document.getElementById('editCustomerName').setAttribute("value", customer.name);
-//			document.getElementById('editContactNumber').setAttribute("value", customer.contactNumber);
-//			document.getElementById('editContactPerson').setAttribute("value", "sas");
-////			document.getElementById('editEmail').style.width="50%";
-////			document.getElementById('editCustomerClassification').style.width="50%";
-//		}
-//		
-//		else{
-//			document.getElementById('editInfoHidden').style.display="none";
-//		}
-//	},
 };
 
 function getCustomerInfo(){
 	var customerName = document.getElementById('editCustomerNameSelect').value;
 	var customer = document.getElementById('editCustomerNameSelect').value;
 	
-	//console.log(document.getElementById('editCustomerNameSelect').value);
 	var customerInfo = customer.split(" ");
 	
 	if(customerName != ""){
