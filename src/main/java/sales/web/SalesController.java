@@ -161,9 +161,9 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/updateCustomer")
-	public String updateCustomer(Model model, String customerName, String contactNumber, String contactPerson, String email, String customerClassification){
-		service.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
-		return "manualInput";
+	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPerson, String editEmail, String editCustomerClassification){
+		service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
+		return "redirect:/Manual-Input.html";
 	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
