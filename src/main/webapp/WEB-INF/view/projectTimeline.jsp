@@ -54,7 +54,7 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<c:forEach var="i" begin="0" end="${size}">
-						<select class="example" hidden="true">
+						<select class="titleHeader" hidden="true">
 							<option>${titles[i]}</option>
 						</select>
 						<select class="example" hidden="true">

@@ -106,6 +106,7 @@ function timeLineCreateRight(){
 function testOutput(){
 
 	var x = document.getElementsByClassName("example");
+	var y = document.getElementsByClassName("titleHeader");
 
 	for(var i = 0; i<x.length ; i++){
 		console.log(x[i].value);
@@ -129,7 +130,7 @@ function testOutput(){
 		timelineHeading.className = 'timeline-heading';
 		var timelineHeadingTag = document.createElement('h4');
 		timelineHeadingTag.className = 'timeline-title';
-		var timelineHeadingTagContent = document.createTextNode('header');
+		var timelineHeadingTagContent = document.createTextNode(y[i].value);
 		timelineHeadingTag.appendChild(timelineHeadingTagContent);
 		timelineHeading.appendChild(timelineHeadingTag);
 
