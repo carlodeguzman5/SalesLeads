@@ -23,6 +23,7 @@ import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
+import sales.domain.model.Notification;
 import sales.domain.service.SalesService;
 
 @Controller
@@ -49,6 +50,11 @@ public class SalesController {
 		
 		if(validate.equals("valid")){
 			request.getSession().setAttribute("userid", username);
+			List<Notification> notifs = service.getNotifications();
+			model.addAttribute("notifs", notifs);
+			request.getSession().setAttribute("notifs", notifs);
+			request.getSession().setAttribute("notifSize", notifs.size());
+			System.out.println(notifs.size());
 			return "index";
 		}
 		
@@ -71,6 +77,9 @@ public class SalesController {
 			if(service.validateUser(username, password).equals("Username does not exist!")){
 				service.createUser(username, password);
 				request.getSession().setAttribute("userid", username);
+				List<Notification> notifs = service.getNotifications();
+				request.getSession().setAttribute("notifs", notifs);
+				request.getSession().setAttribute("notifSize", notifs.size());
 				return "index";
 			}
 			else{
@@ -89,8 +98,7 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/index.html")
-	public String showIndexAlternate(Model model) {
-		List notifs = service.getNotifications();
+	public String showIndexAlternate() {
 		return "index";
 	}
 	@RequestMapping("/Charts.html")

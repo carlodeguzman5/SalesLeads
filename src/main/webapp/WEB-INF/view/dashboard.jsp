@@ -207,38 +207,15 @@
 										class="pull-right text-muted small">4 minutes ago</span>
 								</div>
 						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-										class="pull-right text-muted small">12 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-tasks fa-fw"></i> New Task <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>See
-									All Alerts</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
+						<c:if test="${sessionScope.notifSize>0}">
+							<c:forEach var="notif" items="${sessionScope.notifs}">
+								<li><a href="#">
+									<div>
+										<i class="fa fa-comment fa-fw"></i> ${notif.message}
+									</div>
+								</a></li>
+							</c:forEach>
+						</c:if>
 					</ul> <!-- /.dropdown-alerts --></li>
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
