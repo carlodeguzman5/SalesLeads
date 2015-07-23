@@ -21,6 +21,7 @@ import sales.domain.model.Event;
 import sales.domain.model.EventRepository;
 import sales.domain.model.Inquiry;
 import sales.domain.model.InquiryRepository;
+import sales.domain.model.Notification;
 import sales.domain.model.NotificationRepository;
 import sales.infrastructure.jpa.NoExistingInquiryException;
 import sales.interfaces.SalesServiceFacade;
@@ -160,7 +161,7 @@ public class SalesService implements SalesServiceFacade {
 		notificationRepository.updateNotification(customerInquiry, getLastEventOf(customerInquiry));
 	}
 
-	public List getNotifications() {
+	public List<Notification> getNotifications() {
 		return notificationRepository.getNotifications();
 	}
 	

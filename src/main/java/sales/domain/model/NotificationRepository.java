@@ -6,6 +6,6 @@ public interface NotificationRepository {
 
 	void updateNotification(CustomerInquiry customerInquiry, Event event);
 
-	List getNotifications();
+	List<Notification> getNotifications();
 
 }

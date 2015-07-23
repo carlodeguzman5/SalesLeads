@@ -2,6 +2,7 @@ package sales.infrastructure.jpa;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,28 @@ public class JpaNotificationRepository implements NotificationRepository {
 	}
 	
 	private static final String JPQL_GET_NOTIFICATION = "SELECT a FROM Notification AS a WHERE a.customerInquiry = :customerInquiry";	
+	private static final String JPQL_GETALL_NOTIFICATION = "SELECT a FROM Notification";
+	
+	private Date today() {
+		Calendar now = todayAsCalendar();
+		return now.getTime();
+	}
+	
+	private Calendar todayAsCalendar() {
+		Calendar now = Calendar.getInstance();
+		now.set(Calendar.HOUR_OF_DAY, 0);
+		now.clear(Calendar.MINUTE);
+		now.clear(Calendar.SECOND);
+		now.clear(Calendar.MILLISECOND);
+		return now;
+	}
+	
+	private Date now(){
+		Calendar calendar = Calendar.getInstance();
+		Date now = calendar.getTime();
+		Date currentTimestamp = new java.sql.Timestamp(now.getTime());
+		return currentTimestamp;
+	}
 	
 	public void updateNotification(CustomerInquiry customerInquiry, Event event) {
 		try{
@@ -59,9 +82,22 @@ public class JpaNotificationRepository implements NotificationRepository {
 		entityManager.flush();
 	}
 
-	public List getNotifications() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Notification> getNotifications() {
+		List<Notification> notifs = new ArrayList<Notification>();
+		
+		try{
+			TypedQuery<Notification> query = entityManager.createQuery(JPQL_GETALL_NOTIFICATION, Notification.class);	
+			List<Notification> allNotification = query.getResultList();
+			
+			for(Notification n : allNotification){
+				if(n.getDate().after(today()) || n.getDate().equals(today())){
+					notifs.add(n);
+				}
+			}
+		}
+		catch(Exception e){System.out.println("does exist");}
+		
+		return notifs;
 	}
 
 }
