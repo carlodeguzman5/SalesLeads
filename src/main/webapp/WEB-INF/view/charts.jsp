@@ -64,10 +64,10 @@
                         <div class="col-lg-6">
                                 <div >
                                     <h4>Legends:</h4>
-                                    <p>Success</p>
-                                    <p>On Going</p>
-                                    <p>Pending</p>
-                                    <p>Discontinued</p>
+                                    <p><i class="fa fa-circle" style="color:#878BB6;"></i> Success</p>
+                                    <p><i class="fa fa-circle" style="color:#4ACAB4;"></i> On Going</p>
+                                    <p><i class="fa fa-circle" style="color:#FF8153;"></i> Pending</p>
+                                    <p><i class="fa fa-circle" style="color:#FFEA88;"></i> Discontinued</p>
                                 </div>
             
                             <script>
@@ -103,7 +103,8 @@
                                 // pie chart options
                                 var pieOptions = {
                                      segmentShowStroke : false,
-                                     animateScale : true
+                                     animateScale : true,
+                                     showTooltips: false,
                                 }
                                 // get pie chart canvas
                                 var countries= document.getElementById("countries").getContext("2d");
