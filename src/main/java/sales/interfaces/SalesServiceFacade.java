@@ -45,7 +45,5 @@ public interface SalesServiceFacade {
 	
 	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject,
 			String content);
-	
-	public String getStatus(CustomerInquiry customerInquiry);
 
 }

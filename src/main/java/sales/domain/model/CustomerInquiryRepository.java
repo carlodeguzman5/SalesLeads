@@ -1,6 +1,7 @@
 package sales.domain.model;
 
 import java.util.Date;
+import java.util.List;
 
 public interface CustomerInquiryRepository {
 	void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message, Date date);
@@ -11,7 +12,7 @@ public interface CustomerInquiryRepository {
 	void customizeNotification(CustomerInquiry customerInquiry, String amount,
 			String unit);
 
-	String getStatusOf(CustomerInquiry customerInquiry);
-
 	void updateLeadStatus(CustomerInquiry customerInquiry, String status);
+
+	List<CustomerInquiry> getLeadsByStatus(String status);
 }

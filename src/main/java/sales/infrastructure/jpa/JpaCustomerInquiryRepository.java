@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.net.ssl.SSLEngineResult.Status;
@@ -32,7 +33,7 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 
 	private static final String SQL_GET_ALL_CUSTOMER_INQUIRIES = "SELECT * FROM customer_inquiry";
 	
-	//private static final String JPQL_GET_STATUS = "SELECT a.status FROM CustomerInquiry AS a WHERE a = :customerInquiry";
+	private static final String JPQL_GET_LEADS_BY_STATUS = "SELECT a FROM CustomerInquiry AS a WHERE a.status = :status";
 	
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -74,17 +75,16 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 		entityManager.flush();
 	}
 
-
-	public String getStatusOf(CustomerInquiry customerInquiry) {
-		return customerInquiry.getStatus().toString();
-	}
-
-
 	public void updateLeadStatus(CustomerInquiry customerInquiry, String status) {
 		customerInquiry.setStatus(CustomerInquiry.Status.valueOf(status));
 		entityManager.merge(customerInquiry);
 		entityManager.flush();
 		
+	}
+
+
+	public List<CustomerInquiry> getLeadsByStatus(String status) {
+		return entityManager.createQuery(JPQL_GET_LEADS_BY_STATUS).setParameter("status", CustomerInquiry.Status.valueOf(status)).getResultList();
 	}
 
 }

@@ -94,7 +94,8 @@ public class SalesController {
 		return "index";
 	}
 	@RequestMapping("/Charts.html")
-	public String showCharts(){
+	public String showCharts(Model model){
+		
 		return "charts";
 	}
 	@RequestMapping("/LeadPage.html")
