@@ -118,8 +118,8 @@ public class SalesService implements SalesServiceFacade {
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, subject, message, now());
 	}
 
-	public Event createEvent(String title, String content) {
-		return eventRepository.createEvent(title, content, today());
+	public Event createEvent(String title, String content, Date date) {
+		return eventRepository.createEvent(title, content, date);
 	}
 
 	public void appendEvent(CustomerInquiry customerInquiry, Event event) {

@@ -47,7 +47,7 @@ function testOutput(){
 		
 		
 		var timelineFooter = document.createElement('div')
-		timelineFooter.classname = "panel-footer";
+		timelineFooter.classname = "timeline-footer";
 		var timelineFooterContent = document.createTextNode(z[i].value);
 		timelineFooter.appendChild(timelineFooterContent);
 
