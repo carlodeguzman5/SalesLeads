@@ -180,6 +180,7 @@ public class SalesController {
 		
 	@RequestMapping("/projectTimeline")
 	public String getTimeline(Model model, String date, String companyName, String inquiry, String subject, String content){
+		System.out.println(companyName + inquiry  + subject + content);
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, content);
 		
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);

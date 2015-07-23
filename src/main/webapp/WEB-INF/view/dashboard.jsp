@@ -201,19 +201,26 @@
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-comment fa-fw"></i> New Comment <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
 						<c:if test="${sessionScope.notifSize>0}">
 							<c:forEach var="notif" items="${sessionScope.notifs}">
-								<li><a href="#">
-									<div>
-										<i class="fa fa-comment fa-fw"></i> ${notif.message}
-									</div>
-								</a></li>
+								<li>
+<!-- 									<a href="LeadPage.html"> -->
+<!-- 										<div> -->
+<%-- 											<i class="fa fa-comment fa-fw"></i> ${notif.message} <span --%>
+<%-- 												class="pull-right text-muted small"> ${notif.date} </span> --%>
+<!-- 										</div> -->
+<!-- 									</a> -->
+									<form action="projectTimeline" method="post">
+										<input type="text" name="companyName" value="${notif.customerInquiry.customer.name}" hidden="true">
+			 							<input type="text" name="inquiry" value="${notif.customerInquiry.inquiry.type}" hidden="true">
+			 							<input type="text" name="subject" value="${notif.customerInquiry.subject}" hidden="true">
+			 							<input type="text" name="content" value="${notif.customerInquiry.message}" hidden="true">
+			 							<input type="text" name="date" value="${notif.customerInquiry.date}" hidden="true">
+			 							<button type="submit"  class="btn btn-outline btn-danger"><i class="glyphicon glyphicon-alert"></i> 
+			 								${notif.message} <span class="pull-right text-muted small"> ${notif.date} </span>
+										</button>
+									</form>
+								</li>
 							</c:forEach>
 						</c:if>
 					</ul> <!-- /.dropdown-alerts --></li>
