@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class JpaNotificationRepository implements NotificationRepository {
 	}
 	
 	private static final String JPQL_GET_NOTIFICATION = "SELECT a FROM Notification AS a WHERE a.customerInquiry = :customerInquiry";	
-	private static final String JPQL_GETALL_NOTIFICATION = "SELECT a FROM Notification";
+	private static final String JPQL_GETALL_NOTIFICATION = "SELECT a FROM Notification a ORDER BY a.date DESC";
 	
 	private Date today() {
 		Calendar now = todayAsCalendar();
@@ -69,7 +70,7 @@ public class JpaNotificationRepository implements NotificationRepository {
 		String customerName = customerInquiry.getCustomer().getName();
 		String dateOfLastEvent = new SimpleDateFormat("dd/MM/yyyy").format(event.getDate());
 		System.out.println(event.getDate());
-		String message = "Transaction with " + customerName + "was " + dateOfLastEvent;
+		String message = "Last transaction with " + customerName + " was " + dateOfLastEvent;
 		
         Date original = event.getDate();
         Calendar cal = Calendar.getInstance();
@@ -84,13 +85,16 @@ public class JpaNotificationRepository implements NotificationRepository {
 
 	public List<Notification> getNotifications() {
 		List<Notification> notifs = new ArrayList<Notification>();
+		System.out.println("getting notifs..");
 		
 		try{
 			TypedQuery<Notification> query = entityManager.createQuery(JPQL_GETALL_NOTIFICATION, Notification.class);	
 			List<Notification> allNotification = query.getResultList();
 			
 			for(Notification n : allNotification){
-				if(n.getDate().after(today()) || n.getDate().equals(today())){
+				System.out.println("notif" + n.getDate() + " " + today());
+				if(n.getDate().before(today()) || DateUtils.isSameDay(n.getDate(), today())){
+					System.out.println("Id: " + n.getId());
 					notifs.add(n);
 				}
 			}

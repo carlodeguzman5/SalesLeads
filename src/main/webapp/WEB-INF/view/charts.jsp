@@ -39,63 +39,61 @@
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="theCharts">
-
-                    <h1>Chart page</h1>
-                    <select id="numberValue" style="display:none">
-                        <option>200</option>
-                    </select>
-
-                    <canvas id="buyers" width="600" height="400"></canvas>
-
-                    <script type="text/javascript">
-
-                    var arrays=["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"]
-                  //    var buyerData = {
-                        //  labels : ["January","February","March","April","May","June"],
-                        //  datasets : [
-                        //      {
-                        //          fillColor : "rgba(172,194,132,0.4)",
-                        //          strokeColor : "#ACC26D",
-                        //          pointColor : "#fff",
-                        //          pointStrokeColor : "#9DB86D",
-                        //          data : [203,156,99,251,305,247]
-                        //      }
-                        //  ]
-                        // }
-                        //============================================
-                        var dataValue = document.getElementById('numberValue').value;
-                        var buyerData = {
-                            labels: arrays,
-                            datasets: [
-                                {
-                                    label: "My First dataset",
-                                    fillColor: "rgba(220,220,220,0.2)",
-                                    strokeColor: "rgba(220,220,220,1)",
-                                    pointColor: "rgba(220,220,220,1)",
-                                    pointStrokeColor: "#fff",
-                                    pointHighlightFill: "#fff",
-                                    pointHighlightStroke: "rgba(220,220,220,1)",
-                                    data: [dataValue, 59, 90, 81, 56, 55, 40]
-                                },
-                                {
-                                    label: "My Second dataset",
-                                    fillColor: "rgba(151,187,205,0.2)",
-                                    strokeColor: "rgba(151,187,205,1)",
-                                    pointColor: "rgba(151,187,205,1)",
-                                    pointStrokeColor: "#fff",
-                                    pointHighlightFill: "#fff",
-                                    pointHighlightStroke: "rgba(151,187,205,1)",
-                                    data: [28, 48, 40, 19, 96, 27, 100]
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Chart page</h1>
+                        </div>
+                        <div class="col-lg-6">
+                            <canvas id="countries" width="600" height="400"></canvas>
+                        </div>
+                        <div class="col-lg-6">
+                                <div >
+                                    <h4>Legends:</h4>
+                                    <p>Success</p>
+                                    <p>On Going</p>
+                                    <p>Pending</p>
+                                    <p>Discontinued</p>
+                                </div>
+            
+                            <script>
+                                // pie chart data
+                                var pieData = [
+                                    {
+                                        value: 20,
+                                        color:"#878BB6",
+                                        label: 'label1'
+                                    },
+                                    {
+                                        value: 40,
+                                        color: "#4ACAB4",
+                                        label: 'label2'
+                                    },
+                                    {
+                                        value: 10,
+                                        color: "#FF8153",
+                                        label: 'label3'
+                                    },
+                                    {
+                                        value: 30,
+                                        color: "#FFEA88",
+                                        label: 'label5'
+                                    }
+                                ];
+                                // pie chart options
+                                var pieOptions = {
+                                     segmentShowStroke : false,
+                                     animateScale : true
                                 }
-                            ]
-                        };
-                        //==============================================
-
-
-                        var buyers = document.getElementById('buyers').getContext('2d');
-                        new Chart(buyers).Radar(buyerData);
-                    </script>
+                                // get pie chart canvas
+                                var countries= document.getElementById("countries").getContext("2d");
+                                // draw pie chart
+                                new Chart(countries).Pie(pieData, pieOptions);
+                            </script>
+                        </div>
+                    </div>
+                    
                  </div>
+
 			</div>
 			<!-- /.container-fluid -->
 		</div>
