@@ -46,6 +46,21 @@
                         <div class="col-lg-6">
                             <canvas id="countries" width="600" height="400"></canvas>
                         </div>
+                        
+                        <select id="successCount" hidden="true">
+                        	<option>${success}</option>
+                        </select>
+                        <select id="ongoingCount" hidden="true">
+                        	<option>${ongoing}</option>
+                        </select>
+                        <select id="pendingCount" hidden="true">
+                        	<option>${pending}</option>
+                        </select>
+                        <select id="discontinuedCount" hidden="true">
+                        	<option>${discontinued}</option>
+                        </select>
+                        
+                        
                         <div class="col-lg-6">
                                 <div >
                                     <h4>Legends:</h4>
@@ -56,27 +71,33 @@
                                 </div>
             
                             <script>
+                            	var successCountValue = document.getElementById('successCount').value;
+                            	var ongoingCountValue = document.getElementById('ongoingCount').value;
+                            	var pendingCountValue = document.getElementById('pendingCount').value;
+                            	var discontinuedCountValue = document.getElementById('discontinuedCount').value;
                                 // pie chart data
+                                
+                                console.log(successCountValue);
                                 var pieData = [
                                     {
-                                        value: 20,
+                                        value: successCountValue,
                                         color:"#878BB6",
-                                        label: 'label1'
+                                        label: 'Success'
                                     },
                                     {
-                                        value: 40,
+                                        value: ongoingCountValue,
                                         color: "#4ACAB4",
-                                        label: 'label2'
+                                        label: 'On Going'
                                     },
                                     {
-                                        value: 10,
+                                        value: pendingCountValue,
                                         color: "#FF8153",
-                                        label: 'label3'
+                                        label: 'Pending'
                                     },
                                     {
-                                        value: 30,
+                                        value: discontinuedCountValue,
                                         color: "#FFEA88",
-                                        label: 'label5'
+                                        label: 'Discontinued'
                                     }
                                 ];
                                 // pie chart options

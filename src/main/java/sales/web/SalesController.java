@@ -103,6 +103,15 @@ public class SalesController {
 	}
 	@RequestMapping("/Charts.html")
 	public String showCharts(Model model){
+		int ongoing = service.getLeadsByStatus("ONGOING").size();
+		int success = service.getLeadsByStatus("SUCCESS").size();
+		int discontinued = service.getLeadsByStatus("DISCONTINUED").size();
+		int pending = service.getLeadsByStatus("PENDING").size();
+		
+		model.addAttribute("ongoing", ongoing);
+		model.addAttribute("success", success);
+		model.addAttribute("discontinued", discontinued);
+		model.addAttribute("pending", pending);
 		
 		return "charts";
 	}
