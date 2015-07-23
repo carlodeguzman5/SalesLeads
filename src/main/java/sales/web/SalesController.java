@@ -176,6 +176,10 @@ public class SalesController {
 		
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);
 		
+		String status = customerInquiry.getStatus().toString();
+		model.addAttribute("status", status);
+		
+		
 		ArrayList<String> contentList = new ArrayList<String>();
 		ArrayList<String> titleList = new ArrayList<String>();
 		ArrayList<String> dateList = new ArrayList<String>();
@@ -192,6 +196,7 @@ public class SalesController {
 		model.addAttribute("contents", contentList);
 		model.addAttribute("dates", dateList);
 		model.addAttribute("size", events.size()-1);
+		
 		
 		return "projectTimeline";
 	}
@@ -227,6 +232,9 @@ public class SalesController {
 		model.addAttribute("dates", dateList);
 		model.addAttribute("size", events.size()-1);
 		
+		String status = customerInquiry.getStatus().toString();
+		model.addAttribute("status", status);
+		
 		return "projectTimeline"; 
 	}
 	
@@ -254,8 +262,42 @@ public class SalesController {
 		model.addAttribute("dates", dateList);
 		model.addAttribute("size", events.size()-1);
 		
+		String status = customerInquiry.getStatus().toString();
+		model.addAttribute("status", status);
+		
 		return "projectTimeline";
 	}
+	
+	@RequestMapping("/updateStatus")
+	public String updateStatus(Model model, String status, String companyName, String inquiry, String subject){
+		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, "");
+	
+		service.updateLeadStatus(customerInquiry, status);
+		
+		Collection<Event> events = service.getAllEventsOf(customerInquiry);
+		
+		ArrayList<String> contentList = new ArrayList<String>();
+		ArrayList<String> titleList = new ArrayList<String>();
+		ArrayList<String> dateList = new ArrayList<String>();
+		for(Event e : events){
+			contentList.add(e.getContent());
+			titleList.add(e.getTitle());
+			dateList.add(new SimpleDateFormat("dd/MM/yyyy").format(e.getDate()));
+		}
+		model.addAttribute("startDate", new SimpleDateFormat("dd/MM/yyyy").format(customerInquiry.getDate()));
+		model.addAttribute("companyName", companyName);
+		model.addAttribute("inquiry", inquiry);
+		model.addAttribute("subject", subject);
+		model.addAttribute("titles", titleList);
+		model.addAttribute("contents", contentList);
+		model.addAttribute("dates", dateList);
+		model.addAttribute("size", events.size()-1);
+		
+		model.addAttribute("status", status);
+		
+		return "projectTimeline";
+	}
+
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public String entityNotFound() {

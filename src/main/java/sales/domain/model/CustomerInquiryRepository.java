@@ -10,4 +10,8 @@ public interface CustomerInquiryRepository {
 
 	void customizeNotification(CustomerInquiry customerInquiry, String amount,
 			String unit);
+
+	String getStatusOf(CustomerInquiry customerInquiry);
+
+	void updateLeadStatus(CustomerInquiry customerInquiry, String status);
 }

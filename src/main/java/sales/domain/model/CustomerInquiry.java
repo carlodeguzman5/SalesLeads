@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class CustomerInquiry implements Serializable{
 
 	public enum Status{
-		CLOSED, ONGOING, PENDING
+		DISCONTINUED, ONGOING, PENDING, SUCCESS
 	}
 	
 	@Id
@@ -59,7 +59,7 @@ public class CustomerInquiry implements Serializable{
 		this.customer = customer;
 		this.inquiry = inquiry;
 		this.date = date;
-		this.status = Status.ONGOING;
+		this.status = Status.PENDING;
 		this.notificationSpan = 24;
 	}
 
