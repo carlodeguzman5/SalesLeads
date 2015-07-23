@@ -1,5 +1,6 @@
 package sales.domain.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="EVENT_T")
-public class Event {
+public class Event implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="EVENT_ID")
@@ -57,5 +58,11 @@ public class Event {
 	
 	public void setAfter(Event after) {
 		this.after = after;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", title=" + title + ", content=" + content
+				+ ", after=" + after + ", date=" + date + "]";
 	}
 }

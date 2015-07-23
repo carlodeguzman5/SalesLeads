@@ -2,35 +2,39 @@ package sales.domain.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 // @IdClass(CustomerInquiryId.class)
 @Table(name = "CUSTOMER_INQUIRY")
-public class CustomerInquiry {
+public class CustomerInquiry implements Serializable{
 
+	public enum Status{
+		CLOSED, ONGOING, PENDING
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "CUSTOMER_NAME")
 	@Lob
 	@Column(name="customer", length = 10000)
 	private Customer customer;
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "INQUIRY_TYPE")
 	@Lob
 	@Column(name="inquiry", length = 10000)
 	private Inquiry inquiry;
@@ -43,6 +47,9 @@ public class CustomerInquiry {
 	private Event timeline;
 	private double budget;
 	private int rating;
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	private int notificationSpan;
 
 	protected CustomerInquiry() { /* USED BY JPA */ }
 	
@@ -52,6 +59,8 @@ public class CustomerInquiry {
 		this.customer = customer;
 		this.inquiry = inquiry;
 		this.date = date;
+		this.status = Status.ONGOING;
+		this.notificationSpan = 24;
 	}
 
 	public String getResponse() {
@@ -104,6 +113,31 @@ public class CustomerInquiry {
 	
 	public void setTimeline(Event timeline) {
 		this.timeline = timeline;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public int getNotificationSpan() {
+		return notificationSpan;
+	}
+
+	public void setNotificationSpan(int notificationSpan) {
+		this.notificationSpan = notificationSpan;
+	}
+
+	@Override
+	public String toString() {
+		return "CustomerInquiry [id=" + id + ", customer=" + customer
+				+ ", inquiry=" + inquiry + ", date=" + date + ", subject="
+				+ subject + ", message=" + message + ", timeline=" + timeline
+				+ ", budget=" + budget + ", rating=" + rating + ", status="
+				+ status + ", notificationSpan=" + notificationSpan + "]";
 	}
 	
 }

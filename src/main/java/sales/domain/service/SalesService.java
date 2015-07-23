@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -20,6 +21,7 @@ import sales.domain.model.Event;
 import sales.domain.model.EventRepository;
 import sales.domain.model.Inquiry;
 import sales.domain.model.InquiryRepository;
+import sales.domain.model.NotificationRepository;
 import sales.infrastructure.jpa.NoExistingInquiryException;
 import sales.interfaces.SalesServiceFacade;
 
@@ -35,14 +37,16 @@ public class SalesService implements SalesServiceFacade {
 	private CustomerInquiryRepository customerInquiryRepository;
 	private EventRepository eventRepository;
 	private UserRepository userRepository;
+	private NotificationRepository notificationRepository;
 
 	@Autowired
-	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository) {
+	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository, NotificationRepository notificationRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
 		this.eventRepository = eventRepository;
 		this.userRepository = userRepository;
+		this.notificationRepository = notificationRepository;
 	}
 
 	public ArrayList<CustomerInquiry> getAllCustomerInquiries() {
@@ -145,6 +149,19 @@ public class SalesService implements SalesServiceFacade {
 			String contactPerson, String email, String customerClassification) {
 		customerRepository.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
 		
+	}
+
+	public void customizeNotification(CustomerInquiry customerInquiry,
+			String amount, String unit) {
+		customerInquiryRepository.customizeNotification(customerInquiry, amount, unit);
+	}
+
+	public void updateNotification(CustomerInquiry customerInquiry) {
+		notificationRepository.updateNotification(customerInquiry, getLastEventOf(customerInquiry));
+	}
+
+	public List getNotifications() {
+		return notificationRepository.getNotifications();
 	}
 	
 }

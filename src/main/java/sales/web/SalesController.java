@@ -3,6 +3,7 @@ package sales.web;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -84,7 +85,8 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/index.html")
-	public String showIndexAlternate() {
+	public String showIndexAlternate(Model model) {
+		List notifs = service.getNotifications();
 		return "index";
 	}
 	@RequestMapping("/Charts.html")
@@ -93,8 +95,6 @@ public class SalesController {
 	}
 	@RequestMapping("/LeadPage.html")
 	public String showLeadPage(Model model){
-		;
-		
 		Collection<CustomerInquiry> ci = service.getAllCustomerInquiries();
 		Collection<String> name = new ArrayList<String>();
 		Collection<String> companyName = new ArrayList<String>();
@@ -197,6 +197,7 @@ public class SalesController {
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, "");
 		Event event = service.createEvent(title, update);
 		service.appendEvent(customerInquiry, event);
+		service.updateNotification(customerInquiry);
 		
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);
 		
@@ -219,6 +220,33 @@ public class SalesController {
 		model.addAttribute("size", events.size()-1);
 		
 		return "projectTimeline"; 
+	}
+	
+	@RequestMapping("/customizeNotification")
+	public String customizeNotification(Model model, String amount, String unit, String companyName, String inquiry, String subject){
+		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, "");
+		service.customizeNotification(customerInquiry, amount, unit);
+		
+		Collection<Event> events = service.getAllEventsOf(customerInquiry);
+		
+		ArrayList<String> contentList = new ArrayList<String>();
+		ArrayList<String> titleList = new ArrayList<String>();
+		ArrayList<String> dateList = new ArrayList<String>();
+		for(Event e : events){
+			contentList.add(e.getContent());
+			titleList.add(e.getTitle());
+			dateList.add(new SimpleDateFormat("dd/MM/yyyy").format(e.getDate()));
+		}
+		model.addAttribute("startDate", new SimpleDateFormat("dd/MM/yyyy").format(customerInquiry.getDate()));
+		model.addAttribute("companyName", companyName);
+		model.addAttribute("inquiry", inquiry);
+		model.addAttribute("subject", subject);
+		model.addAttribute("titles", titleList);
+		model.addAttribute("contents", contentList);
+		model.addAttribute("dates", dateList);
+		model.addAttribute("size", events.size()-1);
+		
+		return "projectTimeline";
 	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)

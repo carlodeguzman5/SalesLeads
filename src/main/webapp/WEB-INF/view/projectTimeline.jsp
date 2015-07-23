@@ -105,10 +105,33 @@ function testOutput(){
 	<div id="wrapper">
 
 		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">${companyName}: ${subject}</h1>
+			<div class="row page-header">
+				<div class="col-lg-6">
+					<h1>${companyName}: ${subject}</h1>
 				</div>
+				<div class="input-group col-lg-6" style="margin-top:28px">
+					<form action="customizeNotification" method="post">
+						<input type="text" name="companyName" value="${companyName}" hidden="true">
+						<input type="text" name="inquiry" value="${inquiry}" hidden="true">
+						<input type="text" name="subject" value="${subject}" hidden="true">
+<!-- 					    <input type="text" name="amount" class="form-control"  placeholder="Notify after"> -->
+						<span class="input-group-btn">
+					    	<select class="form-control" style="width:40%" name="amount" id="amount" required>
+					    		<option value="">amount</option>
+					    		<c:forEach var="i" begin="1" end="100">
+					    			<option>${i}</option>
+					    		</c:forEach>
+						    </select>
+					    	<select class="form-control"  style="width:40%" name="unit" required>
+<!-- 					    		<option value="">unit</option> -->
+<!-- 					    		<option>hrs</option> -->
+					    		<option>days</option>
+						    </select>
+					    	<button class="btn btn-default" type="submit">Set</button>
+					    </span>
+				    </form>
+				</div>
+				
 				<!-- /.col-lg-12 -->
 			</div>
 			<div class="panel panel-default">

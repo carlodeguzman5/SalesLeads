@@ -58,5 +58,17 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 		return query.getSingleResult();
 				
 	}
+	
+	public void customizeNotification(CustomerInquiry customerInquiry, String amount, String unit) {
+		int span = Integer.valueOf(amount);
+		if(unit.equalsIgnoreCase("days")){
+			span = Integer.valueOf(amount) * 24;
+		}
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + customerInquiry.getCustomer().getName() + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		CustomerInquiry ci = getCustomerInquiry(customerInquiry.getCustomer().getName(), customerInquiry.getInquiry().getType(), customerInquiry.getSubject(), customerInquiry.getResponse());
+		ci.setNotificationSpan(span);
+		entityManager.persist(ci);
+		entityManager.flush();
+	}
 
 }

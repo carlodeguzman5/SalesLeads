@@ -7,4 +7,7 @@ public interface CustomerInquiryRepository {
 
 	CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject,
 			String content);
+
+	void customizeNotification(CustomerInquiry customerInquiry, String amount,
+			String unit);
 }
