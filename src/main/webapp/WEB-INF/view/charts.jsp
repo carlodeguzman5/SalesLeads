@@ -317,44 +317,62 @@
 			<div class="container-fluid">
 				<div class="theCharts">
 
-					<h1>Chart page</h1>
-					<!-- line chart canvas element -->
-					<!--<canvas id="buyers" width="600" height="400"></canvas> -->
-					<!-- pie chart canvas element -->
-					<canvas id="countries" width="600" height="400"></canvas>
-					<!-- bar chart canvas element -->
-					<!-- <canvas id="income" width="600" height="400"></canvas> -->
-					<script>
-						var pieData = [ {
-							value : 20,
-							color : "#878BB6",
-							label : "label 1"
-						}, {
-							value : 40,
-							color : "#4ACAB4",
-							label : "label 2"
-						}, {
-							value : 10,
-							color : "#FF8153",
-							label : "label 3"
-						}, {
-							value : 30,
-							color : "#FFEA88",
-							label : "label 4"
-						} ];
-						// pie chart options
-						var pieOptions = {
-							segmentShowStroke : false,
-							animateScale : true
-						}
-						// get pie chart canvas
-						var countries = document.getElementById("countries")
-								.getContext("2d");
-						// draw pie chart
-						new Chart(countries).Pie(pieData, pieOptions);
-					</script>
-				</div>
-				<!-- /.row -->
+                    <h1>Chart page</h1>
+                    <select id="numberValue" style="display:none">
+                        <option>200</option>
+                    </select>
+
+                    <canvas id="buyers" width="600" height="400"></canvas>
+
+                    <script type="text/javascript">
+
+                    var arrays=["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"]
+                  //    var buyerData = {
+                        //  labels : ["January","February","March","April","May","June"],
+                        //  datasets : [
+                        //      {
+                        //          fillColor : "rgba(172,194,132,0.4)",
+                        //          strokeColor : "#ACC26D",
+                        //          pointColor : "#fff",
+                        //          pointStrokeColor : "#9DB86D",
+                        //          data : [203,156,99,251,305,247]
+                        //      }
+                        //  ]
+                        // }
+                        //============================================
+                        var dataValue = document.getElementById('numberValue').value;
+                        var buyerData = {
+                            labels: arrays,
+                            datasets: [
+                                {
+                                    label: "My First dataset",
+                                    fillColor: "rgba(220,220,220,0.2)",
+                                    strokeColor: "rgba(220,220,220,1)",
+                                    pointColor: "rgba(220,220,220,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(220,220,220,1)",
+                                    data: [dataValue, 59, 90, 81, 56, 55, 40]
+                                },
+                                {
+                                    label: "My Second dataset",
+                                    fillColor: "rgba(151,187,205,0.2)",
+                                    strokeColor: "rgba(151,187,205,1)",
+                                    pointColor: "rgba(151,187,205,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(151,187,205,1)",
+                                    data: [28, 48, 40, 19, 96, 27, 100]
+                                }
+                            ]
+                        };
+                        //==============================================
+
+
+                        var buyers = document.getElementById('buyers').getContext('2d');
+                        new Chart(buyers).Radar(buyerData);
+                    </script>
+                 </div>
 			</div>
 			<!-- /.container-fluid -->
 		</div>

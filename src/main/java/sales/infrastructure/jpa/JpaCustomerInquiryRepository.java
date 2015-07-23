@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.net.ssl.SSLEngineResult.Status;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -30,6 +31,8 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 			//+ "AND a.message = :message";
 
 	private static final String SQL_GET_ALL_CUSTOMER_INQUIRIES = "SELECT * FROM customer_inquiry";
+	
+	//private static final String JPQL_GET_STATUS = "SELECT a.status FROM CustomerInquiry AS a WHERE a = :customerInquiry";
 	
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -69,6 +72,19 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 		ci.setNotificationSpan(span);
 		entityManager.persist(ci);
 		entityManager.flush();
+	}
+
+
+	public String getStatusOf(CustomerInquiry customerInquiry) {
+		return customerInquiry.getStatus().toString();
+	}
+
+
+	public void updateLeadStatus(CustomerInquiry customerInquiry, String status) {
+		customerInquiry.setStatus(CustomerInquiry.Status.valueOf(status));
+		entityManager.merge(customerInquiry);
+		entityManager.flush();
+		
 	}
 
 }

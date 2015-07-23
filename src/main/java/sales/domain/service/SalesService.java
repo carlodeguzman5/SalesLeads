@@ -164,5 +164,14 @@ public class SalesService implements SalesServiceFacade {
 	public List<Notification> getNotifications() {
 		return notificationRepository.getNotifications();
 	}
+
+	public String getStatus(CustomerInquiry customerInquiry) {
+		return customerInquiryRepository.getStatusOf(customerInquiry);
+	}
+
+	public void updateLeadStatus(CustomerInquiry customerInquiry, String status) {
+		customerInquiryRepository.updateLeadStatus(customerInquiry, status);
+		
+	}
 	
 }

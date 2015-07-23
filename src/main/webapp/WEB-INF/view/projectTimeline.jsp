@@ -108,6 +108,7 @@ function testOutput(){
 			<div class="row page-header">
 				<div class="col-lg-6">
 					<h1>${companyName}: ${subject}</h1>
+					<h5>Project Status: ${status} </h5>
 				</div>
 				<div class="input-group col-lg-6" style="margin-top:28px">
 					<form action="customizeNotification" method="post">
@@ -129,7 +130,25 @@ function testOutput(){
 						    </select>
 					    	<button class="btn btn-default" type="submit">Set</button>
 					    </span>
+					    					    
 				    </form>
+			    	<form action="updateStatus" method="post">
+			    	
+			    		<input type="text" name="companyName" value="${companyName}" hidden="true">
+						<input type="text" name="inquiry" value="${inquiry}" hidden="true">
+						<input type="text" name="subject" value="${subject}" hidden="true">
+					    
+					    <span class="input-group-btn">
+					    	<label>Status</label>
+					    	<select class="form-control" style="width:70%" name="status" id="status" onchange="this.form.submit()">
+					    		<option value="PENDING">PENDING</option>
+					    		<option value="ONGOING">ONGOING</option>
+					    		<option value="SUCCESS">SUCCESS</option>
+					    		<option value="DISCONTINUED">DISCONTINUED</option>
+						    </select>
+					    </span>
+				    </form>
+				    
 				</div>
 				
 				<!-- /.col-lg-12 -->
