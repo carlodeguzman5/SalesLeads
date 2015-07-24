@@ -47,7 +47,7 @@ public class ManualInputController {
 		Customer customer = service.findCustomer(customerName);
 		Inquiry inquiry = service.findInquiry(oldInquiryType);
 		service.createCustomerInquiry(customer, inquiry, subject, text);
-		return "redirect:/Manual-Input.html";
+		return "redirect:/LeadPage.html";
 	}
 	
 	@RequestMapping(value="/addCustomerClassification", method = RequestMethod.POST)
@@ -66,6 +66,6 @@ public class ManualInputController {
 			return "errors/notFound";
 		}
 		
-		return "redirect:/Manual-Input.html";
+		return "redirect:/showCustomers";
 	}
 }
