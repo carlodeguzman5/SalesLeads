@@ -60,8 +60,8 @@ var checker = {
 function getCustomerInfo(){
 	var customerName = document.getElementById('editCustomerNameSelect').value;
 	var customer = document.getElementById('editCustomerNameSelect').value;
-	
-	var customerInfo = customer.split(" ");
+	console.log(customer);
+	var customerInfo = customer.split("=");
 	
 	if(customerName != ""){
 		document.getElementById('editInfoHidden').style.display="initial";
