@@ -41,7 +41,7 @@
 				<div class="theCharts">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1>Chart page</h1>
+                            <h1>Leads Status Pie Chart</h1>
                         </div>
                         <div class="col-lg-6">
                             <canvas id="countries" width="600" height="400"></canvas>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ include file="dashboard.jsp" %>
+<%@ include file="dashboard.jsp"%>
+
 <html lang="en">
 
 <head>
@@ -14,19 +16,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Lead Page</title>
+<title>Chart</title>
+<script src="<c:url value="/resources/Chart.js-master/Chart.js"/>"></script>
+<script src="<c:url value="/resources/Chart.js-master/Chart.min.js"/>"></script>
 
-<style>
-.linkButton { 
-     background: none;
-     border: none;
-     color: #0066ff;
-     cursor: pointer; 
-}
-.linkButton:hover{
-	text-decoration: underline;
-}
-</style>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,45 +34,32 @@
 <body>
 
 	<div id="wrapper">
+
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 
-                <h1>LEAD PAGE</h1>
-
+                <h1>Customers</h1>
                 <hr>
-
 					<table class="table table-striped table-bordered table-hover">
 					 	<tr> 
-					 		<th>DATE</th> 
-							<th>NAME</th> 
-							<th>COMPANY NAME</th> 
-							<th>RATING</th> 
- 							<th>INQUIRY</th> 
-							<th>SUBJECT</th> 
-							<th>CONTENT</th> 
-							<th>TIMELINE</th> 
+					 		<th>CUSTOMER</th> 
+							<th>CONTACT PERSON</th> 
+							<th>EMAIL</th> 
+							<th>CONTACT NUMBER</th> 
+ 							<th>COMPANY TYPE</th>
  						</tr> 
 
  						<c:if test="${size >= 0}" >
 	 						<c:forEach var="i" begin="0" end="${size}">
 		 						<form action="projectTimeline" method="post">
-		 							<input type="text" name="name" value="${names[i]}" hidden="true">
-		 							<input type="text" name="companyName" value="${companyNames[i]}" hidden="true">
-		 							<input type="text" name="inquiry" value="${inquiries[i]}" hidden="true">
-		 							<input type="text" name="subject" value="${subjects[i]}" hidden="true">
-		 							<input type="text" name="content" value="${contents[i]}" hidden="true">
-		 							<input type="text" name="content" value="${dates[i]}" hidden="true">
 									<tr>		
-										<td>${dates[i]}</td>
-										<td>${names[i]}</td>
-										<td>${companyNames[i]}</td>
-										<td><a href="Charts.html">View Rating</a></td>
-										<td>${inquiries[i]}</td>
-										<td>${subjects[i]}</td>
-										<td>${contents[i]}</td>
-										<td><input class="linkButton" type="submit" value="Timeline"></td>
+										<td>${customers[i]}</td>
+										<td>${contactPersons[i]}</td>
+										<td>${emails[i]}</td>
+										<td>${contactNumbers[i]}</td>
+										<td>${companyTypes[i]}</td>
 									</tr>	
 								</form>
 							</c:forEach>
@@ -87,7 +68,6 @@
 					
 					</table>
 				</div>
-				<!-- /.row -->
 			</div>
 			<!-- /.container-fluid -->
 		</div>

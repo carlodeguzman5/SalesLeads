@@ -269,10 +269,13 @@
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Charts<span class="fa fa-angle-right"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="Charts.html">Pie Chart</a></li>
+								<li><a href="Charts.html">Leads Status</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="LeadPage.html"><i class="fa fa-table fa-fw"></i>
 								Leads</a></li>
+								
+						<li><a href="showCustomers"><i class="fa fa-users fa-fw"></i>
+								Customers</a></li>
 								
 <!-- 						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> -->
 <!-- 								Forms</a></li> -->

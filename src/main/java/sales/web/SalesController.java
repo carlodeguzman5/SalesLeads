@@ -316,6 +316,34 @@ public class SalesController {
 		
 		return "projectTimeline";
 	}
+	
+	@RequestMapping("/showCustomers")
+	public String showCustomers(Model model){
+		Collection<Customer> customers = service.getAllCustomers();
+		
+		ArrayList<String> customerNames = new ArrayList<String>();
+		ArrayList<String> contactPersons = new ArrayList<String>();
+		ArrayList<String> emails = new ArrayList<String>();
+		ArrayList<String> contactNumbers = new ArrayList<String>();
+		ArrayList<String> companyTypes = new ArrayList<String>();
+		
+		for(Customer customer : customers){
+			customerNames.add(customer.getName());
+			contactPersons.add(customer.getContactPerson());
+			emails.add(customer.getEmail());
+			contactNumbers.add(customer.getContactNumber());
+			companyTypes.add(customer.getCustomerClassification().getName());
+		}
+		
+		model.addAttribute("size", customers.size()-1);
+		model.addAttribute("customers", customerNames);
+		model.addAttribute("contactPersons", contactPersons);
+		model.addAttribute("emails", emails);
+		model.addAttribute("contactNumbers", contactNumbers);
+		model.addAttribute("companyTypes", companyTypes);
+		
+		return "customers";
+	}
 
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
