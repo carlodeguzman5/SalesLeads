@@ -3,7 +3,9 @@ package sales.infrastructure.jpa;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -21,6 +23,7 @@ import sales.domain.model.Customer;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.CustomerInquiryRepository;
 import sales.domain.model.Inquiry;
+import sales.domain.model.Notification;
 
 @Repository
 @Transactional
@@ -31,7 +34,7 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 			+ "AND a.subject = :subject ";
 			//+ "AND a.message = :message";
 
-	private static final String SQL_GET_ALL_CUSTOMER_INQUIRIES = "SELECT * FROM customer_inquiry";
+	private static final String JPQL_GET_ALL_CUSTOMER_INQUIRIES = "SELECT a FROM CustomerInquiry a";
 	
 	private static final String JPQL_GET_LEADS_BY_STATUS = "SELECT a FROM CustomerInquiry AS a WHERE a.status = :status";
 	
@@ -85,6 +88,21 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 
 	public List<CustomerInquiry> getLeadsByStatus(String status) {
 		return entityManager.createQuery(JPQL_GET_LEADS_BY_STATUS).setParameter("status", CustomerInquiry.Status.valueOf(status)).getResultList();
+	}
+
+
+	public Collection<CustomerInquiry> getInquiriesByCustomer(String company) {
+		TypedQuery<CustomerInquiry> query = entityManager.createQuery(JPQL_GET_ALL_CUSTOMER_INQUIRIES, CustomerInquiry.class);	
+		Collection<CustomerInquiry> allCustomerInquiries = query.getResultList();
+		List<CustomerInquiry> customerInquiries = new ArrayList<CustomerInquiry>();
+		
+		for(CustomerInquiry ci : allCustomerInquiries){
+			if(ci.getCustomer().getName().equals(company)){
+				customerInquiries.add(ci);
+			}
+		}
+		Collections.reverse(customerInquiries);
+		return customerInquiries;
 	}
 
 }

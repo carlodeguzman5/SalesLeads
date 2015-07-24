@@ -86,6 +86,14 @@ public class Customer implements Serializable{
 		return contactPerson;
 	}
 	
+	public Set<CustomerInquiry> getInquries() {
+		return inquries;
+	}
+
+	public void setInquries(Set<CustomerInquiry> inquries) {
+		this.inquries = inquries;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="classification_fk", insertable=true, updatable=true)
 	public CustomerClassification getCustomerClassification() {

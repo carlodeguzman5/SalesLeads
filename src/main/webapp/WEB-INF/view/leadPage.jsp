@@ -82,24 +82,32 @@
 
  						<c:if test="${size >= 0}" >
 	 						<c:forEach var="i" begin="0" end="${size}">
-		 						<form action="projectTimeline" method="post">
-		 							<input type="text" name="name" value="${names[i]}" hidden="true">
-		 							<input type="text" name="companyName" value="${companyNames[i]}" hidden="true">
-		 							<input type="text" name="inquiry" value="${inquiries[i]}" hidden="true">
-		 							<input type="text" name="subject" value="${subjects[i]}" hidden="true">
-		 							<input type="text" name="content" value="${contents[i]}" hidden="true">
-		 							<input type="text" name="content" value="${dates[i]}" hidden="true">
+		 						
 									<tr>		
 										<td>${dates[i]}</td>
 										<td>${names[i]}</td>
-										<td>${companyNames[i]}</td>
+										<td>
+											<form action="showCustomerHistory" method="post">
+					 							<input type="text" name="company" value="${companyNames[i]}" hidden="true">
+												<input class="linkButton" type="submit" value="${companyNames[i]}">
+											</form>
+										</td>
 										<td><a href="Charts.html">View Rating</a></td>
 										<td>${inquiries[i]}</td>
 										<td>${subjects[i]}</td>
 										<td>${contents[i]}</td>
-										<td><input class="linkButton" type="submit" value="Timeline"></td>
+										<td>
+											<form action="projectTimeline" method="post">
+					 							<input type="text" name="name" value="${names[i]}" hidden="true">
+					 							<input type="text" name="companyName" value="${companyNames[i]}" hidden="true">
+					 							<input type="text" name="inquiry" value="${inquiries[i]}" hidden="true">
+					 							<input type="text" name="subject" value="${subjects[i]}" hidden="true">
+					 							<input type="text" name="content" value="${contents[i]}" hidden="true">
+					 							<input type="text" name="content" value="${dates[i]}" hidden="true">
+												<input class="linkButton" type="submit" value="Timeline">
+											</form>
+										</td>
 									</tr>	
-								</form>
 							</c:forEach>
  						 </c:if> 
  						

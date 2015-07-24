@@ -1,5 +1,6 @@
 package sales.domain.model;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CustomerInquiryRepository {
 	void updateLeadStatus(CustomerInquiry customerInquiry, String status);
 
 	List<CustomerInquiry> getLeadsByStatus(String status);
+
+	Collection<CustomerInquiry> getInquiriesByCustomer(String company);
 }

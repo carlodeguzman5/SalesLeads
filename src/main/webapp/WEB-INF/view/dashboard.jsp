@@ -216,7 +216,7 @@
 			 							<input type="text" name="subject" value="${notif.customerInquiry.subject}" hidden="true">
 			 							<input type="text" name="content" value="${notif.customerInquiry.message}" hidden="true">
 			 							<input type="text" name="date" value="${notif.customerInquiry.date}" hidden="true">
-			 							<button type="submit"  class="btn btn-outline btn-danger"><i class="glyphicon glyphicon-alert"></i> 
+			 							<button type="submit"  class="btn btn-default" style="border-color:white;"><i class="glyphicon glyphicon-alert"></i> 
 			 								${notif.message} <span class="pull-right text-muted small"> ${notif.date} </span>
 										</button>
 									</form>

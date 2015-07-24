@@ -51,10 +51,14 @@ public class SalesController {
 		if(validate.equals("valid")){
 			request.getSession().setAttribute("userid", username);
 			List<Notification> notifs = service.getNotifications();
-			model.addAttribute("notifs", notifs);
-			request.getSession().setAttribute("notifs", notifs);
-			request.getSession().setAttribute("notifSize", notifs.size());
-			System.out.println(notifs.size());
+			if(notifs!=null){
+				model.addAttribute("notifs", notifs);
+				request.getSession().setAttribute("notifs", notifs);
+				request.getSession().setAttribute("notifSize", notifs.size());
+			}
+			else{
+				request.getSession().setAttribute("notifSize", 0);
+			}
 			return "index";
 		}
 		
@@ -190,7 +194,6 @@ public class SalesController {
 		
 	@RequestMapping("/projectTimeline")
 	public String getTimeline(Model model, String date, String companyName, String inquiry, String subject, String content){
-		System.out.println(companyName + inquiry  + subject + content);
 		CustomerInquiry customerInquiry = service.getCustomerInquiry(companyName, inquiry, subject, content);
 		
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);
@@ -317,6 +320,39 @@ public class SalesController {
 		return "projectTimeline";
 	}
 
+	@RequestMapping("/showCustomerHistory")
+	public String showCustomerHistory(Model model, String company){
+		Collection<CustomerInquiry> inquiries = service.getInquiriesByCustomer(company);
+		
+		Collection<String> inquiryType = new ArrayList<String>();
+		Collection<String> date = new ArrayList<String>();
+		Collection<String> subject = new ArrayList<String>();
+		Collection<String> message = new ArrayList<String>();
+		Collection<String> budget = new ArrayList<String>();
+		Collection<String> rating = new ArrayList<String>();
+		Collection<String> status = new ArrayList<String>();
+		
+		for(CustomerInquiry ci : inquiries){
+			inquiryType.add(ci.getInquiry().getType());
+			date.add(ci.getDate().toString());
+			subject.add(ci.getSubject());
+			message.add(ci.getMessage());
+			budget.add(String.valueOf(ci.getBudget()));
+			rating.add(String.valueOf(ci.getRating()));
+			status.add(ci.getStatus().toString());
+		}
+		
+		model.addAttribute("inquiryType", inquiryType);
+		model.addAttribute("date", date);
+		model.addAttribute("subject", subject);
+		model.addAttribute("message", message);
+		model.addAttribute("budget", budget);
+		model.addAttribute("rating", rating);
+		model.addAttribute("status", status);
+		model.addAttribute("size", inquiryType.size()-1);
+		
+		return "customerDetails";
+	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public String entityNotFound() {

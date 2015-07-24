@@ -140,7 +140,7 @@ function testOutput(){
 					    
 					    <span class="input-group-btn">
 					    	<label>Status</label>
-					    	<select class="form-control" style="width:70%" name="status" id="status" onchange="this.form.submit()">
+					    	<select class="form-control" style="width:88.6%" name="status" id="status" onchange="this.form.submit()">
 					    		<option value="PENDING">PENDING</option>
 					    		<option value="ONGOING">ONGOING</option>
 					    		<option value="SUCCESS">SUCCESS</option>

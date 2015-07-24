@@ -173,5 +173,9 @@ public class SalesService implements SalesServiceFacade {
 		customerInquiryRepository.updateLeadStatus(customerInquiry, status);
 		
 	}
+
+	public Collection<CustomerInquiry> getInquiriesByCustomer(String company) {
+		return customerInquiryRepository.getInquiriesByCustomer(company);
+	}
 	
 }

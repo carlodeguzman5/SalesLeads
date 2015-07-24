@@ -85,7 +85,6 @@ public class JpaNotificationRepository implements NotificationRepository {
 
 	public List<Notification> getNotifications() {
 		List<Notification> notifs = new ArrayList<Notification>();
-		System.out.println("getting notifs..");
 		
 		try{
 			TypedQuery<Notification> query = entityManager.createQuery(JPQL_GETALL_NOTIFICATION, Notification.class);	
@@ -99,8 +98,11 @@ public class JpaNotificationRepository implements NotificationRepository {
 				}
 			}
 		}
-		catch(Exception e){System.out.println("does exist");}
-		
+		catch(Exception e){
+			System.out.println("does not exist");
+			return null;
+		}
+
 		return notifs;
 	}
 
