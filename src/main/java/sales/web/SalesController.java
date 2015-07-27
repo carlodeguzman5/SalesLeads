@@ -236,7 +236,7 @@ public class SalesController {
 		Event event = service.createEvent(title, update, parsedDate);
 		service.appendEvent(customerInquiry, event);
 		service.updateNotification(customerInquiry);
-		
+		/*
 		Collection<Event> events = service.getAllEventsOf(customerInquiry);
 		
 		ArrayList<String> contentList = new ArrayList<String>();
@@ -255,12 +255,12 @@ public class SalesController {
 		model.addAttribute("titles", titleList);
 		model.addAttribute("contents", contentList);
 		model.addAttribute("dates", dateList);
-		model.addAttribute("size", events.size()-1);
+		model.addAttribute("size", events.size()-1);*/
 		
 		String status = customerInquiry.getStatus().toString();
 		model.addAttribute("status", status);
 		
-		return "projectTimeline"; 
+		return getTimeline(model, update, companyName, inquiry, subject, update); 
 	}
 	
 	@RequestMapping("/customizeNotification")
