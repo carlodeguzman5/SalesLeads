@@ -3,15 +3,18 @@ package sales.interfaces;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import sales.domain.model.ContactPerson;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
+import sales.domain.model.Notification;
 import sales.infrastructure.jpa.NoExistingInquiryException;
 
-public interface SalesServiceFacade {
+public interface SalesService {
 	
 	public ArrayList<CustomerInquiry> getAllCustomerInquiries();
 	
@@ -45,5 +48,27 @@ public interface SalesServiceFacade {
 	
 	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName, String subject,
 			String content);
+	
+	public void addContactPersonToCustomer(Customer customer, String name, String email, String contactNumber);
+
+	public String validateUser(String username, String password);
+
+	public List<Notification> getNotifications();
+
+	public void createUser(String username, String password);
+
+	public List<CustomerInquiry> getLeadsByStatus(String string);
+
+	public Collection<ContactPerson> getContactPersonsOf(Customer customer);
+
+	public Collection<CustomerClassification> getAllCustomerClassifications();
+
+	public void updateNotification(CustomerInquiry customerInquiry);
+
+	public void customizeNotification(CustomerInquiry customerInquiry, String amount, String unit);
+
+	public void updateLeadStatus(CustomerInquiry customerInquiry, String status);
+
+	public Collection<CustomerInquiry> getInquiriesByCustomer(String company);
 
 }

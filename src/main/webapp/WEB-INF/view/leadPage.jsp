@@ -45,7 +45,7 @@
 			<div class="container-fluid">
 				<div class="row">
 
-                <h1>LEAD PAGE</h1>
+                <h1>Leads</h1>
 
                 <hr>
 

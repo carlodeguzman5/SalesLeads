@@ -21,12 +21,10 @@ public class Customer implements Serializable{
 	@Id
 	@Column(name="NAME")
 	private String name;
-	@Column(name="EMAIL")
-	private String email;
-	@Column(name="CONTACT_NUMBER")
-	private String contactNumber;
-	@Column(name="CONTACT_PERSON")
-	private String contactPerson;
+
+	@OneToMany(cascade=CascadeType.ALL)
+	private Set<ContactPerson> contactPersons;
+	
 	@Column(name="CUSTOMER_CLASSIFICATION",length=1000)
 	private CustomerClassification classification;
 	
@@ -36,22 +34,10 @@ public class Customer implements Serializable{
 
 	protected Customer(){/*AS NEEDED BY JPA*/}
 	
-	public Customer(String name, String contactPerson, CustomerClassification classification) {
+	public Customer(String name, CustomerClassification classification) {
 		notEmpty(name);
-		notEmpty(contactPerson);
 		this.name = name;
-		this.contactPerson = contactPerson;
 		this.classification = classification;
-	}
-	
-	public Customer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification){
-		this(name, contactPerson, classification);
-		this.email=email;
-		this.contactNumber=contactNumber;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public CustomerClassification getClassification() {
@@ -61,29 +47,9 @@ public class Customer implements Serializable{
 	public void setClassification(CustomerClassification classification) {
 		this.classification = classification;
 	}
-
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
+	
 	public String getName() {
 		return name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public String getContactPerson() {
-		return contactPerson;
 	}
 	
 	public Set<CustomerInquiry> getInquries() {
@@ -99,15 +65,8 @@ public class Customer implements Serializable{
 	public CustomerClassification getCustomerClassification() {
 		return classification;
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [name=" + name + ", email=" + email
-				+ ", contactNumber=" + contactNumber + ", contactPerson="
-				+ contactPerson + ", classification=" + classification
-				+ ", inquries=" + inquries + "]";
+	
+	public Set<ContactPerson> getContactPersons(){
+		return contactPersons;
 	}
-	
-	
-
 }

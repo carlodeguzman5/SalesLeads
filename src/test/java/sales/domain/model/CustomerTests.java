@@ -11,7 +11,9 @@ public class CustomerTests {
 		CustomerClassification telCom = new CustomerClassification(
 				"Telecommunications");
 		
-		Customer customer = new Customer("Globe", "Adrian Adame", telCom);
+		//ContactPerson contactPerson = new ContactPerson("Adrian Adame","adrian@gmail.com","09123456789");
+		Customer customer = new Customer("Globe", telCom);
+		
 		
 		assertEquals(telCom.getName(), customer.getCustomerClassification().getName());
 	}
@@ -21,7 +23,7 @@ public class CustomerTests {
 		CustomerClassification telCom = new CustomerClassification(
 				"Telecommunications");
 		
-		Customer customer = new Customer("", "Adrian Adame", telCom);
+		Customer customer = new Customer("", telCom);
 		
 	}
 	
