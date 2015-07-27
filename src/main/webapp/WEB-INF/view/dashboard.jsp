@@ -35,7 +35,10 @@
 		        var element = document.getElementById("user");
 		        element.innerHTML = profile.getEmail();
 		        console.log(profile.getImageUrl());
-		        document.getElementById("image").setAttribute("src", profile.getImageUrl());
+		        if(profile.getImageUrl()!=undefined){
+		        	document.getElementById("image").setAttribute("src", profile.getImageUrl());
+		        }
+		        
 	        });
 	      });
 	    }
