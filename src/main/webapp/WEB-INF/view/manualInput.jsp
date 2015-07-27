@@ -94,7 +94,7 @@
 								<select class="form-control" name="customerName" id="editCustomerNameSelect" onchange="getCustomerInfo()" required="required" >
 									<option value="">Choose a customer</option>
 									<c:forEach var="companyName" items="${company}">
-										<option value="${companyName.name} ${companyName.contactNumber} ${companyName.contactPerson} ${companyName.email}">${companyName.name}</option>
+										<option value="${companyName.name}=${companyName.contactNumber}=${companyName.contactPerson}=${companyName.email}">${companyName.name}</option>
 									</c:forEach>
 								</select>
 							

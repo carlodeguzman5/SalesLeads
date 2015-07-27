@@ -196,7 +196,7 @@ public class SalesController {
 	@RequestMapping("/updateCustomer")
 	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPerson, String editEmail, String editCustomerClassification){
 		service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
-		return "redirect:/Manual-Input.html";
+		return "redirect:/showCustomers";
 	}
 		
 	@RequestMapping("/projectTimeline")

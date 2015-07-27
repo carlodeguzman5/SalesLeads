@@ -201,15 +201,15 @@
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-alerts">
+						<c:if test="${sessionScope.notifSize<=0}">
+							<div>
+								<i class="fa fa-comment fa-fw"></i> No notification <span
+								class="pull-right text-muted small"> ${notif.date} </span>
+							</div>
+						</c:if>
 						<c:if test="${sessionScope.notifSize>0}">
 							<c:forEach var="notif" items="${sessionScope.notifs}">
 								<li>
-<!-- 									<a href="LeadPage.html"> -->
-<!-- 										<div> -->
-<%-- 											<i class="fa fa-comment fa-fw"></i> ${notif.message} <span --%>
-<%-- 												class="pull-right text-muted small"> ${notif.date} </span> --%>
-<!-- 										</div> -->
-<!-- 									</a> -->
 									<form action="projectTimeline" method="post">
 										<input type="text" name="companyName" value="${notif.customerInquiry.customer.name}" hidden="true">
 			 							<input type="text" name="inquiry" value="${notif.customerInquiry.inquiry.type}" hidden="true">
