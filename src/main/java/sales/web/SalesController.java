@@ -65,6 +65,21 @@ public class SalesController {
 		return "login";
 	}
 	
+	@RequestMapping("/signIn")
+	public String signIn(HttpServletRequest request, Model model){
+		request.getSession().setAttribute("userid", "username");
+		List<Notification> notifs = service.getNotifications();
+		if(notifs!=null){
+			model.addAttribute("notifs", notifs);
+			request.getSession().setAttribute("notifs", notifs);
+			request.getSession().setAttribute("notifSize", notifs.size());
+		}
+		else{
+			request.getSession().setAttribute("notifSize", 0);
+		}
+		return "index";
+	}
+	
 	@RequestMapping("/signup.html")
 	public String signUp(Model model){
 		model.addAttribute("result", "valid");

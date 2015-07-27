@@ -16,6 +16,31 @@
 
 <head>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+</script>
+<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+</script>
+
+<script>
+	    function start() {
+	      gapi.load('auth2', function() {
+	        auth2 = gapi.auth2.init({
+	          client_id: '402064518382-saojo0fotfnofc719oolpk418mgoonjt.apps.googleusercontent.com',
+	          // Scopes to request in addition to 'profile' and 'email'
+	          //scope: 'additional_scope'
+	        });
+	        auth2.signIn().then(function() {
+		        var profile = auth2.currentUser.get().getBasicProfile();
+		        console.log(profile.getEmail());
+		        var element = document.getElementById("user");
+		        element.innerHTML = profile.getEmail();
+		        console.log(profile.getImageUrl());
+		        document.getElementById("image").setAttribute("src", profile.getImageUrl());
+	        });
+	      });
+	    }
+</script>
+	    
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,7 +102,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><c:out value="${sessionScope.userid}"/></a>
+				<img id="image" style="width:40px;height:40px;border-radius:100px">
+				<a class="navbar-brand" id="user" href="index.html"></a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -235,7 +261,7 @@
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
+						<li><a href="#" onclick="signOut()"><i class="fa fa-sign-out fa-fw"></i>
 								Logout</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
@@ -346,5 +372,27 @@
 	<script src="<c:url value="/resources/chosen/chosen.jquery.js"/>"></script>
 
 </body>
+
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+
+		  var profile = auth2.currentUser.get().getBasicProfile();
+		  console.log(profile.getEmail());
+		  
+		  $.ajax({
+		      type: 'POST',
+		      url: 'http://localhost:8080/SalesLeads/logout',
+		      contentType: 'application/octet-stream; charset=utf-8',
+		      success: function(result) {
+		        // Handle or verify the server response.
+		        window.location.href = "index.html";
+		      }
+		    });
+      console.log('User signed out.');
+    });
+  }
+</script>
 
 </html>
