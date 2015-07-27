@@ -134,10 +134,7 @@ public class SalesController {
 		
 		
 		for(CustomerInquiry c : ci){
-			Collection<ContactPerson> contactPersons = service.getContactPersonsOf(c.getCustomer());
-			for(ContactPerson cp : contactPersons){
-				name.add(cp.getName());
-			}
+
 			companyName.add(c.getCustomer().getName());
 			inquiry.add(c.getInquiry().getType());
 			subject.add(c.getSubject());
@@ -145,8 +142,7 @@ public class SalesController {
 			date.add(new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(c.getDate()));
 		}
 		
-		model.addAttribute("size", name.size()-1);
-		model.addAttribute("names", name);
+		model.addAttribute("size", date.size()-1);
 		model.addAttribute("companyNames", companyName);
 		model.addAttribute("inquiries", inquiry);
 		model.addAttribute("subjects", subject);
@@ -339,11 +335,17 @@ public class SalesController {
 		
 		for(Customer customer : customers){
 			Collection<ContactPerson> contactPersons = service.getContactPersonsOf(customer);
+			StringBuilder emailStrings = new StringBuilder();
+			StringBuilder contactStrings = new StringBuilder();
+			StringBuilder contactNumberStrings = new StringBuilder();
 			for(ContactPerson cp : contactPersons){
-				contactNames.add(cp.getName());
-				emails.add(cp.getEmail());
-				contactNumbers.add(cp.getContactNumber());
+				contactStrings.append(cp.getName()+"<br>");
+				emailStrings.append(cp.getEmail()+"<br>");
+				contactNumberStrings.append(cp.getContactNumber()+"<br>");
 			}
+			contactNumbers.add(contactNumberStrings.toString());
+			contactNames.add(contactStrings.toString());
+			emails.add(emailStrings.toString());
 			customerNames.add(customer.getName());
 			companyTypes.add(customer.getCustomerClassification().getName());
 		}
@@ -390,6 +392,12 @@ public class SalesController {
 		model.addAttribute("size", inquiryType.size()-1);
 		
 		return "customerDetails";
+	}
+	
+	@RequestMapping("/addContact")
+	public String addContact(Model model, String contactPersonName, String email, String contactNumber, String customer){
+		service.addContactPersonToCustomer(service.findCustomer(customer), contactPersonName, email, contactNumber);
+		return showCustomers(model);
 	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)

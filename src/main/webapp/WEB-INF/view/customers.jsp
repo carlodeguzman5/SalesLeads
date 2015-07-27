@@ -31,6 +31,14 @@
 
 </head>
 
+<style>
+#addBtn {
+	padding: 5;
+	border: none;
+	background: none;
+}
+</style>
+
 <body>
 
 	<div id="wrapper">
@@ -40,33 +48,66 @@
 			<div class="container-fluid">
 				<div class="row">
 
-                <h1>Customers</h1>
-                <hr>
+					<h1>Customers</h1>
+					<hr>
 					<table class="table table-striped table-bordered table-hover">
-					 	<tr> 
-					 		<th>CUSTOMER</th> 
-							<th>CONTACT PERSON</th> 
-							<th>EMAIL</th> 
-							<th>CONTACT NUMBER</th> 
- 							<th>COMPANY TYPE</th>
- 						</tr> 
+						<tr>
+							<th>CUSTOMER</th>
+							<th>CONTACT PERSON
+								<button id="addBtn" class="fa fa-plus-circle"
+									data-toggle="modal" data-target="#myModal"></button>
+							</th>
+							<th>EMAIL</th>
+							<th>CONTACT NUMBER</th>
+							<th>COMPANY TYPE</th>
+						</tr>
 
- 						<c:if test="${size >= 0}" >
-	 						<c:forEach var="i" begin="0" end="${size}">
-		 						<form action="projectTimeline" method="post">
-									<tr>		
+						<c:if test="${size >= 0}">
+							<c:forEach var="i" begin="0" end="${size}">
+								<form action="projectTimeline" method="post">
+									<tr>
 										<td>${customers[i]}</td>
 										<td>${contactPersons[i]}</td>
 										<td>${emails[i]}</td>
 										<td>${contactNumbers[i]}</td>
 										<td>${companyTypes[i]}</td>
-									</tr>	
+									</tr>
 								</form>
 							</c:forEach>
- 						 </c:if> 
- 						
-					
+						</c:if>
 					</table>
+				</div>
+			</div>
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Add New Contact Person</h4>
+						</div>
+						<div class="modal-body">
+							<form class="container-fluid" method="post" action="addContact">
+								<label>Choose a Customer to add a Contact</label>
+								<select class="form-control" name="customer">
+									<c:forEach var="i" begin="0" end="${size}">
+										<option>${customers[i]}</option>
+									</c:forEach>
+								</select>
+								<label>Contact Person's Name</label>
+								<input class="form-control" type="text" name="contactPersonName" required/>
+								<label>Contact Person's Email</label>
+								<input class="form-control" type="email" name="email" required/>
+								<label>Contact Person's Contact Number</label>
+								<input class="form-control" type="tel" name="contactNumber" required/>
+								<input type="submit" value="Add Contact">
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<form></form>
 				</div>
 			</div>
 			<!-- /.container-fluid -->

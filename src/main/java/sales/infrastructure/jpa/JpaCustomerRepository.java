@@ -53,7 +53,7 @@ public class JpaCustomerRepository implements CustomerRepository {
 		Customer customer = new Customer(name, classification);
 		entityManager.persist(customer);
 		entityManager.flush();
-		ContactPerson contact = new ContactPerson(contactPerson, email, contactNumber, customer);
+		ContactPerson contact = new ContactPerson(contactPerson,contactNumber, email, customer);
 		entityManager.persist(contact);
 		entityManager.flush();	
 		
@@ -99,7 +99,7 @@ public class JpaCustomerRepository implements CustomerRepository {
 
 	public void addContactPersonToCustomer(Customer customer, String name, String email, String contactNumber) {
 		ContactPerson contactPerson = new ContactPerson(name, email, contactNumber, customer);
-		entityManager.persist(contactPerson);
+		entityManager.merge(contactPerson);
 		entityManager.merge(customer);
 		
 		
