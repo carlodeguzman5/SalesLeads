@@ -50,50 +50,58 @@
                 <hr>
 
 					<table class="table table-striped table-bordered table-hover">
-					 	<tr> 
-					 		<th>DATE</th> 
-							<!-- <th>NAME</th>  -->
-							<th>COMPANY NAME</th> 
-							<th>RATING</th> 
- 							<th>INQUIRY</th> 
-							<th>SUBJECT</th> 
-							<th>CONTENT</th> 
-							<th>TIMELINE</th> 
- 						</tr> 
+                        <tr> 
+                            <th>DATE</th> 
+                            <th>NAME</th> 
+                            <th>COMPANY NAME</th> 
+                            <th>RATING</th> 
+                            <th>INQUIRY</th> 
+                            <th>SUBJECT</th> 
+                            <th>CONTENT</th> 
+                            <th>TIMELINE</th> 
+                        </tr> 
 
- 						<c:if test="${size >= 0}" >
-	 						<c:forEach var="i" begin="0" end="${size}">
-		 						
-									<tr>		
-										<td>${dates[i]}</td>
-										<%-- <td>${names[i]}</td> --%>
-										<td>
-											<form action="showCustomerHistory" method="post">
-					 							<input type="text" name="company" value="${companyNames[i]}" hidden="true">
-												<input class="linkButton" type="submit" value="${companyNames[i]}">
-											</form>
-										</td>
-										<td><a href="Charts.html">View Rating</a></td>
-										<td>${inquiries[i]}</td>
-										<td>${subjects[i]}</td>
-										<td>${contents[i]}</td>
-										<td>
-											<form action="projectTimeline" method="post">
-					 							<input type="text" name="name" value="${names[i]}" hidden="true">
-					 							<input type="text" name="companyName" value="${companyNames[i]}" hidden="true">
-					 							<input type="text" name="inquiry" value="${inquiries[i]}" hidden="true">
-					 							<input type="text" name="subject" value="${subjects[i]}" hidden="true">
-					 							<input type="text" name="content" value="${contents[i]}" hidden="true">
-					 							<input type="text" name="content" value="${dates[i]}" hidden="true">
-												<input class="linkButton" type="submit" value="Timeline">
-											</form>
-										</td>
-									</tr>	
-							</c:forEach>
- 						 </c:if> 
- 						
-					
-					</table>
+                        <c:if test="${size >= 0}" >
+                            <c:forEach var="i" begin="0" end="${size}">
+                                
+                                    <tr>        
+                                        <td>${dates[i]}</td>
+                                        <td>${names[i]}</td>
+                                        <td>
+                                            <form action="showCustomerHistory" method="post">
+                                                <input type="text" name="company" value="${companyNames[i]}" hidden="true">
+                                                <input class="linkButton" type="submit" value="${companyNames[i]}">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-star-o" id="star1"></i>
+                                            <i class="fa fa-star-o" id="star2"></i>
+                                            <i class="fa fa-star-o" id="star3"></i>
+                                            <i class="fa fa-star-o" id="star4"></i>
+                                            <i class="fa fa-star-o" id="star5"></i>
+                                        </td>
+                                        <td>${inquiries[i]}</td>
+                                        <td>${subjects[i]}</td>
+                                        <td>${contents[i]}</td>
+                                        <td>
+                                            <form action="projectTimeline" method="post">
+                                                <input type="text" name="name" value="${names[i]}" hidden="true">
+                                                <input type="text" name="companyName" value="${companyNames[i]}" hidden="true">
+                                                <input type="text" name="inquiry" value="${inquiries[i]}" hidden="true">
+                                                <input type="text" name="subject" value="${subjects[i]}" hidden="true">
+                                                <input type="text" name="content" value="${contents[i]}" hidden="true">
+                                                <input type="text" name="content" value="${dates[i]}" hidden="true">
+                                                <input class="linkButton" type="submit" value="Timeline">
+                                            </form>
+                                        </td>
+                                    </tr>   
+                            </c:forEach>
+                         </c:if> 
+                        
+                    
+                    </table>
+
+                    <button onclick="starTestChange()">Change star</button>
 				</div>
 				<!-- /.row -->
 			</div>

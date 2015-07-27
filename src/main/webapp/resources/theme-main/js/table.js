@@ -43,3 +43,15 @@ function addNewThing () {
 
 	document.getElementById('tableBody').appendChild(newRow);
 }
+
+function starTestChange(){
+	var star1 = document.getElementById('star1');
+	var star2 = document.getElementById('star2');
+	var star3 = document.getElementById('star3');
+	var star4 = document.getElementById('star4');
+	var star5 = document.getElementById('star5');
+
+	star1.className="fa fa-star";
+	star2.className="fa fa-star";
+	star3.className="fa fa-star-half-empty";
+}
