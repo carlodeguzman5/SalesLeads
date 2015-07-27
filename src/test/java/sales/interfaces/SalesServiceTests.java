@@ -29,7 +29,7 @@ import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
-import sales.domain.service.SalesService;
+import sales.domain.service.SalesServiceImpl;
 import sales.infrastructure.jpa.NoExistingInquiryException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,7 +39,7 @@ public class SalesServiceTests {
 
 	@Autowired
 	protected ApplicationContext context;
-	protected SalesServiceFacade service;
+	protected SalesService service;
 
 	@PersistenceUnit
 	protected EntityManagerFactory entityManagerFactory;
@@ -47,7 +47,7 @@ public class SalesServiceTests {
 
 	@Before
 	public void setUp() throws Exception {
-		service = context.getBean(SalesService.class);
+		service = context.getBean(SalesServiceImpl.class);
 		assertNotNull(
 				"Please provide a service implementation", service);
 		entityManager = entityManagerFactory.createEntityManager();
@@ -69,9 +69,9 @@ public class SalesServiceTests {
 	}
 	
 	protected void setUpCustomers() { 
-		Customer globe = new Customer("Globe", "Adrian Adame", entityManager.find(CustomerClassification.class, "Telecommunications"));
-		Customer wilcon = new Customer("Wilcon", "Adrian Adame", entityManager.find(CustomerClassification.class, "Hardware"));
-		Customer accountant = new Customer("R.G. Manabat & Co.", "Henry Antonio", entityManager.find(CustomerClassification.class, "Accounting Firm"));
+		Customer globe = new Customer("Globe", entityManager.find(CustomerClassification.class, "Telecommunications"));
+		Customer wilcon = new Customer("Wilcon", entityManager.find(CustomerClassification.class, "Hardware"));
+		Customer accountant = new Customer("R.G. Manabat & Co.", entityManager.find(CustomerClassification.class, "Accounting Firm"));
 		entityManager.persist(globe);
 		entityManager.persist(wilcon);
 		entityManager.persist(accountant);

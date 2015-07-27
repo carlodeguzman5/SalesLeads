@@ -288,8 +288,8 @@
 								Manual Input<span class="fa fa-angle-right"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="Manual-Input.html">Manual Inquiry Input</a></li>
-								<li><a href="Manual-Input-Report.html">Manual Sales
-										Report</a></li>
+								<!-- <li><a href="Manual-Input-Report.html">Manual Sales
+										Report</a></li> -->
 							</ul> <!-- /.nav-second-level --></li>
 							
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>

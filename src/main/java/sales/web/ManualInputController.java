@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.Inquiry;
-import sales.domain.service.SalesService;
+import sales.domain.service.SalesServiceImpl;
 import sales.infrastructure.jpa.NoExistingInquiryException;
-import sales.interfaces.SalesServiceFacade;
+import sales.interfaces.SalesService;
 
 @Controller
 public class ManualInputController {
 
-	protected SalesServiceFacade service;
+	protected SalesService service;
 	
 	@Autowired
-	public ManualInputController(SalesService service) {
+	public ManualInputController(SalesServiceImpl service) {
 		this.service = service;
 	}
 	

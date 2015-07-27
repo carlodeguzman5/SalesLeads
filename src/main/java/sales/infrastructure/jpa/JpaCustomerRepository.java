@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import sales.domain.model.ContactPerson;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
@@ -31,6 +32,10 @@ public class JpaCustomerRepository implements CustomerRepository {
 	private static final String SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS= "SELECT *"
 			+ " FROM CUSTOMER_CLASSIFICATION";
 	
+	private static final String JPQL_FIND_ALL_CONTACT_PERSONS= "SELECT a"
+			+ " FROM ContactPerson AS a WHERE"
+			+ " a.customer = :customer";
+	
 	@PersistenceContext
 	protected EntityManager entityManager;
 
@@ -44,16 +49,15 @@ public class JpaCustomerRepository implements CustomerRepository {
 		return customer;
 	}
 
-	public void createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification) {
-		System.out.println(name);
-		System.out.println(contactPerson);
-
-		System.out.println(email);
-		System.out.println(classification);
-		Customer customer = new Customer(name, contactPerson, contactNumber, email, classification);
+	public Customer createCustomer(String name, String contactPerson, String email, String contactNumber, CustomerClassification classification) {
+		Customer customer = new Customer(name, classification);
 		entityManager.persist(customer);
 		entityManager.flush();
+		ContactPerson contact = new ContactPerson(contactPerson,contactNumber, email, customer);
+		entityManager.persist(contact);
+		entityManager.flush();	
 		
+		return customer;
 	}
 
 	public Collection<Customer> getAllCustomers() {
@@ -81,14 +85,24 @@ public class JpaCustomerRepository implements CustomerRepository {
 		return entityManager.createNativeQuery(SQL_FIND_ALL_CUSTOMER_CLASSIFICATIONS, CustomerClassification.class).getResultList();
 	}
 
-	public void updateCustomer(String customerName, String contactNumber,
-			String contactPerson, String email, String customerClassification) {
+	public void updateCustomer(String customerName, String contactNumber, String contactPerson, String email,
+			String customerClassification) {
 		 Customer customer = entityManager.find(Customer.class, customerName);
-		 customer.setContactNumber(contactNumber);
-		 customer.setContactPerson(contactPerson);
-		 customer.setEmail(email);
+		 
 		 customer.setClassification(new CustomerClassification(customerClassification));
-		 entityManager.persist(customer);
+		 entityManager.merge(customer);
+	}
+
+	public Collection<ContactPerson> getAllContactPersons(Customer customer) {
+		return entityManager.createQuery(JPQL_FIND_ALL_CONTACT_PERSONS).setParameter("customer", customer).getResultList();
+	}
+
+	public void addContactPersonToCustomer(Customer customer, String name, String email, String contactNumber) {
+		ContactPerson contactPerson = new ContactPerson(name, email, contactNumber, customer);
+		entityManager.merge(contactPerson);
+		entityManager.merge(customer);
+		
+		
 	}
 	
 }

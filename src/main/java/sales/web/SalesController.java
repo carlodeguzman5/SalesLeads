@@ -18,13 +18,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sales.domain.model.ContactPerson;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
 import sales.domain.model.Event;
 import sales.domain.model.Inquiry;
 import sales.domain.model.Notification;
-import sales.domain.service.SalesService;
+import sales.domain.service.SalesServiceImpl;
+import sales.interfaces.SalesService;
 
 @Controller
 public class SalesController {
@@ -32,7 +34,7 @@ public class SalesController {
 	private SalesService service;
 	
 	@Autowired
-	public SalesController (SalesService service) {
+	public SalesController (SalesServiceImpl service) {
 		this.service = service;
 	}
 	
@@ -144,8 +146,10 @@ public class SalesController {
 		Collection<String> content = new ArrayList<String>();
 		Collection<String> date = new ArrayList<String>();
 		
+		
+		
 		for(CustomerInquiry c : ci){
-			name.add(c.getCustomer().getContactPerson());
+
 			companyName.add(c.getCustomer().getName());
 			inquiry.add(c.getInquiry().getType());
 			subject.add(c.getSubject());
@@ -153,8 +157,7 @@ public class SalesController {
 			date.add(new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(c.getDate()));
 		}
 		
-		model.addAttribute("size", name.size()-1);
-		model.addAttribute("names", name);
+		model.addAttribute("size", date.size()-1);
 		model.addAttribute("companyNames", companyName);
 		model.addAttribute("inquiries", inquiry);
 		model.addAttribute("subjects", subject);
@@ -189,7 +192,7 @@ public class SalesController {
 		model.addAttribute("inquiryTypes", inquiryStrings);
 		
 		model.addAttribute("companyNames", customerStrings);
-		model.addAttribute("company", customers);
+		//model.addAttribute("company", customers);
 		
 		model.addAttribute("customerClassifications", customerClassificationStrings);
 		
@@ -340,22 +343,31 @@ public class SalesController {
 		Collection<Customer> customers = service.getAllCustomers();
 		
 		ArrayList<String> customerNames = new ArrayList<String>();
-		ArrayList<String> contactPersons = new ArrayList<String>();
+		ArrayList<String> contactNames = new ArrayList<String>();
 		ArrayList<String> emails = new ArrayList<String>();
 		ArrayList<String> contactNumbers = new ArrayList<String>();
 		ArrayList<String> companyTypes = new ArrayList<String>();
 		
 		for(Customer customer : customers){
+			Collection<ContactPerson> contactPersons = service.getContactPersonsOf(customer);
+			StringBuilder emailStrings = new StringBuilder();
+			StringBuilder contactStrings = new StringBuilder();
+			StringBuilder contactNumberStrings = new StringBuilder();
+			for(ContactPerson cp : contactPersons){
+				contactStrings.append(cp.getName()+"<br>");
+				emailStrings.append(cp.getEmail()+"<br>");
+				contactNumberStrings.append(cp.getContactNumber()+"<br>");
+			}
+			contactNumbers.add(contactNumberStrings.toString());
+			contactNames.add(contactStrings.toString());
+			emails.add(emailStrings.toString());
 			customerNames.add(customer.getName());
-			contactPersons.add(customer.getContactPerson());
-			emails.add(customer.getEmail());
-			contactNumbers.add(customer.getContactNumber());
 			companyTypes.add(customer.getCustomerClassification().getName());
 		}
 		
 		model.addAttribute("size", customers.size()-1);
 		model.addAttribute("customers", customerNames);
-		model.addAttribute("contactPersons", contactPersons);
+		model.addAttribute("contactPersons", contactNames);
 		model.addAttribute("emails", emails);
 		model.addAttribute("contactNumbers", contactNumbers);
 		model.addAttribute("companyTypes", companyTypes);
@@ -395,6 +407,12 @@ public class SalesController {
 		model.addAttribute("size", inquiryType.size()-1);
 		
 		return "customerDetails";
+	}
+	
+	@RequestMapping("/addContact")
+	public String addContact(Model model, String contactPersonName, String email, String contactNumber, String customer){
+		service.addContactPersonToCustomer(service.findCustomer(customer), contactPersonName, email, contactNumber);
+		return showCustomers(model);
 	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)

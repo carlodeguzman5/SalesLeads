@@ -48,7 +48,7 @@ public class JpaEventRepositoryTests {
 	@Test
 	public void getInitialEventInTimelineTest(){
 		CustomerClassification classification = new CustomerClassification("Food");
-		Customer customer = new Customer("McDo", "Ronald", "ron@mcdo.com", "86236", classification);
+		Customer customer = new Customer("McDo", classification);
 		Inquiry inquiry = new Inquiry("Development");
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, "Subject", "Message", new Date());
 		CustomerInquiry customerInquiry = customerRepository.getAllCustomerInquiries().get(0);
@@ -63,7 +63,7 @@ public class JpaEventRepositoryTests {
 	@Test
 	public void getLastEvent(){
 		CustomerClassification classification = new CustomerClassification("Food");
-		Customer customer = new Customer("McDo", "Ronald", "ron@mcdo.com", "86236", classification);
+		Customer customer = new Customer("McDo", classification);
 		Inquiry inquiry = new Inquiry("Development");
 		customerInquiryRepository.createCustomerInquiry(customer, inquiry, "Subject", "Message", new Date());
 		CustomerInquiry customerInquiry = customerRepository.getAllCustomerInquiries().get(0);

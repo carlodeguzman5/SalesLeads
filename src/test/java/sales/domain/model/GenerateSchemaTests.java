@@ -18,7 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import sales.domain.service.SalesService;
+import sales.domain.service.SalesServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -28,7 +28,7 @@ public class GenerateSchemaTests {
 	@Autowired
 	protected ApplicationContext context;
 
-	protected SalesService service;
+	protected SalesServiceImpl service;
 	
 	@PersistenceUnit
 	protected EntityManagerFactory entityManagerFactory;
@@ -36,7 +36,7 @@ public class GenerateSchemaTests {
 
 	@Before
 	public void setUp() throws Exception {
-		service = context.getBean(SalesService.class);
+		service = context.getBean(SalesServiceImpl.class);
 		assertNotNull(
 				"Please provide a service implementation", service);
 		entityManager = entityManagerFactory.createEntityManager();
@@ -56,9 +56,9 @@ public class GenerateSchemaTests {
 
 	@Test
 	public void testCustomerClassification(){
-		Customer customer = new Customer("Smart", "Manny V. Pangilinan", new CustomerClassification("Telecommunications"));
+		Customer customer = new Customer("Smart", new CustomerClassification("Telecommunications"));
 		entityManager.persist(customer);
-		Customer customer2 = new Customer("SM", "Henry Sy", new CustomerClassification("Land Development"));		
+		Customer customer2 = new Customer("SM", new CustomerClassification("Land Development"));		
 		entityManager.persist(customer2);
 		Customer c = entityManager.find(Customer.class, "Smart");
 		assertEquals("Telecommunications", c.getCustomerClassification().getName());

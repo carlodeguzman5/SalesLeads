@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import sales.domain.model.ContactPerson;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
@@ -24,11 +25,11 @@ import sales.domain.model.InquiryRepository;
 import sales.domain.model.Notification;
 import sales.domain.model.NotificationRepository;
 import sales.infrastructure.jpa.NoExistingInquiryException;
-import sales.interfaces.SalesServiceFacade;
+import sales.interfaces.SalesService;
 
 @Service
 @Transactional
-public class SalesService implements SalesServiceFacade {
+public class SalesServiceImpl implements SalesService {
 
 	@Autowired
 	protected ApplicationContext context;
@@ -41,7 +42,7 @@ public class SalesService implements SalesServiceFacade {
 	private NotificationRepository notificationRepository;
 
 	@Autowired
-	public SalesService(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository, NotificationRepository notificationRepository) {
+	public SalesServiceImpl(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository, NotificationRepository notificationRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
@@ -171,11 +172,19 @@ public class SalesService implements SalesServiceFacade {
 
 	public void updateLeadStatus(CustomerInquiry customerInquiry, String status) {
 		customerInquiryRepository.updateLeadStatus(customerInquiry, status);
-		
 	}
 
 	public Collection<CustomerInquiry> getInquiriesByCustomer(String company) {
 		return customerInquiryRepository.getInquiriesByCustomer(company);
+	}
+
+	public Collection<ContactPerson> getContactPersonsOf(Customer customer) {
+		return customerRepository.getAllContactPersons(customer);
+	}
+
+	public void addContactPersonToCustomer(Customer customer, String name, String email, String contactNumber) {
+		customerRepository.addContactPersonToCustomer(customer, name, email, contactNumber);
+		
 	}
 	
 }

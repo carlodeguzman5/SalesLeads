@@ -45,14 +45,14 @@
 			<div class="container-fluid">
 				<div class="row">
 
-                <h1>LEAD PAGE</h1>
+                <h1>Leads</h1>
 
                 <hr>
 
 					<table class="table table-striped table-bordered table-hover">
 					 	<tr> 
 					 		<th>DATE</th> 
-							<th>NAME</th> 
+							<!-- <th>NAME</th>  -->
 							<th>COMPANY NAME</th> 
 							<th>RATING</th> 
  							<th>INQUIRY</th> 
@@ -66,7 +66,7 @@
 		 						
 									<tr>		
 										<td>${dates[i]}</td>
-										<td>${names[i]}</td>
+										<%-- <td>${names[i]}</td> --%>
 										<td>
 											<form action="showCustomerHistory" method="post">
 					 							<input type="text" name="company" value="${companyNames[i]}" hidden="true">
