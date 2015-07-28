@@ -169,6 +169,7 @@ public class SalesController {
 	}
 	@RequestMapping("/Manual-Input.html")
 	public String showInputPage(Model model){
+		
 		Collection<Inquiry> inquiryTypes = service.getAllInquiries();
 		Collection<String> inquiryStrings = new ArrayList<String>();
 		for(Inquiry i : inquiryTypes){
@@ -177,10 +178,30 @@ public class SalesController {
 		
 		Collection<Customer> customers = service.getAllCustomers();
 		Collection<String> customerStrings = new ArrayList<String>();
+		Collection<String> customerContactNumber = new ArrayList<String>();
+		Collection<String> customerContactPerson = new ArrayList<String>();
+		Collection<String> customerContactEmail = new ArrayList<String>();
 		
 		for(Customer c : customers){
 			customerStrings.add(c.getName());
+			
+			StringBuilder emailStrings = new StringBuilder();
+			StringBuilder numberStrings = new StringBuilder();
+			StringBuilder nameStrings = new StringBuilder();
+			
+			Collection<ContactPerson> cp = service.getContactPersonsOf(c);
+			
+			for(ContactPerson person : cp){
+				numberStrings.append("=" + person.getContactNumber());
+				emailStrings.append("=" + person.getEmail());
+				nameStrings.append("=" + person.getName());
+			}
+			
+			customerContactNumber.add(numberStrings.toString());
+			customerContactEmail.add(emailStrings.toString());
+			customerContactPerson.add(nameStrings.toString());
 		}
+		
 		
 		Collection<CustomerClassification> customerClassifications = service.getAllCustomerClassifications();
 		Collection<String> customerClassificationStrings = new ArrayList<String>();
@@ -196,6 +217,12 @@ public class SalesController {
 		
 		model.addAttribute("customerClassifications", customerClassificationStrings);
 		
+		model.addAttribute("contactNumbers", customerContactNumber);
+		model.addAttribute("contactPersons", customerContactPerson);
+		model.addAttribute("contactEmails", customerContactEmail);
+		model.addAttribute("size", customerStrings.size()-1);
+		
+		System.out.println(customerStrings.size()-1);
 		return "manualInput";
 	}
 

@@ -52,6 +52,7 @@
 
 <title>SalesLeads</title>
 <script src="<c:url value="resources/js/Manual_Input.js"/>"></script>
+<script src="<c:url value="resources/js/table.js"/>"></script>
 
 <link
 	href="<c:url value="/resources/style.css" />"

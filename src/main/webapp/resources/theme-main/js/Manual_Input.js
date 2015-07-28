@@ -61,20 +61,62 @@ function getCustomerInfo(){
 	var customerName = document.getElementById('editCustomerNameSelect').value;
 	var customer = document.getElementById('editCustomerNameSelect').value;
 	console.log(customer);
-	var customerInfo = customer.split("=");
+	var customerInfo = customer.split("+");
+	var contactNames = customerInfo[0];
+	var contactNumbers = customerInfo[1];
+	var contactEmails = customerInfo[2];
 	
+	var table = document.getElementById("contacts");
+	
+	var counter = 0;
 	if(customerName != ""){
-		document.getElementById('editInfoHidden').style.display="initial";
-		document.getElementById('editCustomerName').setAttribute("value", customerInfo[0]);
-		document.getElementById('editContactNumber').setAttribute("value", customerInfo[1]);
-		document.getElementById('editContactPerson').setAttribute("value", customerInfo[2]);
-		document.getElementById('editEmail').setAttribute("value", customerInfo[3]);
-		document.getElementById('editCustomerClassification').setAttribute("value", customerInfo[4]);
+		counter = table.rows.length-1;
+		while(counter>0){
+			table.deleteRow(counter);
+			counter--;
+		}
+		
+		var name = contactNames.split("=");
+		var number = contactNumbers.split("=");
+		var email = contactEmails.split("=");
+		
+		for(counter=1 ; counter<name.length; counter++){
+			var row = table.insertRow(counter);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			cell1.innerHTML = name[counter];
+			cell2.innerHTML = number[counter];
+			cell3.innerHTML = email[counter];
+			cell4.innerHTML = '<button><i class="fa fa-edit"></i> Edit</button>';
+		}
 	}
 	
 	else{
-		document.getElementById('editInfoHidden').style.display="none";
+//		for(counter=1; counter<table.rows.length; counter++){
+//			console.log(counter);
+//			table.deleteRow(counter);
+//		}
+		counter = table.rows.length-1;
+		while(counter>0){
+			table.deleteRow(counter);
+			counter--;
+		}
 	}
+	
+//	if(customerName != ""){
+//		document.getElementById('editInfoHidden').style.display="initial";
+//		document.getElementById('editCustomerName').setAttribute("value", customerInfo[0]);
+//		document.getElementById('editContactNumber').setAttribute("value", customerInfo[1]);
+//		document.getElementById('editContactPerson').setAttribute("value", customerInfo[2]);
+//		document.getElementById('editEmail').setAttribute("value", customerInfo[3]);
+//		document.getElementById('editCustomerClassification').setAttribute("value", customerInfo[4]);
+//	}
+//	
+//	else{
+//		document.getElementById('editInfoHidden').style.display="none";
+//	}
 };
 
 function testing(){

@@ -93,34 +93,48 @@
 	
 								<select class="form-control" name="customerName" id="editCustomerNameSelect" onchange="getCustomerInfo()" required="required" >
 									<option value="">Choose a customer</option>
-									<c:forEach var="companyName" items="${company}">
-										<option value="${companyName.name}=${companyName.contactNumber}=${companyName.contactPerson}=${companyName.email}">${companyName.name}</option>
-									</c:forEach>
+<%-- 									<c:forEach var="companyName" items="${companyNames}"> --%>
+<%-- 										<option >${companyName}</option> --%>
+<%-- 									</c:forEach> --%>
+										<c:forEach var="i" begin="0" end="${size}">
+											<option value="${contactPersons[i]}+${contactNumbers[i]}+${contactEmails[i]}">${companyNames[i]}</option>
+										</c:forEach>
 								</select>
 							
-							<div id="editInfoHidden" style="display:none;">
+								
+<!-- 							<div id="editInfoHidden" style="display:none;"> -->
 							
-								<input type="hidden" name="editCustomerName" id="editCustomerName" required>
+<!-- 								<input type="hidden" name="editCustomerName" id="editCustomerName" required> -->
 							
-								<label>New Contact Number</label> 
-									<input class="form-control" name="editContactNumber" id="editContactNumber" required> 	
+<!-- 								<label>New Contact Number</label>  -->
+<!-- 									<input class="form-control" name="editContactNumber" id="editContactNumber" required> 	 -->
 									
-								<label>New Contact Person</label> 
-									<input class="form-control" name="editContactPerson" id="editContactPerson" required> 
+<!-- 								<label>New Contact Person</label>  -->
+<!-- 									<input class="form-control" name="editContactPerson" id="editContactPerson" required>  -->
 								
-								<label>New Email</label> 
-									<input type="email" class="form-control" name="editEmail" id="editEmail" required>
+<!-- 								<label>New Email</label>  -->
+<!-- 									<input type="email" class="form-control" name="editEmail" id="editEmail" required> -->
 								
-								<label>New Customer Classification</label> 
-									<select class="form-control" name="editCustomerClassification" id="editCustomerClassification" required>
-										<option value="">New Classification</option>
-										<c:forEach var="customerClassification" items="${customerClassifications}">
-											<option value='${customerClassification}'>${customerClassification}</option>
-										</c:forEach>
-									</select>
-							<button class="btn btn-md">Edit</button>
-							</div> 
+<!-- 								<label>New Customer Classification</label>  -->
+<!-- 									<select class="form-control" name="editCustomerClassification" id="editCustomerClassification" required> -->
+<!-- 										<option value="">New Classification</option> -->
+<%-- 										<c:forEach var="customerClassification" items="${customerClassifications}"> --%>
+<%-- 											<option value='${customerClassification}'>${customerClassification}</option> --%>
+<%-- 										</c:forEach> --%>
+<!-- 									</select> -->
+<!-- 							<button class="btn btn-md">Edit</button> -->
+<!-- 							</div>  -->
 						</form:form>
+						
+						<br>
+						<table id="contacts" class="table table-striped table-bordered table-hover" style="width:100%">
+							<tr>
+								<th>NAME OF CONTACT PERSON</th>
+								<th>CONTACT NUMBER</th>
+								<th>E-MAIL ADDRESS</th>
+								<th></th>
+							</tr>
+						</table>
 				</div>
 				
 				<div id="inquiry" class="tab-pane fade">
