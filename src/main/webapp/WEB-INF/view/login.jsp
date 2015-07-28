@@ -21,8 +21,22 @@
 	</head>
 	
 	<body>
-		
-		<button id="signinButton">Sign in with Google</button>
+		<div class="container">
+	        <div class="col-md-12">
+	            <div id="backgroundPic">
+	                
+	            </div>
+	        </div>
+
+	        <div class="col-md-12">
+	            <div id="loginbtn">
+	                <a class="btn btn-block btn-social btn-google-plus" id="signinButton">
+	                    <i class="fa fa-google-plus"></i> Sign in with Google
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+		<!-- <button id="signinButton">Sign in with Google</button> -->
 			<script>
 			  $('#signinButton').click(function() {
 			    // signInCallback defined in step 6.
