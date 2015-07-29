@@ -156,3 +156,17 @@ function actionChosen(){
 		document.getElementById('subjectAndTextarea').style.display="none";
 	}
 }
+
+function onloader(){
+
+	document.getElementById('customerPart1').style.display="none";
+	document.getElementById('customerPart2').style.display="none";
+	document.getElementById('inquiryPart').style.display="none";
+
+// document.getElementById('customerPart1').style.display="none";
+// document.getElementById('customerPart2').style.display="none";
+// document.getElementById('inquiryPart').style.display="none";
+// document.getElementById('types').style.display="none";
+// document.getElementById('textareaPart').style.display="none";
+// document.getElementById('subjectPart').style.display="none";
+}
