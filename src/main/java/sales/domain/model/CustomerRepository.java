@@ -13,7 +13,8 @@ public interface CustomerRepository {
 	Customer getCustomer(String name);
 	CustomerClassification getCustomerClassification(String name);
 	Collection<CustomerClassification> getAllCustomerClassifications();
-	void updateCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification);
+//	void updateCustomer(String customerName, String contactNumber, String contactPerson, String email, String customerClassification);
 	Collection<ContactPerson> getAllContactPersons(Customer customer);
 	void addContactPersonToCustomer(Customer customer, String name, String email, String contactNumber);
+	void updateCustomer(String name, String email, String contactNumber);
 }

@@ -35,7 +35,10 @@
 		        var element = document.getElementById("user");
 		        element.innerHTML = profile.getEmail();
 		        console.log(profile.getImageUrl());
-		        document.getElementById("image").setAttribute("src", profile.getImageUrl());
+		        if(profile.getImageUrl()!=undefined){
+		        	document.getElementById("image").setAttribute("src", profile.getImageUrl());
+		        }
+		        
 	        });
 	      });
 	    }
@@ -49,6 +52,7 @@
 
 <title>SalesLeads</title>
 <script src="<c:url value="resources/js/Manual_Input.js"/>"></script>
+<script src="<c:url value="resources/js/table.js"/>"></script>
 
 <link
 	href="<c:url value="/resources/style.css" />"
