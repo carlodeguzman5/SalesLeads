@@ -89,7 +89,8 @@ function getCustomerInfo(){
 			cell1.innerHTML = name[counter];
 			cell2.innerHTML = number[counter];
 			cell3.innerHTML = email[counter];
-			cell4.innerHTML = '<button id="addBtn" onclick="getInfo()" type="button" name="editValues" value="'+name[counter]+'='+number[counter]+'='+email[counter]+'"><i class="fa fa-edit"></i> Edit</button>';
+			cell4.innerHTML = '<button id="addBtn" onclick="getInfo(this.value)" type="button" name="editValues" value="'+name[counter]+'='+number[counter]+'='+email[counter]+'"><i class="fa fa-edit"></i> Edit</button>';
+			console.log(name[counter]+' '+number[counter]+' '+email[counter]);
 		}
 	}
 	
@@ -103,9 +104,10 @@ function getCustomerInfo(){
 	
 };
 
-function getInfo(){
-	console.log(document.getElementById("addBtn").value);
-	var contactInfo = document.getElementById("addBtn").value.split("=");
+function getInfo(contactInformation){
+	//console.log(document.getElementById("addBtn").value);
+	//console.log(contactInfo);
+	var contactInfo = contactInformation.split("=");
 	
 	document.getElementById("editContactPersonName").setAttribute("value", contactInfo[0]);
 	document.getElementById("editContactNumber").setAttribute("value", contactInfo[1]);

@@ -14,7 +14,7 @@
                             <label>Inquiry Type</label>
                                 <select class="form-control chosen-select" name="oldInquiryType" id="types" onchange="actionChosen()" required>
                                     <option value="">Select</option>
-                                    <option value="">New Inquiry</option>
+                                    <option>New Inquiry</option>
                                     <c:forEach var="type" items="${inquiryTypes}">
                                         <option>${type}</option>
                                     </c:forEach>
@@ -25,7 +25,7 @@
                                 <label>Customer Name</label>
                                 <select data-placeholder="Choose a Customer..." class="form-control chosen-select" name="customerName" id="customerNameSelect" onchange="actionChosen()" required>
                                     <option value="">Select action</option>
-                                    <option value="">New Customer</option>
+                                    <option>New Customer</option>
                                     <c:forEach var="companyName" items="${companyNames}">
                                         <option>${companyName}</option>
                                     </c:forEach>

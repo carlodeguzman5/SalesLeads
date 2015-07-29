@@ -292,6 +292,7 @@
 								Manual Input<span class="fa fa-angle-right"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="Manual-Input.html">Manual Inquiry Input</a></li>
+								<li><a href="EditCustomer.html">Edit Customer Details</a></li>
 								<!-- <li><a href="Manual-Input-Report.html">Manual Sales
 										Report</a></li> -->
 							</ul> <!-- /.nav-second-level --></li>
