@@ -59,6 +59,10 @@
 			href="<c:url value="/resources/style.css" />"
 			rel="stylesheet">
 		
+		<link
+			href="<c:url value="/resources/bower_components/bootstrap-social/bootstrap-social.css" />"
+			rel="stylesheet">
+		
 		<title>SalesLeads</title>
 		<script src="<c:url value="resources/js/Manual_Input.js"/>"></script>
 		<script src="<c:url value="resources/js/table.js"/>"></script>

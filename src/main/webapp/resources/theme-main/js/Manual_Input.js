@@ -196,7 +196,7 @@ function actionChosen(){
 		document.getElementById('customerSelection').style.display="none";
 		document.getElementById('subjectAndTextarea').style.display="none";
 	}
-}
+};
 
 function onloader(){
 

@@ -1,7 +1,8 @@
 
 <%@ include file="dashboard.jsp"%>
 
-<div id="page-wrapper">
+<body onload="onloader()">
+<div id="page-wrapper" >
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
@@ -12,8 +13,8 @@
 						 <div class="form-group formsize" id="inquiry">
                             <label>Inquiry Type</label>
                                 <select class="form-control chosen-select" name="oldInquiryType" id="types" onchange="actionChosen()" required>
-                                    <option>Select</option>
-                                    <option>New Inquiry</option>
+                                    <option value="">Select</option>
+                                    <option value="">New Inquiry</option>
                                     <c:forEach var="type" items="${inquiryTypes}">
                                         <option>${type}</option>
                                     </c:forEach>
@@ -23,8 +24,8 @@
 						  <div class="form-group formsize" id="customerSelection">
                                 <label>Customer Name</label>
                                 <select data-placeholder="Choose a Customer..." class="form-control chosen-select" name="customerName" id="customerNameSelect" onchange="actionChosen()" required>
-                                    <option>Select action</option>
-                                    <option>New Customer</option>
+                                    <option value="">Select action</option>
+                                    <option value="">New Customer</option>
                                     <c:forEach var="companyName" items="${companyNames}">
                                         <option>${companyName}</option>
                                     </c:forEach>
@@ -109,9 +110,8 @@
                                 </form>
                             </div>
                         </div>
-				
-				</div>
-				
+                        
+                        
 					<label>Add New Customer Classification</label>
                         <div class="form-horizontal">
                             <div class="form-group">
@@ -125,6 +125,9 @@
                                 </form>
                             </div>
                         </div>
+				
+				</div>
+				
                 
         
                         
@@ -190,3 +193,4 @@
 			$(selector).chosen(config[selector]);
 		}
 	</script>
+</body>
