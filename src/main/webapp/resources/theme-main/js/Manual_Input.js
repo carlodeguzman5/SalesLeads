@@ -177,3 +177,23 @@ var editor = {
 };
 
 
+function actionChosen(){
+	var chosenCustomer = document.getElementById('customerNameSelect').value;
+	var chosenInquiry = document.getElementById('types').value;
+
+	if (chosenCustomer == "New Customer") {
+		console.log(chosenCustomer);
+		console.log(chosenInquiry);
+		document.getElementById('customerPart1').removeAttribute('style');
+		document.getElementById('inquiry').style.display="none";
+		document.getElementById('customerSelection').style.display="none";
+		document.getElementById('subjectAndTextarea').style.display="none";
+	}else if (chosenInquiry == "New Inquiry") {
+		console.log(chosenCustomer);
+		console.log(chosenInquiry);
+		document.getElementById('inquiryPart').removeAttribute('style');
+		document.getElementById('inquiry').style.display="none";
+		document.getElementById('customerSelection').style.display="none";
+		document.getElementById('subjectAndTextarea').style.display="none";
+	}
+}

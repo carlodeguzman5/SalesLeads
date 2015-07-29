@@ -9,3 +9,23 @@
 #signUp{
 /* 	float: right; */
 }
+
+#backgroundPic{
+	  background-image: url(Picture1.png);
+	  background-size: 600px 162px;
+	  background-repeat: no-repeat;
+	  height: 206px;
+	  width: 600px;
+	  margin: auto;
+	  margin-top: 135px;
+}
+
+#loginbtn{
+	width: 200px;
+	margin:auto;
+	margin-top: 35px;
+}
+
+body{
+	background-color:#ffffff;
+}
