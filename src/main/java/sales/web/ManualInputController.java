@@ -68,4 +68,10 @@ public class ManualInputController {
 		
 		return "redirect:/showCustomers";
 	}
+	
+	@RequestMapping(value="/editContact", method=RequestMethod.POST)
+	public String editContactPerson(String editContactPersonName, String customerName, String editEmail, String contactEmail, String editContactNumber, String oldContactNumber){
+		service.editContactPerson(customerName, editContactPersonName, contactEmail, oldContactNumber, editEmail, editContactNumber);
+		return "redirect:/showCustomers";
+	}
 }

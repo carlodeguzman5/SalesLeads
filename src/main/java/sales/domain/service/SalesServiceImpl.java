@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import sales.domain.model.ContactPerson;
+import sales.domain.model.ContactPersonRepository;
 import sales.domain.model.Customer;
 import sales.domain.model.CustomerClassification;
 import sales.domain.model.CustomerInquiry;
@@ -40,15 +41,17 @@ public class SalesServiceImpl implements SalesService {
 	private EventRepository eventRepository;
 	private UserRepository userRepository;
 	private NotificationRepository notificationRepository;
+	private ContactPersonRepository contactPersonRepository;
 
 	@Autowired
-	public SalesServiceImpl(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository, NotificationRepository notificationRepository) {
+	public SalesServiceImpl(CustomerRepository customerRepository, InquiryRepository inquiryRepository, CustomerInquiryRepository customerInquiryRepository, UserRepository userRepository, EventRepository eventRepository, NotificationRepository notificationRepository, ContactPersonRepository contactPersonRepository) {
 		this.customerRepository = customerRepository;
 		this.inquiryRepository = inquiryRepository;
 		this.customerInquiryRepository = customerInquiryRepository;
 		this.eventRepository = eventRepository;
 		this.userRepository = userRepository;
 		this.notificationRepository = notificationRepository;
+		this.contactPersonRepository = contactPersonRepository;
 	}
 
 	public ArrayList<CustomerInquiry> getAllCustomerInquiries() {
@@ -147,10 +150,11 @@ public class SalesServiceImpl implements SalesService {
 		return customerInquiryRepository.getCustomerInquiry(companyName,  inquiryName,  subject,  content);
 	}
 
-	public void updateCustomer(String customerName, String contactNumber,
-			String contactPerson, String email, String customerClassification) {
-		customerRepository.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
-		
+	/*public void updateCustomer(String customerName, String contactNumber,
+			String contactPerson, String email, String customerClassification) {*/
+	public void updateCustomer(String name, String email, String contactNumber) {
+		//customerRepository.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
+		customerRepository.updateCustomer(name, email,contactNumber);
 	}
 
 	public void customizeNotification(CustomerInquiry customerInquiry,
@@ -185,6 +189,18 @@ public class SalesServiceImpl implements SalesService {
 	public void addContactPersonToCustomer(Customer customer, String name, String email, String contactNumber) {
 		customerRepository.addContactPersonToCustomer(customer, name, email, contactNumber);
 		
+	}
+
+	public void updateCustomer(String customerName, String contactNumber,
+			String contactPerson, String email, String customerClassification) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void editContactPerson(String customerName,
+			String editContactPersonName, String contactEmail,
+			String contactNumber, String editEmail, String editContactNumber) {
+		contactPersonRepository.editContactPerson(customerName, editContactPersonName, contactEmail, contactNumber, editEmail, editContactNumber);
 	}
 	
 }

@@ -222,7 +222,6 @@ public class SalesController {
 		model.addAttribute("contactEmails", customerContactEmail);
 		model.addAttribute("size", customerStrings.size()-1);
 		
-		System.out.println(customerStrings.size()-1);
 		return "manualInput";
 	}
 
@@ -232,8 +231,9 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/updateCustomer")
-	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPerson, String editEmail, String editCustomerClassification){
-		service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
+	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPersonName, String editEmail, String editCustomerClassification){
+		//service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
+		service.updateCustomer(editContactPersonName, editEmail, editContactNumber);
 		return "redirect:/showCustomers";
 	}
 		

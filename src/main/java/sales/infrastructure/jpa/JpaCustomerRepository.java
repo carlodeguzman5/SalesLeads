@@ -101,7 +101,9 @@ public class JpaCustomerRepository implements CustomerRepository {
 		ContactPerson contactPerson = new ContactPerson(name, email, contactNumber, customer);
 		entityManager.merge(contactPerson);
 		entityManager.merge(customer);
-		
+	}
+
+	public void updateCustomer(String name, String email, String contactNumber) {
 		
 	}
 	

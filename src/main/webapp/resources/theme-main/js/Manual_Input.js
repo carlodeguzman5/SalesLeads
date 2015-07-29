@@ -89,15 +89,11 @@ function getCustomerInfo(){
 			cell1.innerHTML = name[counter];
 			cell2.innerHTML = number[counter];
 			cell3.innerHTML = email[counter];
-			cell4.innerHTML = '<button><i class="fa fa-edit"></i> Edit</button>';
+			cell4.innerHTML = '<button id="addBtn" onclick="getInfo()" type="button" name="editValues" value="'+name[counter]+'='+number[counter]+'='+email[counter]+'"><i class="fa fa-edit"></i> Edit</button>';
 		}
 	}
 	
 	else{
-//		for(counter=1; counter<table.rows.length; counter++){
-//			console.log(counter);
-//			table.deleteRow(counter);
-//		}
 		counter = table.rows.length-1;
 		while(counter>0){
 			table.deleteRow(counter);
@@ -105,18 +101,21 @@ function getCustomerInfo(){
 		}
 	}
 	
-//	if(customerName != ""){
-//		document.getElementById('editInfoHidden').style.display="initial";
-//		document.getElementById('editCustomerName').setAttribute("value", customerInfo[0]);
-//		document.getElementById('editContactNumber').setAttribute("value", customerInfo[1]);
-//		document.getElementById('editContactPerson').setAttribute("value", customerInfo[2]);
-//		document.getElementById('editEmail').setAttribute("value", customerInfo[3]);
-//		document.getElementById('editCustomerClassification').setAttribute("value", customerInfo[4]);
-//	}
-//	
-//	else{
-//		document.getElementById('editInfoHidden').style.display="none";
-//	}
+};
+
+function getInfo(){
+	console.log(document.getElementById("addBtn").value);
+	var contactInfo = document.getElementById("addBtn").value.split("=");
+	
+	document.getElementById("editContactPersonName").setAttribute("value", contactInfo[0]);
+	document.getElementById("editContactNumber").setAttribute("value", contactInfo[1]);
+	document.getElementById("editEmail").setAttribute("value", contactInfo[2]);
+	
+	document.getElementById("customerName").setAttribute("value", document.getElementById("editCustomerNameSelect").value);
+	document.getElementById("oldContactNumber").setAttribute("value", contactInfo[1]);
+	document.getElementById("contactEmail").setAttribute("value", contactInfo[2]);
+	
+	$("#myModal").modal();
 };
 
 function testing(){

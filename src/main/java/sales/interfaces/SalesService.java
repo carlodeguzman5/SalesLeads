@@ -71,4 +71,11 @@ public interface SalesService {
 
 	public Collection<CustomerInquiry> getInquiriesByCustomer(String company);
 
+	public void updateCustomer(String editContactPersonName, String editEmail,
+			String editContactNumber);
+
+	public void editContactPerson(String customerName,
+			String editContactPersonName, String contactEmail,
+			String contactNumber, String editEmail, String editContactNumber);
+
 }

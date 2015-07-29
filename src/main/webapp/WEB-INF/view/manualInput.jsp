@@ -172,6 +172,38 @@
 			</div>
 			<!-- /.row -->
 		</div>
+		
+		<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Edit Contact Person Details</h4>
+						</div>
+						<div class="modal-body">
+							<form class="container-fluid" method="post" action="editContact">
+								<label>Contact Person's Name</label>
+								<input class="form-control" type="text" name="editContactPersonName" id="editContactPersonName" required readonly="readonly"/>
+								<input type="hidden" name="customerName" id="customerName">
+								<label>Contact Person's Email</label>
+								<input class="form-control" type="email" name="editEmail" id="editEmail" required/>
+								<input type="hidden" name="contactEmail" id="contactEmail">
+								<label>Contact Person's Contact Number</label>
+								<input class="form-control" type="tel" name="editContactNumber" id="editContactNumber" required/>
+								<input type="hidden" name="oldContactNumber" id="oldContactNumber">
+								<input type="submit" value="Save">
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<form></form>
+				</div>
+			</div>
+		
+		
 		<!-- /.container-fluid -->
 	</div>
 
