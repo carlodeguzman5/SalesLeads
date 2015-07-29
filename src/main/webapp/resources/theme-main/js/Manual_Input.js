@@ -195,7 +195,15 @@ function actionChosen(){
 		document.getElementById('inquiry').style.display="none";
 		document.getElementById('customerSelection').style.display="none";
 		document.getElementById('subjectAndTextarea').style.display="none";
+	}else if (chosenCustomer == "Edit Customer") {
+		console.log(chosenCustomer);
+		console.log(chosenInquiry);
+		document.getElementById('customerPart2').removeAttribute('style');
+		document.getElementById('inquiry').style.display="none";
+		document.getElementById('customerSelection').style.display="none";
+		document.getElementById('subjectAndTextarea').style.display="none";
 	}
+
 };
 
 function onloader(){
