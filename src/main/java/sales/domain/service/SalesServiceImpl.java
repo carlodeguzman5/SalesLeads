@@ -193,8 +193,7 @@ public class SalesServiceImpl implements SalesService {
 
 	public void updateCustomer(String customerName, String contactNumber,
 			String contactPerson, String email, String customerClassification) {
-		// TODO Auto-generated method stub
-		
+		customerRepository.updateCustomer(customerName, contactNumber, contactPerson, email, customerClassification);
 	}
 
 	public void editContactPerson(String customerName,

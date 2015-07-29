@@ -78,7 +78,7 @@
 					</table>
 				</div>
 			</div>
-			<div id="myModal" class="modal fade" role="dialog" onload="getInfo()">
+			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -86,7 +86,7 @@
 							<h4 class="modal-title">Add New Contact Person</h4>
 						</div>
 						<div class="modal-body">
-							<form class="container-fluid" method="post" action="updateCustomer">
+							<form class="container-fluid" method="post" action="addContact">
 								<label>Choose a Customer to add a Contact</label>
 								<select class="form-control" name="customer">
 									<c:forEach var="i" begin="0" end="${size}">

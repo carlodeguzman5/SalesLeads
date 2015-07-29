@@ -16,7 +16,7 @@
                                     <option value="">Select</option>
                                     <option>New Inquiry</option>
                                     <c:forEach var="type" items="${inquiryTypes}">
-                                        <option>${type}</option>
+                                        <option value="${type}">${type}</option>
                                     </c:forEach>
                                 </select>
                        	  </div>
@@ -27,7 +27,7 @@
                                     <option value="">Select action</option>
                                     <option>New Customer</option>
                                     <c:forEach var="companyName" items="${companyNames}">
-                                        <option>${companyName}</option>
+                                        <option value="${companyName}">${companyName}</option>
                                     </c:forEach>
                                 </select>
                           </div>
@@ -74,27 +74,6 @@
                             <button class="btn btn-md">Add</button>
                         </form:form>
 				
-						<form:form action="updateCustomer" method="post" class="form-group formsize" id="customerPart2">
-	
-								<select class="form-control" name="customerName" id="editCustomerNameSelect" onchange="getCustomerInfo()" required="required" >
-									<option value="">Choose a customer</option>
-										<c:forEach var="i" begin="0" end="${size}">
-											<option value="${contactPersons[i]}+${contactNumbers[i]}+${contactEmails[i]}">${companyNames[i]}</option>
-										</c:forEach>
-								</select>
-							
-								
-						</form:form>
-						
-						<br>
-						<table id="contacts" class="table table-striped table-bordered table-hover" style="width:100%">
-							<tr>
-								<th>NAME OF CONTACT PERSON</th>
-								<th>CONTACT NUMBER</th>
-								<th>E-MAIL ADDRESS</th>
-								<th></th>
-							</tr>
-						</table>
 				</div>
 				
 				<div id="inquiryPart">

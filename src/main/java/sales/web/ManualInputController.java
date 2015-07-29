@@ -43,7 +43,6 @@ public class ManualInputController {
 	
 	@RequestMapping(value="/addNewManualInput", method = RequestMethod.POST)
 	public String addNewManualInput(Model model, String oldInquiryType, String customerName, String subject, String text) throws NoExistingInquiryException{
-		
 		Customer customer = service.findCustomer(customerName);
 		Inquiry inquiry = service.findInquiry(oldInquiryType);
 		service.createCustomerInquiry(customer, inquiry, subject, text);

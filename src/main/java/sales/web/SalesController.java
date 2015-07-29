@@ -232,10 +232,17 @@ public class SalesController {
 	
 	@RequestMapping("/updateCustomer")
 	public String updateCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPersonName, String editEmail, String editCustomerClassification){
-		//service.updateCustomer(editCustomerName, editContactNumber, editContactPerson, editEmail, editCustomerClassification);
-		service.updateCustomer(editContactPersonName, editEmail, editContactNumber);
+		service.updateCustomer(editCustomerName, editContactNumber, editContactPersonName, editEmail, editCustomerClassification);
+		//service.updateCustomer(editContactPersonName, editEmail, editContactNumber);
 		return "redirect:/showCustomers";
 	}
+	
+//	@RequestMapping("/editCustomer")
+//	public String editCustomer(Model model, String editCustomerName, String editContactNumber, String editContactPersonName, String editEmail, String editCustomerClassification){
+//		//service.updateCustomer(editCustomerName, editContactNumber, editContactPersonName, editEmail, editCustomerClassification);
+//		service.updateCustomer(editContactPersonName, editEmail, editContactNumber);
+//		return "redirect:/showCustomers";
+//	}
 		
 	@RequestMapping("/projectTimeline")
 	public String getTimeline(Model model, String date, String companyName, String inquiry, String subject, String content){
@@ -437,8 +444,8 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/addContact")
-	public String addContact(Model model, String contactPersonName, String email, String contactNumber, String customer){
-		service.addContactPersonToCustomer(service.findCustomer(customer), contactPersonName, email, contactNumber);
+	public String addContact(Model model, String editContactPersonName, String editEmail, String editContactNumber, String customer){
+		service.addContactPersonToCustomer(service.findCustomer(customer), editContactPersonName, editEmail, editContactNumber);
 		return showCustomers(model);
 	}
 	

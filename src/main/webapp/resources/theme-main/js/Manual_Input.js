@@ -90,7 +90,7 @@ function getCustomerInfo(){
 			cell2.innerHTML = number[counter];
 			cell3.innerHTML = email[counter];
 			cell4.innerHTML = '<button id="addBtn" onclick="getInfo(this.value)" type="button" name="editValues" value="'+name[counter]+'='+number[counter]+'='+email[counter]+'"><i class="fa fa-edit"></i> Edit</button>';
-			console.log(name[counter]+' '+number[counter]+' '+email[counter]);
+			//console.log(name[counter]+' '+number[counter]+' '+email[counter]);
 		}
 	}
 	
@@ -211,7 +211,7 @@ function actionChosen(){
 function onloader(){
 
 	document.getElementById('customerPart1').style.display="none";
-	document.getElementById('customerPart2').style.display="none";
+	//document.getElementById('customerPart2').style.display="none";
 	document.getElementById('inquiryPart').style.display="none";
 
 // document.getElementById('customerPart1').style.display="none";
