@@ -124,14 +124,17 @@ public class SalesController {
 		Collection<CustomerInquiry> customerInquiries = service.getAllCustomerInquiries();
 		Collection<String> date = new ArrayList<String>();
 		Collection<String> customerNames = new ArrayList<String>();
+		Collection<String> customerClassification = new ArrayList<String>();
 		
 		for(CustomerInquiry ci : customerInquiries){
 			date.add(ci.getDate().toString());
 			customerNames.add(ci.getCustomer().getName());
+			customerClassification.add(ci.getCustomer().getClassification().getName());
 		}
 		
 		model.addAttribute("date", date);
 		model.addAttribute("customerNames", customerNames);
+		model.addAttribute("customerClassification", customerClassification);
 		model.addAttribute("customerInquirySize", customerInquiries.size()-1);
 		
 		Collection<Inquiry> inquiries = service.getAllInquiriesbyCount();

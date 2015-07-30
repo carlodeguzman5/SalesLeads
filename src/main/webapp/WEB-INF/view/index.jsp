@@ -19,6 +19,7 @@
 								<tr>
 									<th>DATE</th>
 									<th>CUSTOMER NAME</th>
+									<th>CUSTOMER CLASSIFICATION</th>
 								</tr>
 								<c:if test="${customerInquirySize>=0}">
 									<c:forEach var="i" begin="0" end="${customerInquirySize}">
@@ -26,6 +27,7 @@
 											<tr>
 												<td>${date[i]}</td>
 												<td>${customerNames[i]}</td>
+												<td>${customerClassification[i]}</td>
 											</tr>
 										</c:if>
 									</c:forEach>
