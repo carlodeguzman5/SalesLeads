@@ -513,6 +513,24 @@ public class SalesController {
 		return "editCustomer";
 	}
 	
+	@RequestMapping("/ChartsRadar.html")
+	public String viewChartsRadar(Model model){
+		Collection<Inquiry> inquiries = service.getAllInquiriesbyCount();
+		Collection<String> inquiryTypes = new ArrayList<String>();
+		Collection<String> count = new ArrayList<String>();
+		
+		for(Inquiry i : inquiries){
+			inquiryTypes.add(i.getType());
+			count.add(String.valueOf(i.getCount()));
+		}
+		
+		model.addAttribute("inquiryTypes", inquiryTypes);
+		model.addAttribute("count", count);
+		model.addAttribute("inquirySize", inquiries.size()-1);
+		
+		return "ChartsRadar";
+	}
+	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public String entityNotFound() {
 		return "errors/notFound";

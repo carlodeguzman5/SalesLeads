@@ -44,12 +44,49 @@
                             <h1>Leads Status Pie Chart</h1>
                         </div>
                         <canvas id="buyers" width="600" height="400"></canvas>
+                        
+                        	<c:forEach var="i" begin="0" end="${inquirySize}">
+	                        	<select class="form-control allTypes" style="display:none">
+									<option>${inquiryTypes[i]}</option>
+                       			</select>
+							</c:forEach>
+							
+							<c:forEach var="i" begin="0" end="${inquirySize}">
+	                        	<select class="form-control allCount" style="display:none">
+									<option>${count[i]}</option>
+                       			</select>
+							</c:forEach>
+							
+							<table class="table table-striped table-bordered table-hover">
+								<tr>
+									<th>INQUIRY TYPE</th>
+									<th>COUNT</th>
+								</tr>
+								<c:if test="${inquirySize>=0}">
+									<c:forEach var="i" begin="0" end="${inquirySize}">
+										<tr>
+											<td>${inquiryTypes[i]}</td>
+											<td>${count[i]}</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</table>
 
                         <script type="text/javascript">
-
+							
+                        	var types = document.getElementsByClassName('allTypes');
+                        	var counts = document.getElementsByClassName('allCount');
+                        	
+                        	var types2 = [];
+                        	var counts2 = [];
+                        	
+                        	for(var i = 0 ; i < types.length ; i++){
+                        		types2[i] = types[i].value;
+                        		counts2[i] = counts[i].value;
+                        	}
                             
                             var buyerData = {
-                                labels: ["Success", "Discontinue", "On Going", "Pending"],
+                                labels: types2,
                                 datasets: [
                                     {
                                         label: "My First dataset",
@@ -59,7 +96,7 @@
                                         pointStrokeColor: "#fff",
                                         pointHighlightFill: "#fff",
                                         pointHighlightStroke: "rgba(220,220,220,1)",
-                                        data: [30, 59, 90, 81]
+                                        data: counts2
                                     },
                                 ]
                             };

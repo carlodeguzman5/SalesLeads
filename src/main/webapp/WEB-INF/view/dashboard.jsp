@@ -116,7 +116,7 @@
 					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
 				</a>
-					<ul class="dropdown-menu dropdown-alerts">
+					<ul class="dropdown-menu dropdown-alerts" style="width:500px;">
 						<c:if test="${sessionScope.notifSize<=0}">
 							<div>
 								<i class="fa fa-comment fa-fw"></i> No notification <span
@@ -167,6 +167,7 @@
 								Charts<span class="fa fa-angle-right"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="Charts.html">Leads Status</a></li>
+								<li><a href="ChartsRadar.html">Inquiry Chart</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="LeadPage.html"><i class="fa fa-table fa-fw"></i>
 								Leads</a></li>
