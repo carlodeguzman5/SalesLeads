@@ -10,5 +10,6 @@ public interface InquiryRepository {
 	Inquiry getInquiryByName(String inquiry) throws NoExistingInquiryException;
 	void createInquiry(String inquiry);
 	Collection<Inquiry> getAllInquiries();
+	Collection<Inquiry> getAllInquiriesbyCount();
 	
 }

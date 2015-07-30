@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import sales.domain.model.ContactPerson;
 import sales.domain.model.Customer;
@@ -79,7 +80,7 @@ public class SalesController {
 		else{
 			request.getSession().setAttribute("notifSize", 0);
 		}
-		return "index";
+		return "redirect:/index.html";
 	}
 	
 	@RequestMapping("/signup.html")
@@ -119,7 +120,33 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/index.html")
-	public String showIndexAlternate() {
+	public String showIndexAlternate(Model model) {
+		Collection<CustomerInquiry> customerInquiries = service.getAllCustomerInquiries();
+		Collection<String> date = new ArrayList<String>();
+		Collection<String> customerNames = new ArrayList<String>();
+		
+		for(CustomerInquiry ci : customerInquiries){
+			date.add(ci.getDate().toString());
+			customerNames.add(ci.getCustomer().getName());
+		}
+		
+		model.addAttribute("date", date);
+		model.addAttribute("customerNames", customerNames);
+		model.addAttribute("customerInquirySize", customerInquiries.size()-1);
+		
+		Collection<Inquiry> inquiries = service.getAllInquiriesbyCount();
+		Collection<String> inquiryTypes = new ArrayList<String>();
+		Collection<String> count = new ArrayList<String>();
+		
+		for(Inquiry i : inquiries){
+			inquiryTypes.add(i.getType());
+			count.add(String.valueOf(i.getCount()));
+		}
+		
+		model.addAttribute("inquiryTypes", inquiryTypes);
+		model.addAttribute("count", count);
+		model.addAttribute("inquirySize", inquiries.size()-1);
+		
 		return "index";
 	}
 	@RequestMapping("/Charts.html")

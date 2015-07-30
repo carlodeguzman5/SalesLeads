@@ -43,7 +43,15 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 	
 	
 	public void createCustomerInquiry(Customer customer, Inquiry inquiry, String subject, String message, Date date) {
+		int count = inquiry.getCount()+1;
+		inquiry.setCount(count);
+		
 		CustomerInquiry ci = new CustomerInquiry(customer, inquiry, subject, message, date);
+		Inquiry inq = entityManager.find(Inquiry.class, inquiry.getType());
+		
+		inq.setCount(count);
+		
+		entityManager.persist(inq);
 		entityManager.persist(ci);
 		entityManager.flush();
 	}
@@ -51,7 +59,6 @@ public class JpaCustomerInquiryRepository implements CustomerInquiryRepository {
 
 	public CustomerInquiry getCustomerInquiry(String companyName, String inquiryName,
 			String subject, String content) {
-		System.out.println(content + "============");
 	    Customer customer = entityManager.find(Customer.class, companyName);
 		Inquiry inquiry = entityManager.find(Inquiry.class, inquiryName);
 	

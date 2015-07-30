@@ -78,4 +78,6 @@ public interface SalesService {
 			String editContactPersonName, String contactEmail,
 			String contactNumber, String editEmail, String editContactNumber);
 
+	public Collection<Inquiry> getAllInquiriesbyCount();
+
 }

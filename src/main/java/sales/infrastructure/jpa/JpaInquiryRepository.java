@@ -42,4 +42,8 @@ public class JpaInquiryRepository implements InquiryRepository {
 		return entityManager.createNativeQuery("SELECT * FROM INQUIRY", Inquiry.class).getResultList();
 	}
 
+	public Collection<Inquiry> getAllInquiriesbyCount() {
+		return entityManager.createNativeQuery("SELECT * FROM INQUIRY ORDER BY count DESC", Inquiry.class).getResultList();
+	}
+
 }

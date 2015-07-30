@@ -201,5 +201,9 @@ public class SalesServiceImpl implements SalesService {
 			String contactNumber, String editEmail, String editContactNumber) {
 		contactPersonRepository.editContactPerson(customerName, editContactPersonName, contactEmail, contactNumber, editEmail, editContactNumber);
 	}
+
+	public Collection<Inquiry> getAllInquiriesbyCount() {
+		return inquiryRepository.getAllInquiriesbyCount();
+	}
 	
 }

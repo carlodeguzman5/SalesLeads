@@ -3,52 +3,62 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Panels and Wells</h1>
+                    <h1 class="page-header">UPDATES</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
+                <div class="col-lg-6">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            Default Panel
+                            <b>LATEST INQUIRIES</b>
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
+							<table class="table table-striped table-bordered table-hover">
+								<tr>
+									<th>DATE</th>
+									<th>CUSTOMER NAME</th>
+								</tr>
+								<c:if test="${customerInquirySize>=0}">
+									<c:forEach var="i" begin="0" end="${customerInquirySize}">
+										<c:if test="${i<10}">
+											<tr>
+												<td>${date[i]}</td>
+												<td>${customerNames[i]}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:if>
+							</table>
                         </div>
                     </div>
                 </div>
                 <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-primary">
+                <div class="col-lg-6">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            Primary Panel
+                            <b>TOP INQUIRIES</b>
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            Success Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
+                            <table class="table table-striped table-bordered table-hover">
+								<tr>
+									<th>INQUIRY TYPE</th>
+									<th>COUNT</th>
+								</tr>
+								<c:if test="${inquirySize>=0}">
+									<c:forEach var="i" begin="0" end="${inquirySize}">
+										<c:if test="${i<10}">
+											<tr>
+												<td>${inquiryTypes[i]}</td>
+												<td>${count[i]}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:if>
+							</table>
+						</div>
+					</div>
                 </div>
                 <!-- /.col-lg-4 -->
             </div>

@@ -25,6 +25,7 @@ public class Inquiry implements Serializable {
 
 	@Id
 	private String type;
+	private int count;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUSTOMER_PER_INQUIRY")
 	private Set<CustomerInquiry> customers;
@@ -33,9 +34,18 @@ public class Inquiry implements Serializable {
 
 	public Inquiry(String type) {
 		this.type = type;
+		this.count = 0;
 	}
 	
 	public String getType(){
 		return type;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }
