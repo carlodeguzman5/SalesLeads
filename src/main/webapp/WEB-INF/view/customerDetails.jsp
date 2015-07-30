@@ -11,8 +11,6 @@
 							<th>INQUIRY TYPE</th> 
 							<th>SUBJECT</th> 
 							<th>MESSAGE</th> 
-					 		<th>BUDGET</th> 
-							<th>RATING</th> 
 							<th>STATUS</th> 
 					 	</tr> 
 					
@@ -23,8 +21,6 @@
 									 	<td>${inquiryType[i]}</td>	
 									 	<td>${subject[i]}</td>
 									 	<td>${message[i]}</td>
-									 	<td>${budget[i]}</td>
-									 	<td>${rating[i]}</td>
 									 	<td>${status[i]}</td>		
 									</tr>			
 								</c:forEach>

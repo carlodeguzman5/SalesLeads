@@ -39,7 +39,6 @@
                         <tr> 
                             <th>DATE</th> 
                             <th>COMPANY NAME</th> 
-                            <th>RATING</th> 
                             <th>INQUIRY</th> 
                             <th>SUBJECT</th> 
                             <th>CONTENT</th> 
@@ -56,13 +55,6 @@
                                                 <input type="text" name="company" value="${companyNames[i]}" hidden="true">
                                                 <input class="linkButton" type="submit" value="${companyNames[i]}">
                                             </form>
-                                        </td>
-                                        <td>
-                                            <i class="fa fa-star-o" id="star1"></i>
-                                            <i class="fa fa-star-o" id="star2"></i>
-                                            <i class="fa fa-star-o" id="star3"></i>
-                                            <i class="fa fa-star-o" id="star4"></i>
-                                            <i class="fa fa-star-o" id="star5"></i>
                                         </td>
                                         <td>${inquiries[i]}</td>
                                         <td>${subjects[i]}</td>
@@ -85,7 +77,6 @@
                     
                     </table>
 
-                    <button onclick="starTestChange()">Change star</button>
 				</div>
 				<!-- /.row -->
 			</div>

@@ -5,6 +5,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
+				<h1>EDIT CONTACT PERSON DETAILS</h1>
 				<form:form action="updateCustomer" method="post" class="form-group formsize" id="customerPart2">
 					
 					<select class="form-control" name="customerName" id="editCustomerNameSelect" onchange="getCustomerInfo()" required="required" >
