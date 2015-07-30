@@ -163,9 +163,9 @@ function testOutput(){
 							<input type="text" name="subject" value="${subject}" hidden="true">
 							<input type="text" name="content" value="something" hidden="true">
 							<div class='container-fluid'>
-								<label>Event</label><input class="form-control" type="text" name="title">
-								<label>Summary</label><textarea class="form-control" name="update" form="eventForm"></textarea>
-								<label>Date</label><input class="form-control" type="date" name="date"></textarea>
+								<label>Event</label><input class="form-control" type="text" name="title" required>
+								<label>Summary</label><textarea class="form-control" name="update" form="eventForm" required></textarea>
+								<label>Date</label><input class="form-control" type="date" name="date" required></textarea>
 								<input class="btn btn-md" type="submit">
 							</div>
 						</form>
